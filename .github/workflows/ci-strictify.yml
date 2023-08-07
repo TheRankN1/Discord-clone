@@ -1,0 +1,43 @@
+#name: 'ts-strictify'
+#
+#on:
+#  pull_request:
+#    # Run this workflow only if there are changes in the project or to relevant root-level files
+#    paths:
+#      - 'projects/ts-strictify/**'
+#      - '.github/workflows/ci-strictify.yml'
+#
+## There should be only one run of this workflow at a time.
+## Cancel an in-progress run if there's a new commit.
+#concurrency:
+#  group: ts-${{ github.event.number }}
+#  cancel-in-progress: true
+#
+#jobs:
+#  CI:
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 15
+#    steps:
+#      - uses: plentymarkets/github-runner-cleanup@main
+#
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version-file: 'package.json'
+#          cache: 'npm'
+#
+#      - name: Install
+#        run: npm ci --prefer-offline --no-audit --progress=false
+#
+#      - name: Build
+#        run: npm run build:ts-strictify
+#
+#      - name: Compare the expected and actual dist/ directories
+#        run: |
+#          if [ "$(git diff --ignore-space-at-eol projects/ts-strictify/dist/ | wc -l)" -gt "0" ]; then
+#            echo "Detected uncommitted changes after build.  See status below:"
+#            git diff
+#            exit 1
+#          fi

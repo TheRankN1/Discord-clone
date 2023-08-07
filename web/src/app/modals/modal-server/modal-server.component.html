@@ -1,0 +1,8 @@
+<div *ngIf="isOpen$ | async" class="modal-server">
+  <h3>SERVER NAME</h3>
+  <input type="text" #serverInputRef [(ngModel)]="name" placeholder="Server name" />
+  <div class="buttons">
+    <button (click)="closeModal()">Cancel</button>
+    <button class="create-server" [disabled]="name === ''" [class.disabled]="name === ''" (click)="onAddServer()">Create server</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="scrolling-container">
+  <ng-container *ngIf="currentServer as server">
+    <div class="name-with-open-modal" *ngIf="server.title != ''">
+      <h1>{{ server.title }}</h1>
+      <div (click)="openCategoryModal()" class="open-modal">+</div>
+    </div>
+    <div class="category" *ngFor="let category of server.categories">
+      <div class="title-addButton">
+        <strong>{{ category.title }}</strong>
+        <div class="add-channel" (click)="openChannelModal(category)">+</div>
+      </div>
+      <span #categoryRef (click)="setCurrentChannel(channel.id)" *ngFor="let channel of category.channels">{{ channel.title }}</span>
+    </div>
+  </ng-container>
+</div>

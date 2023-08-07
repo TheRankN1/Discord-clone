@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  gap: 10px;
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: black;
+
+    &:hover {
+      cursor: pointer;
+      border-radius: 20px;
+    }
+  }
+
+  div {
+    display: none;
+
+    &.active {
+      display: flex;
+      width: 5px;
+      border-radius: 10px;
+      height: 60px;
+      background: grey;
+    }
+  }
+}
