@@ -56,15 +56,6 @@ export class ServersService {
 
   public addChannel(name: string, serverId: string, categoryId: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
-
-    const channelChars = name.length;
-    const maxChars = 22;
-
-    if (channelChars > maxChars) {
-      const channelNameWithSubstring = (name.substring(0, maxChars) + '...');
-      name = channelNameWithSubstring;
-    }
-
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
     if (!foundServer) {
