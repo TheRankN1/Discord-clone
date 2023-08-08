@@ -74,7 +74,7 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
-  public editCategory(title:string , serverId:string , categoryId:string): void{
+  public editCategory(title: string, serverId: string, categoryId: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
@@ -86,11 +86,11 @@ export class ServersService {
     if (!foundCategory) {
       return;
     }
-    foundCategory.title = title
+    foundCategory.title = title;
     this.servers$.next(servers);
   }
 
-  public deleteCategory(serverId:string , categoryId:string): void{
+  public deleteCategory(serverId: string, categoryId: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
@@ -102,7 +102,7 @@ export class ServersService {
     if (!foundCategory) {
       return;
     }
-    foundServer.categories.splice(foundServer.categories.indexOf(foundCategory) , 1);
+    foundServer.categories.splice(foundServer.categories.indexOf(foundCategory), 1);
     this.servers$.next(servers);
   }
 

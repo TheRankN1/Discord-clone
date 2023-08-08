@@ -1,9 +1,9 @@
-import {Component, ElementRef, ViewChild} from "@angular/core";
-import {BehaviorSubject, filter, Subject, takeUntil} from "rxjs";
-import {ServersService} from "../../services/servers.service";
-import {Router} from "@angular/router";
-import {ServerInterface} from "../../interfaces/server.interface";
-import {CategoryInterface} from "../../interfaces/category.interface";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
+import { ServersService } from '../../services/servers.service';
+import { Router } from '@angular/router';
+import { ServerInterface } from '../../interfaces/server.interface';
+import { CategoryInterface } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-modal-edit-category',
@@ -17,8 +17,7 @@ export class ModalEditCategoryComponent {
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _serversService: ServersService, private _router: Router) {
-  }
+  constructor(private _serversService: ServersService, private _router: Router) {}
 
   public ngOnInit(): void {
     this.isOpen$ = this._serversService.isEditCategoryModalOpen$;

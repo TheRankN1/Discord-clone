@@ -1,10 +1,10 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Subject, takeUntil} from 'rxjs';
-import {ServerInterface} from '../../interfaces/server.interface';
-import {ServersService} from '../../services/servers.service';
-import {CategoryInterface} from '../../interfaces/category.interface';
-import {ChannelInterface} from '../../interfaces/channel.interface';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { ServerInterface } from '../../interfaces/server.interface';
+import { ServersService } from '../../services/servers.service';
+import { CategoryInterface } from '../../interfaces/category.interface';
+import { ChannelInterface } from '../../interfaces/channel.interface';
 
 @Component({
   selector: 'app-server',
@@ -16,8 +16,7 @@ export class ServerComponent implements OnInit, OnDestroy {
   public servers!: Array<ServerInterface>;
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _serversService: ServersService) {
-  }
+  constructor(private _route: ActivatedRoute, private _router: Router, private _serversService: ServersService) {}
 
   public ngOnInit(): void {
     this.servers = this._serversService.servers$.value;
