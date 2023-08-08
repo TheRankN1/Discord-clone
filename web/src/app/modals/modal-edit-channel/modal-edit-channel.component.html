@@ -1,0 +1,14 @@
+<div *ngIf="isOpen$ | async" class="modal-channel">
+  <h3>EDIT CHANNEL</h3>
+  <input #editChannelInputRef type="text" [(ngModel)]="channelName" placeholder="Channel name"/>
+  <div class="buttons">
+    <button class="delete-button" (click)="onDeleteChannel()">Delete</button>
+    <div class="edit-cancel-buttons">
+      <button (click)="closeModal()">Cancel</button>
+      <button class="edit-channel" [disabled]="channelName === ''" [class.disabled]="channelName === ''"
+              (click)="onEditChannel()">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

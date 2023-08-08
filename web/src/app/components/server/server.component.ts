@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../interfaces/server.interface';
 import { ServersService } from '../../services/servers.service';
 import { CategoryInterface } from '../../interfaces/category.interface';
+import {ChannelInterface} from "../../interfaces/channel.interface";
 
 @Component({
   selector: 'app-server',
@@ -57,15 +58,9 @@ export class ServerComponent implements OnInit, OnDestroy {
     this._serversService.currentCategory$.next(category);
     this._serversService.isChannelModalOpen$.next(true);
   }
-
-  public setCurrentChannel(channelId: string): void {
-    const currentCategory = this._serversService.currentCategory$.value;
-    const foundChannel = currentCategory.channels.find(channel => channel.id == channelId);
-    if (!foundChannel) {
-      return;
-    }
-    // this.setAnMaxWithForChannels();
-    this._serversService.currentChannel$.next(foundChannel);
+  public openEditChannelModal(category : CategoryInterface , channel:ChannelInterface): void{
+    this._serversService.currentCategory$.next(category);
+    this._serversService.currentChannel$.next(channel);
+    this._serversService.isEditChannelModalOpen$.next(true);
   }
-
 }

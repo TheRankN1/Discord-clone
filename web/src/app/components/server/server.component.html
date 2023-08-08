@@ -9,7 +9,12 @@
         <strong>{{ category.title }}</strong>
         <div class="add-channel" (click)="openChannelModal(category)">+</div>
       </div>
-      <span #categoryRef (click)="setCurrentChannel(channel.id)" *ngFor="let channel of category.channels">{{ channel.title | substring }}</span>
+      <div class="channel" *ngFor="let channel of category.channels">
+        <span #categoryRef>
+          {{ channel.title | substring }}
+        </span>
+        <i class="icon-edit" (click)="openEditChannelModal(category , channel)"></i>
+      </div>
     </div>
   </ng-container>
 </div>
