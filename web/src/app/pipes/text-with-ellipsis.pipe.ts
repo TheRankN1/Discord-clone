@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'TextWithEllipsis' })
+@Pipe({ name: 'textWithEllipsis' })
 export class TextWithEllipsisPipe implements PipeTransform {
   transform(name: string, limit: number = 22): string {
     if (!name) {

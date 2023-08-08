@@ -10,7 +10,7 @@
         <div class="add-channel" (click)="openChannelModal(category)">+</div>
       </div>
       <span #categoryRef (click)="setCurrentChannel(channel.id)" *ngFor="let channel of category.channels">{{
-        channel.title | TextWithEllipsis
+        channel.title | textWithEllipsis
       }}</span>
     </div>
   </ng-container>
