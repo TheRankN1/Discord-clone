@@ -30,8 +30,7 @@ export class ServerComponent implements OnInit, OnDestroy {
         }
 
         this._serversService.setCurrentServer(serverId);
-        this.currentServer = this._serversService.currentServer$.value;
-
+        this._serversService.currentServer$.subscribe(server => (this.currentServer = server));
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();
@@ -63,5 +62,10 @@ export class ServerComponent implements OnInit, OnDestroy {
   public openEditCategoryModal(category: CategoryInterface): void {
     this._serversService.isEditCategoryModalOpen$.next(true);
     this._serversService.currentCategory$.next(category);
+  }
+
+  public openEditServerModal(server: ServerInterface): void {
+    this._serversService.isEditServerModalOpen$.next(true);
+    this.currentServer = this._serversService.currentServer$.value;
   }
 }
