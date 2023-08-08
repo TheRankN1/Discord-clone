@@ -64,16 +64,16 @@
       color: #dedede;
     }
   }
-  .channel{
-    .icon-edit{
+  .channel {
+    .icon-edit {
       opacity: 0;
       cursor: pointer;
     }
-      &:hover{
-        .icon-edit{
-          opacity: 1;
-          color:grey;
-        }
+    &:hover {
+      .icon-edit {
+        opacity: 1;
+        color: grey;
+      }
     }
   }
 }

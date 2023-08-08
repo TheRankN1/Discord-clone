@@ -11,9 +11,9 @@
       </div>
       <div class="channel" *ngFor="let channel of category.channels">
         <span #categoryRef>
-          {{ channel.title | substring }}
+          {{ channel.title | textWithEllipsis }}
         </span>
-        <i class="icon-edit" (click)="openEditChannelModal(category , channel)"></i>
+        <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>
       </div>
     </div>
   </ng-container>

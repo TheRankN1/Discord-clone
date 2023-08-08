@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {ServerInterface} from '../interfaces/server.interface';
-import {BehaviorSubject} from 'rxjs';
-import {CategoryInterface} from '../interfaces/category.interface';
-import {GeneratorHelpers} from '../helpers/generator.helpers';
-import {ServerInitialization} from '../helpers/server.initialization';
-import {ChannelInterface} from '../interfaces/channel.interface';
+import { Injectable } from '@angular/core';
+import { ServerInterface } from '../interfaces/server.interface';
+import { BehaviorSubject } from 'rxjs';
+import { CategoryInterface } from '../interfaces/category.interface';
+import { GeneratorHelpers } from '../helpers/generator.helpers';
+import { ServerInitialization } from '../helpers/server.initialization';
+import { ChannelInterface } from '../interfaces/channel.interface';
 
 const SERVER_LOCALSTORAGE_KEY: string = 'servers_list';
 
@@ -50,7 +50,7 @@ export class ServersService {
     foundServer.categories.push({
       title: category,
       id: GeneratorHelpers.uuid(),
-      channels: [{title: '', id: GeneratorHelpers.uuid()}]
+      channels: [{ title: '', id: GeneratorHelpers.uuid() }]
     });
     this.servers$.next(servers);
   }
@@ -69,7 +69,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.push({title: name, id: GeneratorHelpers.uuid()});
+    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid() });
     this.servers$.next(servers);
   }
 
@@ -95,7 +95,7 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
-  public deleteChannel(serverId: string, categoryId: string, channelId: string){
+  public deleteChannel(serverId: string, categoryId: string, channelId: string) {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
@@ -113,7 +113,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.splice(foundCategory.channels.indexOf(foundChannel),1);
+    foundCategory.channels.splice(foundCategory.channels.indexOf(foundChannel), 1);
     this.servers$.next(servers);
   }
 
@@ -125,7 +125,7 @@ export class ServersService {
       servers.forEach((server: ServerInterface) => {
         server.isActive = server.id === id;
       });
-      this.currentServer$.next({...foundServer});
+      this.currentServer$.next({ ...foundServer });
       this.servers$.next(servers);
     }
   }
