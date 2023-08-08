@@ -14,6 +14,7 @@ import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
 import { ModalChannel } from './modals/modal-channel/modal-channel';
 import { TextWithEllipsisPipe } from './pipes/text-with-ellipsis.pipe';
 import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edit-channel.component';
+import {ModalEditCategoryComponent} from "./modals/modal-edit-category/modal-edit-category.component";
 
 const COMPONENTS = [
   SideBarComponent,
@@ -23,7 +24,8 @@ const COMPONENTS = [
   AppComponent,
   ModalCategoryComponent,
   ModalChannel,
-  ModalEditChannelComponent
+  ModalEditChannelComponent,
+  ModalEditCategoryComponent
 ];
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes];
 const PIPES = [IsNotEmptyPipe, TextWithEllipsisPipe];

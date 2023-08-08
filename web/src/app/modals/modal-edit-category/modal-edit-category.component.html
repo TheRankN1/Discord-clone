@@ -1,0 +1,11 @@
+<div *ngIf="isOpen$ | async" class="modal-category">
+  <h3>EDIT CATEGORY</h3>
+  <input #editCategoryInputRef type="text" [(ngModel)]="categoryName" placeholder="Category name" />
+  <div class="buttons">
+    <button class="delete-button" (click)="onDeleteCategory()">Delete</button>
+    <div class="edit-cancel-buttons">
+      <button (click)="closeModal()">Cancel</button>
+      <button class="edit-category" [disabled]="categoryName === ''" (click)="onEditCategory()">Edit</button>
+    </div>
+  </div>
+</div>

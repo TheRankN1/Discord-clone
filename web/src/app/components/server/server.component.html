@@ -8,6 +8,7 @@
       <div class="title-addButton">
         <strong>{{ category.title }}</strong>
         <div class="add-channel" (click)="openChannelModal(category)">+</div>
+        <i class="icon-edit" (click)="openEditCategoryModal(category)"></i>
       </div>
       <div class="channel" *ngFor="let channel of category.channels">
         <span>
