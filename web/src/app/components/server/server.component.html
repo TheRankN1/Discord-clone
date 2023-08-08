@@ -3,6 +3,7 @@
     <div class="name-with-open-modal" *ngIf="server.title != ''">
       <h1>{{ server.title }}</h1>
       <div (click)="openCategoryModal()" class="open-modal">+</div>
+      <i class="icon-edit" (click)="openEditServerModal(server)"></i>
     </div>
     <div class="category" *ngFor="let category of server.categories">
       <div class="title-addButton">

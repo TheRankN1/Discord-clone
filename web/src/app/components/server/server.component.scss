@@ -11,6 +11,12 @@
     align-items: center;
     gap: 20px;
 
+    .icon-edit{
+      opacity: 0;
+      color:grey;
+      cursor: pointer;
+    }
+
     .open-modal {
       padding: 5px;
       height: 20px;
@@ -21,6 +27,11 @@
       border: 1px solid grey;
       border-radius: 50%;
       cursor: pointer;
+    }
+    &:hover{
+      .icon-edit{
+        opacity: 1;
+      }
     }
   }
 

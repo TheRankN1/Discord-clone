@@ -14,7 +14,18 @@
   .buttons {
     display: flex;
     gap: 10px;
-    justify-content: flex-end;
+    justify-content: space-between;
+    .delete-button {
+      &:hover {
+        color: #fff;
+        background: #d20a0a;
+      }
+    }
+    .edit-cancel-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     button {
       padding: 12px;
@@ -31,7 +42,7 @@
         background: #fff;
       }
 
-      &.create-server {
+      &.edit-server {
         background: #02437d;
 
         &:hover {

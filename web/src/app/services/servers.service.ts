@@ -23,6 +23,7 @@ export class ServersService {
   public isChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isEditChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isEditCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isEditServerModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
@@ -71,6 +72,30 @@ export class ServersService {
     }
 
     foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid() });
+    this.servers$.next(servers);
+  }
+
+  public editServer(title: string, serverId: string): void {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+    foundServer.title = title;
+    this.currentServer$.next({ ...foundServer });
+    this.servers$.next(servers);
+  }
+
+  public deleteServer(serverId: string): void {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+
+    servers.splice(servers.indexOf(foundServer) , 1)
     this.servers$.next(servers);
   }
 
