@@ -12,7 +12,6 @@ import { ChannelInterface } from '../../interfaces/channel.interface';
   styleUrls: ['./server.component.scss']
 })
 export class ServerComponent implements OnInit, OnDestroy {
-  @ViewChild('categoryRef') public categoryRef!: ElementRef;
   public currentServer!: ServerInterface;
   public servers!: Array<ServerInterface>;
   private _destroy$: Subject<void> = new Subject<void>();

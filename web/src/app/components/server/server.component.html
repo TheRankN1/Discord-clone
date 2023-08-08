@@ -10,7 +10,7 @@
         <div class="add-channel" (click)="openChannelModal(category)">+</div>
       </div>
       <div class="channel" *ngFor="let channel of category.channels">
-        <span #categoryRef>
+        <span>
           {{ channel.title | textWithEllipsis }}
         </span>
         <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>

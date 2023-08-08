@@ -132,12 +132,10 @@ export class ServersService {
 
   public setCurrentChannel(channelId: string): void {
     const currentCategory = this.currentCategory$.value;
-    console.log(currentCategory);
     const foundChannel = currentCategory.channels.find(channel => channel.id == channelId);
     if (!foundChannel) {
       return;
     }
-    // this.setAnMaxWithForChannels();
     this.currentChannel$.next(foundChannel);
   }
 

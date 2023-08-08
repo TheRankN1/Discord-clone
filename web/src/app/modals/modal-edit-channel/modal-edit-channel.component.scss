@@ -51,7 +51,7 @@
         }
       }
 
-      &.disabled {
+      &:disabled {
         opacity: 20%;
         cursor: none;
       }
