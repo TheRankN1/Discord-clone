@@ -1,12 +1,11 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'TextWithEllipsis'})
+@Pipe({ name: 'TextWithEllipsis' })
 export class TextWithEllipsisPipe implements PipeTransform {
-  transform(name: string, limit:number = 22): string {
-    if(!name){
+  transform(name: string, limit: number = 22): string {
+    if (!name) {
       return '';
     }
-    return (name.length > limit) ? (name.substring(0, limit) + '...') : name;
+    return name.length > limit ? name.substring(0, limit) + '...' : name;
   }
 }
-
