@@ -11,9 +11,9 @@
     align-items: center;
     gap: 20px;
 
-    .icon-edit{
+    .icon-edit {
       opacity: 0;
-      color:grey;
+      color: grey;
       cursor: pointer;
     }
 
@@ -28,8 +28,8 @@
       border-radius: 50%;
       cursor: pointer;
     }
-    &:hover{
-      .icon-edit{
+    &:hover {
+      .icon-edit {
         opacity: 1;
       }
     }

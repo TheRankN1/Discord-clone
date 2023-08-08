@@ -95,7 +95,7 @@ export class ServersService {
       return;
     }
 
-    servers.splice(servers.indexOf(foundServer) , 1)
+    servers.splice(servers.indexOf(foundServer), 1);
     this.servers$.next(servers);
   }
 

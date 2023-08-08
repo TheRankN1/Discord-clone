@@ -1,15 +1,15 @@
-import {Component, ElementRef, ViewChild} from "@angular/core";
-import {BehaviorSubject, filter, Subject, takeUntil} from "rxjs";
-import {ServersService} from "../../services/servers.service";
-import {Router} from "@angular/router";
-import {ServerInterface} from "../../interfaces/server.interface";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
+import { ServersService } from '../../services/servers.service';
+import { Router } from '@angular/router';
+import { ServerInterface } from '../../interfaces/server.interface';
 
 @Component({
-  selector:'app-modal-edit-server',
-  templateUrl:'modal-edit-server.component.html',
-  styleUrls:['modal-edit-server.component.scss']
+  selector: 'app-modal-edit-server',
+  templateUrl: 'modal-edit-server.component.html',
+  styleUrls: ['modal-edit-server.component.scss']
 })
-export class ModalEditServerComponent{
+export class ModalEditServerComponent {
   @ViewChild('editServerInputRef') public editServerInputRef!: ElementRef<HTMLInputElement>;
   public isOpen$!: BehaviorSubject<boolean>;
   public serverName: string = '';

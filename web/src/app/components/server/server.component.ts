@@ -30,7 +30,7 @@ export class ServerComponent implements OnInit, OnDestroy {
         }
 
         this._serversService.setCurrentServer(serverId);
-        this._serversService.currentServer$.subscribe(server => this.currentServer = server)
+        this._serversService.currentServer$.subscribe(server => (this.currentServer = server));
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();

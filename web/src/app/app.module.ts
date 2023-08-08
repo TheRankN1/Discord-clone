@@ -15,7 +15,7 @@ import { ModalChannel } from './modals/modal-channel/modal-channel';
 import { TextWithEllipsisPipe } from './pipes/text-with-ellipsis.pipe';
 import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edit-channel.component';
 import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-edit-category.component';
-import {ModalEditServerComponent} from "./modals/modal-edit-server/modal-edit-server.component";
+import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
 
 const COMPONENTS = [
   SideBarComponent,
