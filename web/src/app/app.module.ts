@@ -12,7 +12,7 @@ import { AppRoutes } from './app.routes';
 import { ModalCategoryComponent } from './modals/modal-category/modal-category.component';
 import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
 import { ModalChannel } from './modals/modal-channel/modal-channel';
-import {SubstringPipe} from "./pipes/substring.pipe";
+import {TextWithEllipsisPipe} from "./pipes/text-with-ellipsis.pipe";
 
 const COMPONENTS = [
   SideBarComponent,
@@ -24,7 +24,7 @@ const COMPONENTS = [
   ModalChannel
 ];
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes];
-const PIPES = [IsNotEmptyPipe , SubstringPipe];
+const PIPES = [IsNotEmptyPipe , TextWithEllipsisPipe];
 @NgModule({
   declarations: [COMPONENTS, PIPES],
   imports: [MODULES],
