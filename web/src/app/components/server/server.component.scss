@@ -64,6 +64,18 @@
       color: #dedede;
     }
   }
+  .channel {
+    .icon-edit {
+      opacity: 0;
+      cursor: pointer;
+    }
+    &:hover {
+      .icon-edit {
+        opacity: 1;
+        color: grey;
+      }
+    }
+  }
 }
 
 .scrolling-container::-webkit-scrollbar {

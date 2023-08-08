@@ -21,6 +21,7 @@ export class ServersService {
   public isServerModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isEditChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
@@ -72,6 +73,50 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
+  public editChannel(name: string, serverId: string, categoryId: string, channelId: string): void {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+
+    const foundCategory: CategoryInterface | undefined = foundServer.categories.find(category => category.id === categoryId);
+    if (!foundCategory) {
+      return;
+    }
+
+    const foundChannel: ChannelInterface | undefined = foundCategory.channels.find(channel => channel.id === channelId);
+    if (!foundChannel) {
+      return;
+    }
+
+    foundChannel.title = name;
+    this.servers$.next(servers);
+  }
+
+  public deleteChannel(serverId: string, categoryId: string, channelId: string) {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+
+    const foundCategory: CategoryInterface | undefined = foundServer.categories.find(category => category.id === categoryId);
+    if (!foundCategory) {
+      return;
+    }
+
+    const foundChannel: ChannelInterface | undefined = foundCategory.channels.find(channel => channel.id === channelId);
+    if (!foundChannel) {
+      return;
+    }
+
+    foundCategory.channels.splice(foundCategory.channels.indexOf(foundChannel), 1);
+    this.servers$.next(servers);
+  }
+
   public setCurrentServer(id: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
 
@@ -83,6 +128,15 @@ export class ServersService {
       this.currentServer$.next({ ...foundServer });
       this.servers$.next(servers);
     }
+  }
+
+  public setCurrentChannel(channelId: string): void {
+    const currentCategory = this.currentCategory$.value;
+    const foundChannel = currentCategory.channels.find(channel => channel.id == channelId);
+    if (!foundChannel) {
+      return;
+    }
+    this.currentChannel$.next(foundChannel);
   }
 
   public getServersFromLocalStorage(): void {
@@ -99,9 +153,6 @@ export class ServersService {
   public listenToServersAndUpdateLocalStorage(): void {
     this.servers$.subscribe({
       next: (servers: Array<ServerInterface>) => {
-        console.log({
-          servers
-        });
         localStorage.setItem(SERVER_LOCALSTORAGE_KEY, JSON.stringify(servers));
       }
     });
