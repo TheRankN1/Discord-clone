@@ -22,6 +22,7 @@ export class ServersService {
   public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isEditChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isEditCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
@@ -70,6 +71,38 @@ export class ServersService {
     }
 
     foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid() });
+    this.servers$.next(servers);
+  }
+
+  public editCategory(title: string, serverId: string, categoryId: string): void {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+
+    const foundCategory: CategoryInterface | undefined = foundServer.categories.find(category => category.id === categoryId);
+    if (!foundCategory) {
+      return;
+    }
+    foundCategory.title = title;
+    this.servers$.next(servers);
+  }
+
+  public deleteCategory(serverId: string, categoryId: string): void {
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+    if (!foundServer) {
+      return;
+    }
+
+    const foundCategory: CategoryInterface | undefined = foundServer.categories.find(category => category.id === categoryId);
+    if (!foundCategory) {
+      return;
+    }
+    foundServer.categories.splice(foundServer.categories.indexOf(foundCategory), 1);
     this.servers$.next(servers);
   }
 

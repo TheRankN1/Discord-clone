@@ -51,8 +51,18 @@
         font-size: 16px;
       }
 
+      .icon-edit {
+        opacity: 0;
+        color: grey;
+        cursor: pointer;
+      }
+
       &:hover {
         .add-channel {
+          opacity: 1;
+        }
+
+        .icon-edit {
           opacity: 1;
         }
       }
@@ -64,11 +74,13 @@
       color: #dedede;
     }
   }
+
   .channel {
     .icon-edit {
       opacity: 0;
       cursor: pointer;
     }
+
     &:hover {
       .icon-edit {
         opacity: 1;

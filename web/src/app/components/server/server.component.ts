@@ -53,9 +53,15 @@ export class ServerComponent implements OnInit, OnDestroy {
     this._serversService.currentCategory$.next(category);
     this._serversService.isChannelModalOpen$.next(true);
   }
+
   public openEditChannelModal(category: CategoryInterface, channel: ChannelInterface): void {
     this._serversService.currentCategory$.next(category);
     this._serversService.currentChannel$.next(channel);
     this._serversService.isEditChannelModalOpen$.next(true);
+  }
+
+  public openEditCategoryModal(category: CategoryInterface): void {
+    this._serversService.isEditCategoryModalOpen$.next(true);
+    this._serversService.currentCategory$.next(category);
   }
 }
