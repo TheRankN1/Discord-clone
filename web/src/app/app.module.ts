@@ -16,6 +16,7 @@ import { TextWithEllipsisPipe } from './pipes/text-with-ellipsis.pipe';
 import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edit-channel.component';
 import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-edit-category.component';
 import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
+import { TooltipModule } from './directives/tooltip/tooltip.module';
 
 const COMPONENTS = [
   SideBarComponent,
@@ -29,7 +30,7 @@ const COMPONENTS = [
   ModalEditCategoryComponent,
   ModalEditServerComponent
 ];
-const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes];
+const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
 const PIPES = [IsNotEmptyPipe, TextWithEllipsisPipe];
 @NgModule({
   declarations: [COMPONENTS, PIPES],
