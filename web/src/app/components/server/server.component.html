@@ -1,18 +1,18 @@
 <div class="scrolling-container server">
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title != ''">
-      <strong class="ellipsis">{{ server.title }}</strong>
+      <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
       <div (click)="openCategoryModal()" class="add">+</div>
       <i class="icon-edit" (click)="openEditServerModal(server)"></i>
     </div>
     <ng-container *ngFor="let category of server.categories">
       <div class="server-category">
-        <strong class="ellipsis">{{ category.title }}</strong>
+        <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
         <div class="add" (click)="openChannelModal(category)">+</div>
         <i class="icon-edit" (click)="openEditCategoryModal(category)"></i>
       </div>
       <div class="server-channel" *ngFor="let channel of category.channels">
-        <span class="ellipsis">
+        <span [tooltip]="channel.title" position="top" class="ellipsis">
           {{ channel.title }}
         </span>
         <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>
@@ -20,3 +20,4 @@
     </ng-container>
   </ng-container>
 </div>
+
