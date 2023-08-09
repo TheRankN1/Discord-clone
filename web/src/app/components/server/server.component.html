@@ -1,21 +1,21 @@
-<div class='scrolling-container'>
-  <ng-container *ngIf='currentServer as server'>
-    <div class='name-with-open-modal' *ngIf="server.title != ''">
-      <h1 [tooltip]='server.title' position='bottom'>{{ server.title }}</h1>
-      <div (click)='openCategoryModal()' class='open-modal'>+</div>
-      <i class='icon-edit' (click)='openEditServerModal(server)'></i>
+<div class="scrolling-container">
+  <ng-container *ngIf="currentServer as server">
+    <div class="name-with-open-modal" *ngIf="server.title != ''">
+      <h1 [tooltip]="server.title" position="bottom">{{ server.title }}</h1>
+      <div (click)="openCategoryModal()" class="open-modal">+</div>
+      <i class="icon-edit" (click)="openEditServerModal(server)"></i>
     </div>
-    <div class='category' *ngFor='let category of server.categories'>
-      <div class='title-addButton'>
-        <strong [tooltip]='category.title' position='top'>{{ category.title }}</strong>
-        <div class='add-channel' (click)='openChannelModal(category)'>+</div>
-        <i class='icon-edit' (click)='openEditCategoryModal(category)'></i>
+    <div class="category" *ngFor="let category of server.categories">
+      <div class="title-addButton">
+        <strong [tooltip]="category.title" position="top">{{ category.title }}</strong>
+        <div class="add-channel" (click)="openChannelModal(category)">+</div>
+        <i class="icon-edit" (click)="openEditCategoryModal(category)"></i>
       </div>
-      <div class='channel' *ngFor='let channel of category.channels'>
-        <span [tooltip]='channel.title' position='top'>
+      <div class="channel" *ngFor="let channel of category.channels">
+        <span [tooltip]="channel.title" position="top">
           {{ channel.title | textWithEllipsis }}
         </span>
-        <i class='icon-edit' (click)='openEditChannelModal(category, channel)'></i>
+        <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>
       </div>
     </div>
   </ng-container>

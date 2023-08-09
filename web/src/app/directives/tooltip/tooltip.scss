@@ -12,7 +12,8 @@ $load-styles: true !default;
   position: relative;
   display: inline-block;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -$vertical-shift);
@@ -20,7 +21,7 @@ $load-styles: true !default;
     pointer-events: none;
     user-select: none;
     opacity: 0;
-    transition: opacity .35s ease .25s;
+    transition: opacity 0.35s ease 0.25s;
   }
 
   // Tooltip Body
@@ -51,9 +52,12 @@ $load-styles: true !default;
   }
 
   // Active state
-  &:hover, &:focus, &:active {
-    &:before, &:after {
-      opacity: 1
+  &:hover,
+  &:focus,
+  &:active {
+    &:before,
+    &:after {
+      opacity: 1;
     }
   }
 
@@ -68,9 +72,10 @@ $load-styles: true !default;
     }
 
     // Bottom tooltip (.tooltip-bottom, *-left, *-right )
-    &[class*="tooltip-bottom"] {
-      &:before, &:after {
-        transform: translate(-50%, $vertical-shift)
+    &[class*='tooltip-bottom'] {
+      &:before,
+      &:after {
+        transform: translate(-50%, $vertical-shift);
       }
 
       &:before {
@@ -85,23 +90,23 @@ $load-styles: true !default;
       }
     }
     &.tooltip-bottom-left:before {
-      transform: translate(-($arrow-size*3), $vertical-shift);
+      transform: translate(-($arrow-size * 3), $vertical-shift);
     }
     &.tooltip-bottom-right:before {
       left: auto;
       right: 50%;
-      transform: translate($arrow-size*3, $vertical-shift);
+      transform: translate($arrow-size * 3, $vertical-shift);
     }
 
     // Top tooltip (.tooltip-top, *-left, *-right )
     &.tooltip-top-left:before {
-      transform: translate(-($arrow-size*3), -$vertical-shift);
+      transform: translate(-($arrow-size * 3), -$vertical-shift);
     }
 
     &.tooltip-top-right:before {
       left: auto;
       right: 50%;
-      transform: translate($arrow-size*3, -$vertical-shift);
+      transform: translate($arrow-size * 3, -$vertical-shift);
     }
   }
 }

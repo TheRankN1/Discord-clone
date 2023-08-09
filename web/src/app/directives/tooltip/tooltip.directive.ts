@@ -1,10 +1,10 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
-type Position = 'top' | 'bottom' | 'left' | 'right'
+type Position = 'top' | 'bottom' | 'left' | 'right';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[tooltip]',
+  selector: '[tooltip]'
 })
 export class TooltipDirective implements OnInit {
   @Input() public tooltip: string = '';
