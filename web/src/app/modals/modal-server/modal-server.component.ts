@@ -14,7 +14,10 @@ export class ModalServerComponent implements OnInit, OnDestroy {
   public name: string = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _serversService: ServersService, private _router: Router) {}
+  constructor(
+    private _serversService: ServersService,
+    private _router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.isOpen$ = this._serversService.isServerModalOpen$;
@@ -39,7 +42,6 @@ export class ModalServerComponent implements OnInit, OnDestroy {
 
   public closeModal(): void {
     this._serversService.isServerModalOpen$.next(false);
-    this.name = '';
   }
 
   public onAddServer(): void {

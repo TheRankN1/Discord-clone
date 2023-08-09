@@ -12,7 +12,11 @@ export class AvatarComponent implements OnInit {
   @Input() public server!: ServerInterface;
   public avatarName: string = '';
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _serversService: ServersService) {}
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _serversService: ServersService
+  ) {}
 
   public ngOnInit(): void {
     this.avatarName = this._createAvatarInitials();

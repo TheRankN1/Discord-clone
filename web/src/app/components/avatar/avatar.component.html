@@ -1,4 +1,9 @@
-<ng-container *ngIf="server">
-  <div [class.active]="server.isActive === true"></div>
-  <span (click)="setCurrentServer()" class="avatar" [style.background-color]="server.serverBgColor">{{ avatarName }}</span>
-</ng-container>
+<div
+  class="avatar"
+  [class.active]="server.isActive === true"
+  *ngIf="server"
+  (click)="setCurrentServer()"
+  [style.background-color]="server.serverBgColor"
+>
+  {{ avatarName }}
+</div>

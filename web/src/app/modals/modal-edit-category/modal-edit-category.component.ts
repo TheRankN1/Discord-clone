@@ -17,7 +17,10 @@ export class ModalEditCategoryComponent {
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _serversService: ServersService, private _router: Router) {}
+  constructor(
+    private _serversService: ServersService,
+    private _router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.isOpen$ = this._serversService.isEditCategoryModalOpen$;
@@ -33,6 +36,7 @@ export class ModalEditCategoryComponent {
           });
         }
       });
+    this._serversService.currentCategory$.subscribe(category => (this.categoryName = category.title));
   }
 
   public ngOnDestroy(): void {
@@ -42,7 +46,6 @@ export class ModalEditCategoryComponent {
 
   public closeModal(): void {
     this._serversService.isEditCategoryModalOpen$.next(false);
-    this.categoryName = '';
   }
 
   public onEditCategory(): void {
