@@ -1,4 +1,11 @@
 <div class="scrolling-container">
-  <app-avatar *ngFor="let server of servers$ | async" [server]="server" (click)="onServerDetails(server.id)"> </app-avatar>
+  <ng-container *ngFor="let server of servers$ | async as servers; trackBy: trackByFn">
+    <app-avatar
+      (click)="onServerDetails(server.id)"
+      [title]="server.title"
+      [isActive]="server.isActive"
+      [serverBgColor]="server.serverBgColor"
+    ></app-avatar>
+  </ng-container>
   <div class="add-new" (click)="openModalServer()">+</div>
 </div>

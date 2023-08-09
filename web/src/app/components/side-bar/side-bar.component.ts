@@ -21,12 +21,17 @@ export class SideBarComponent implements OnInit {
     this.servers$ = this._serversService.servers$;
   }
 
+  public trackByFn(index: number) {
+    return index;
+  }
+
   public openModalServer(): void {
     this._serversService.isServerModalOpen$.next(true);
   }
 
   public onServerDetails(id: string) {
     this._serversService.isCategoryModalOpen$.next(false);
+    this._serversService.setCurrentServer(id);
     this._router.navigate(['/servers', id]).then();
   }
 }

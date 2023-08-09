@@ -6,7 +6,7 @@ import { GeneratorHelpers } from '../helpers/generator.helpers';
 import { ServerInitialization } from '../helpers/server.initialization';
 import { ChannelInterface } from '../interfaces/channel.interface';
 
-const SERVER_LOCALSTORAGE_KEY: string = 'servers_list';
+const SERVER_LOCALSTORAGE_KEY = 'servers_list';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,7 @@ export class ServersService {
     servers.push({
       id: GeneratorHelpers.uuid(),
       title: props,
+      isActive: false,
       serverBgColor: GeneratorHelpers.color(),
       categories: []
     });

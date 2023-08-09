@@ -4,6 +4,6 @@ export interface ServerInterface {
   id: string;
   title: string;
   categories: Array<CategoryInterface>;
-  serverBgColor?: string;
-  isActive?: boolean;
+  serverBgColor: string;
+  isActive: boolean;
 }

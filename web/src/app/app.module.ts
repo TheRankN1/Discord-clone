@@ -16,6 +16,7 @@ import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edi
 import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-edit-category.component';
 import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
+import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
 
 const COMPONENTS = [
   SideBarComponent,
@@ -31,7 +32,7 @@ const COMPONENTS = [
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
-const PIPES = [IsNotEmptyPipe];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 
 @NgModule({
   declarations: [COMPONENTS, PIPES],
