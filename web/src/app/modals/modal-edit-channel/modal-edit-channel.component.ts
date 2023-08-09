@@ -8,7 +8,7 @@ import { ChannelInterface } from '../../interfaces/channel.interface';
 
 @Component({
   selector: 'app-modal-edit-channel',
-  templateUrl: 'modal-edit-channel.component.html',
+  templateUrl: 'modal-edit-channel.component.html'
 })
 export class ModalEditChannelComponent {
   @ViewChild('editChannelInputRef') public editChannelInputRef!: ElementRef<HTMLInputElement>;

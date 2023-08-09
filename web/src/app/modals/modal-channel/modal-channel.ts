@@ -7,7 +7,7 @@ import { ServerInterface } from '../../interfaces/server.interface';
 
 @Component({
   selector: 'app-modal-channel',
-  templateUrl: 'modal-channel.html',
+  templateUrl: 'modal-channel.html'
 })
 export class ModalChannel implements OnInit, OnDestroy {
   @ViewChild('channelInputRef') public channelInputRef!: ElementRef<HTMLInputElement>;

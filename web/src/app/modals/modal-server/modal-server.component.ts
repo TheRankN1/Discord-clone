@@ -5,7 +5,7 @@ import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-modal-server',
-  templateUrl: './modal-server.component.html',
+  templateUrl: './modal-server.component.html'
 })
 export class ModalServerComponent implements OnInit, OnDestroy {
   @ViewChild('serverInputRef') public serverInputRef!: ElementRef<HTMLInputElement>;
