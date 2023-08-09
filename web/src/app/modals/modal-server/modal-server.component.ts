@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ServersService } from '../../services/servers.service';
 import { Router } from '@angular/router';
-import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
+import {BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-modal-server',
