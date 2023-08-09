@@ -6,7 +6,7 @@
     "build": "ng build",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
     "prettier:check": "prettier --check src/**",
-    "prettier:write": "prettier --write src/**",
+    "prettier:write": "prettier --write **",
     "build:ts-strictify": "cd projects/ts-strictify && npm run build"
   },
   "private": true,
