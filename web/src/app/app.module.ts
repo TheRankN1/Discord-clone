@@ -27,9 +27,9 @@ const COMPONENTS = [
   ModalChannel,
   ModalEditChannelComponent,
   ModalEditCategoryComponent,
-  ModalEditServerComponent
-  }
-  
+  ModalEditServerComponent,
+ ]
+
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
 const PIPES = [IsNotEmptyPipe];
 
