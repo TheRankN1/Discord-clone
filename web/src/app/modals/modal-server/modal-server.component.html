@@ -4,7 +4,7 @@
     <input type="text" #serverInputRef [(ngModel)]="name" placeholder="Server name" />
     <div class="buttons">
       <button (click)="closeModal()">Cancel</button>
-      <button class="create-server" [disabled]="name === ''" (click)="onAddServer()">Create server</button>
+      <button class="save-button" [disabled]="name === ''" (click)="onAddServer()">Save</button>
     </div>
   </div>
 </div>

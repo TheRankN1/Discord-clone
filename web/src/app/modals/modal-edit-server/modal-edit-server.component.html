@@ -6,7 +6,7 @@
       <button class="delete-button" (click)="onDeleteServer()">Delete</button>
       <div class="edit-cancel-buttons">
         <button (click)="closeModal()">Cancel</button>
-        <button class="edit-server" [disabled]="serverName === ''" (click)="onEditServer()">Edit</button>
+        <button class="save-button" [disabled]="serverName === ''" (click)="onEditServer()">Save</button>
       </div>
     </div>
   </div>

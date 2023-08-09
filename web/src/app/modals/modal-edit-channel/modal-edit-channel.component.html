@@ -6,7 +6,7 @@
       <button class="delete-button" (click)="onDeleteChannel()">Delete</button>
       <div class="edit-cancel-buttons">
         <button (click)="closeModal()">Cancel</button>
-        <button class="edit-channel" [disabled]="channelName === ''" (click)="onEditChannel()">Edit</button>
+        <button class="save-button" [disabled]="channelName === ''" (click)="onEditChannel()">Save</button>
       </div>
     </div>
   </div>

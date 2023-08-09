@@ -6,7 +6,7 @@
       <button class="delete-button" (click)="onDeleteCategory()">Delete</button>
       <div class="edit-cancel-buttons">
         <button (click)="closeModal()">Cancel</button>
-        <button class="edit-category" [disabled]="categoryName === ''" (click)="onEditCategory()">Edit</button>
+        <button class="save-button" [disabled]="categoryName === ''" (click)="onEditCategory()">Save</button>
       </div>
     </div>
   </div>

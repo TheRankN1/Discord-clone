@@ -4,8 +4,8 @@
     <input #channelInputRef type="text" [(ngModel)]="channelName" placeholder="Channel name" />
     <div class="buttons">
       <button (click)="closeModal()">Cancel</button>
-      <button class="create-channel" [disabled]="channelName === ''" [class.disabled]="channelName === ''" (click)="onAddChannel()">
-        Create
+      <button class="save-button" [disabled]="channelName === ''" [class.disabled]="channelName === ''" (click)="onAddChannel()">
+        Save
       </button>
     </div>
   </div>

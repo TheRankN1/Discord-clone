@@ -8,7 +8,6 @@ import { CategoryInterface } from '../../interfaces/category.interface';
 @Component({
   selector: 'app-modal-edit-category',
   templateUrl: 'modal-edit-category.component.html',
-  styleUrls: ['modal-edit-category.component.scss']
 })
 export class ModalEditCategoryComponent {
   @ViewChild('editCategoryInputRef') public editChannelInputRef!: ElementRef<HTMLInputElement>;
