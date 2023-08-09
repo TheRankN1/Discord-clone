@@ -47,5 +47,6 @@ export class ModalServerComponent implements OnInit, OnDestroy {
   public onAddServer(): void {
     this._serversService.addServer(this.name);
     this.closeModal();
+    this.name = '';
   }
 }
