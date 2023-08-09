@@ -34,6 +34,7 @@ export class ModalEditChannelComponent {
           });
         }
       });
+    this._serversService.currentChannel$.subscribe(channel => this.channelName = channel.title);
   }
 
   public ngOnDestroy(): void {
@@ -43,7 +44,6 @@ export class ModalEditChannelComponent {
 
   public closeModal(): void {
     this._serversService.isEditChannelModalOpen$.next(false);
-    this.channelName = '';
   }
 
   public onEditChannel(): void {

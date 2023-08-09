@@ -33,6 +33,7 @@ export class ModalEditCategoryComponent {
           });
         }
       });
+    this._serversService.currentCategory$.subscribe(category => (this.categoryName = category.title));
   }
 
   public ngOnDestroy(): void {
@@ -42,7 +43,6 @@ export class ModalEditCategoryComponent {
 
   public closeModal(): void {
     this._serversService.isEditCategoryModalOpen$.next(false);
-    this.categoryName = '';
   }
 
   public onEditCategory(): void {
