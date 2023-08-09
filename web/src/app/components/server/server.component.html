@@ -1,22 +1,22 @@
-<div class="scrolling-container">
+<div class="scrolling-container server">
   <ng-container *ngIf="currentServer as server">
-    <div class="name-with-open-modal" *ngIf="server.title != ''">
-      <h1>{{ server.title }}</h1>
-      <div (click)="openCategoryModal()" class="open-modal">+</div>
+    <div class="server-name" *ngIf="server.title != ''">
+      <strong class="ellipsis">{{ server.title }}</strong>
+      <div (click)="openCategoryModal()" class="add">+</div>
       <i class="icon-edit" (click)="openEditServerModal(server)"></i>
     </div>
-    <div class="category" *ngFor="let category of server.categories">
-      <div class="title-addButton">
-        <strong>{{ category.title }}</strong>
-        <div class="add-channel" (click)="openChannelModal(category)">+</div>
+    <ng-container *ngFor="let category of server.categories">
+      <div class="server-category" >
+        <strong class="ellipsis">{{ category.title }}</strong>
+        <div class="add" (click)="openChannelModal(category)">+</div>
         <i class="icon-edit" (click)="openEditCategoryModal(category)"></i>
       </div>
-      <div class="channel" *ngFor="let channel of category.channels">
-        <span>
-          {{ channel.title | textWithEllipsis }}
+      <div class="server-channel" *ngFor="let channel of category.channels">
+        <span class="ellipsis">
+          {{ channel.title}}
         </span>
         <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+</ng-container>
 </div>
