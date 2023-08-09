@@ -1,71 +1,80 @@
-.modal-container {
-  width: 400px;
-  padding: 20px;
-  color: #fff;
-  background: #202225;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 20px;
+.modal-container{
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  .buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-
-    button {
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-
-      &:hover {
-        color: #000;
-        background: #fff;
-      }
-
-      &.create-channel {
-        background: #02437d;
-
-        &:hover {
-          color: #fff;
-          background: #033a6c;
-        }
-      }
-
-      &.disabled {
-        opacity: 20%;
-        cursor: none;
-      }
-    }
-  }
-
-  .title-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  .modal-content {
+    width: 400px;
+    padding: 20px;
+    color: #fff;
+    background: #202225;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-right: 20px;
+    border-radius: 20px;
 
-    input {
-      border: none;
-      background: #292b2f;
-      width: 100%;
-      border-radius: 4px;
-      padding: 8px;
-      color: #fff;
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
 
-      &::placeholder {
-        color: grey;
-        font-size: 14px;
+      button {
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          color: #000;
+          background: #fff;
+        }
+
+        &.create-category {
+          background: #02437d;
+
+          &:hover {
+            color: #fff;
+            background: #033a6c;
+          }
+        }
+
+        &.disabled {
+          opacity: 20%;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    .title-input {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-right: 20px;
+
+      input {
+        border: none;
+        background: #292b2f;
+        width: 100%;
+        border-radius: 4px;
+        padding: 8px;
+        color: #fff;
+
+        &::placeholder {
+          color: grey;
+          font-size: 14px;
+        }
       }
     }
   }
+
 }

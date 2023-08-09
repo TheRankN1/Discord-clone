@@ -1,64 +1,85 @@
-.modal-channel {
-  width: 400px;
-  padding: 20px;
-  background: #202225;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 20px;
+.modal-container {
   position: fixed;
-  color: #fff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  .modal-content {
+    width: 400px;
+    padding: 20px;
+    background: #202225;
     display: flex;
-    gap: 10px;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    color: #fff;
 
-    button {
-      padding: 12px;
+    .buttons {
       display: flex;
-      align-items: center;
-      color: #fff;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
+      gap: 10px;
+      justify-content: space-between;
 
-      &:hover {
-        color: #000;
-        background: #fff;
-      }
-
-      &.create-channel {
-        background: #02437d;
-
+      .delete-button {
         &:hover {
           color: #fff;
-          background: #033a6c;
+          background: #d20a0a;
         }
       }
 
-      &.disabled {
-        opacity: 20%;
-        cursor: none;
+      .edit-cancel-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      button {
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          color: #000;
+          background: #fff;
+        }
+
+        &.create-channel {
+          background: #02437d;
+
+          &:hover {
+            color: #fff;
+            background: #033a6c;
+          }
+        }
+
+        &:disabled {
+          opacity: 20%;
+          cursor: not-allowed;
+        }
       }
     }
-  }
 
-  input {
-    border: none;
-    background: #292b2f;
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px 0 8px 8px;
-    color: #fff;
+    input {
+      border: none;
+      background: #292b2f;
+      width: 100%;
+      border-radius: 4px;
+      padding: 8px 0 8px 8px;
+      color: #fff;
 
-    &::placeholder {
-      color: grey;
-      font-size: 14px;
+      &::placeholder {
+        color: grey;
+        font-size: 14px;
+      }
     }
   }
 }
