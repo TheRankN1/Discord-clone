@@ -17,7 +17,10 @@ export class ModalEditCategoryComponent {
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _serversService: ServersService, private _router: Router) {}
+  constructor(
+    private _serversService: ServersService,
+    private _router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.isOpen$ = this._serversService.isEditCategoryModalOpen$;
