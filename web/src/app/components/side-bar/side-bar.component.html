@@ -1,6 +1,4 @@
 <div class="scrolling-container">
   <app-avatar *ngFor="let server of servers$ | async" [server]="server" (click)="onServerDetails(server.id)"> </app-avatar>
-  <div class="add-new" (click)="openModalServer()">
-    +
-  </div>
+  <div class="add-new" (click)="openModalServer()">+</div>
 </div>

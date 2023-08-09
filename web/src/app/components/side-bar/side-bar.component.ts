@@ -12,7 +12,10 @@ import { BehaviorSubject } from 'rxjs';
 export class SideBarComponent implements OnInit {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
 
-  constructor(private _serversService: ServersService, private _router: Router) {}
+  constructor(
+    private _serversService: ServersService,
+    private _router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.servers$ = this._serversService.servers$;

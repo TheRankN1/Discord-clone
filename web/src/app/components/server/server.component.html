@@ -6,17 +6,17 @@
       <i class="icon-edit" (click)="openEditServerModal(server)"></i>
     </div>
     <ng-container *ngFor="let category of server.categories">
-      <div class="server-category" >
+      <div class="server-category">
         <strong class="ellipsis">{{ category.title }}</strong>
         <div class="add" (click)="openChannelModal(category)">+</div>
         <i class="icon-edit" (click)="openEditCategoryModal(category)"></i>
       </div>
       <div class="server-channel" *ngFor="let channel of category.channels">
         <span class="ellipsis">
-          {{ channel.title}}
+          {{ channel.title }}
         </span>
         <i class="icon-edit" (click)="openEditChannelModal(category, channel)"></i>
       </div>
     </ng-container>
-</ng-container>
+  </ng-container>
 </div>

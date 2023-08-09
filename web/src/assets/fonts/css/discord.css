@@ -1,11 +1,12 @@
 @font-face {
   font-family: 'discord';
   src: url('../font/discord.eot?17740911');
-  src: url('../font/discord.eot?17740911#iefix') format('embedded-opentype'),
-       url('../font/discord.woff2?17740911') format('woff2'),
-       url('../font/discord.woff?17740911') format('woff'),
-       url('../font/discord.ttf?17740911') format('truetype'),
-       url('../font/discord.svg?17740911#discord') format('svg');
+  src:
+    url('../font/discord.eot?17740911#iefix') format('embedded-opentype'),
+    url('../font/discord.woff2?17740911') format('woff2'),
+    url('../font/discord.woff?17740911') format('woff'),
+    url('../font/discord.ttf?17740911') format('truetype'),
+    url('../font/discord.svg?17740911#discord') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,8 +20,9 @@
   }
 }
 */
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "discord";
+[class^='icon-']:before,
+[class*=' icon-']:before {
+  font-family: 'discord';
   font-style: normal;
   font-weight: normal;
   speak: never;
@@ -28,7 +30,7 @@
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
   /* opacity: .8; */
 
@@ -41,7 +43,7 @@
 
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
-  margin-left: .2em;
+  margin-left: 0.2em;
 
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
@@ -54,5 +56,9 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-edit:before { content: '\e800'; } /* '' */
-.icon-user:before { content: '\e802'; } /* '' */
+.icon-edit:before {
+  content: '\e800';
+} /* '' */
+.icon-user:before {
+  content: '\e802';
+} /* '' */

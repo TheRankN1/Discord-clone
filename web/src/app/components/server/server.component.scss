@@ -1,4 +1,3 @@
-
 .scrolling-container {
   height: calc(100vh - 48px);
   width: 240px;
@@ -7,7 +6,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 24px;
-  background: #2F3136;
+  background: #2f3136;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -86,7 +85,7 @@
     font-weight: 700;
     line-height: 115.9%;
     letter-spacing: -0.085px;
-    color: #B9BBBE;
+    color: #b9bbbe;
 
     span {
       flex: 1;
@@ -101,5 +100,3 @@
     }
   }
 }
-
-

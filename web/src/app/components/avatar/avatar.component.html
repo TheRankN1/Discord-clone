@@ -1,3 +1,9 @@
-<div class="avatar" [class.active]="server.isActive === true" *ngIf="server" (click)="setCurrentServer()"  [style.background-color]="server.serverBgColor">
-  {{avatarName}}
+<div
+  class="avatar"
+  [class.active]="server.isActive === true"
+  *ngIf="server"
+  (click)="setCurrentServer()"
+  [style.background-color]="server.serverBgColor"
+>
+  {{ avatarName }}
 </div>

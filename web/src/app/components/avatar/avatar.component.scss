@@ -20,7 +20,7 @@
     &.active {
       position: relative;
       &:before {
-        content:'';
+        content: '';
         position: absolute;
         left: -8px;
         display: flex;
