@@ -52,7 +52,7 @@ export class ServersService {
     foundServer.categories.push({
       title: category,
       id: GeneratorHelpers.uuid(),
-      channels: [{ title: '', id: GeneratorHelpers.uuid() }]
+      channels: []
     });
     this.servers$.next(servers);
   }
