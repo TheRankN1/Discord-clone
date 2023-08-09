@@ -12,7 +12,6 @@ import { AppRoutes } from './app.routes';
 import { ModalCategoryComponent } from './modals/modal-category/modal-category.component';
 import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
 import { ModalChannel } from './modals/modal-channel/modal-channel';
-import { TextWithEllipsisPipe } from './pipes/text-with-ellipsis.pipe';
 import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edit-channel.component';
 import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-edit-category.component';
 import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
@@ -29,9 +28,11 @@ const COMPONENTS = [
   ModalEditChannelComponent,
   ModalEditCategoryComponent,
   ModalEditServerComponent
-];
+  }
+  
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
-const PIPES = [IsNotEmptyPipe, TextWithEllipsisPipe];
+const PIPES = [IsNotEmptyPipe];
+
 @NgModule({
   declarations: [COMPONENTS, PIPES],
   imports: [MODULES],

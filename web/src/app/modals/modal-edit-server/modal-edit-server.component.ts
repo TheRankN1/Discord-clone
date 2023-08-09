@@ -35,6 +35,7 @@ export class ModalEditServerComponent {
           });
         }
       });
+    this._serversService.currentServer$.subscribe(server => (this.serverName = server.title));
   }
 
   public ngOnDestroy(): void {
@@ -44,7 +45,6 @@ export class ModalEditServerComponent {
 
   public closeModal(): void {
     this._serversService.isEditServerModalOpen$.next(false);
-    this.serverName = '';
   }
 
   public onEditServer(): void {
