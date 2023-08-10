@@ -6,8 +6,7 @@ import { ServerInterface } from '../../interfaces/server.interface';
 
 @Component({
   selector: 'app-modal-edit-server',
-  templateUrl: 'modal-edit-server.component.html',
-  styleUrls: ['modal-edit-server.component.scss']
+  templateUrl: 'modal-edit-server.component.html'
 })
 export class ModalEditServerComponent {
   @ViewChild('editServerInputRef') public editServerInputRef!: ElementRef<HTMLInputElement>;

@@ -4,8 +4,7 @@ import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-modal-category',
-  templateUrl: './modal-category.component.html',
-  styleUrls: ['./modal-category.component.scss']
+  templateUrl: './modal-category.component.html'
 })
 export class ModalCategoryComponent implements OnInit, OnDestroy {
   @ViewChild('categoryInputRef') public categoryInputRef!: ElementRef<HTMLInputElement>;
