@@ -9,14 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { CommonModule } from '@angular/common';
 import { AppRoutes } from './app.routes';
-import { ModalCategoryComponent } from './modals/modal-category/modal-category.component';
 import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
-import { ModalChannel } from './modals/modal-channel/modal-channel';
-import { ModalEditChannelComponent } from './modals/modal-edit-channel/modal-edit-channel.component';
-import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-edit-category.component';
-import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
+import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
 
 const COMPONENTS = [
   SideBarComponent,
@@ -24,11 +20,7 @@ const COMPONENTS = [
   ServerComponent,
   AvatarComponent,
   AppComponent,
-  ModalCategoryComponent,
-  ModalChannel,
-  ModalEditChannelComponent,
-  ModalEditCategoryComponent,
-  ModalEditServerComponent
+  ModalGenericComponent
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];

@@ -3,17 +3,20 @@ import { ServersService } from '../../services/servers.service';
 import { ServerInterface } from '../../interfaces/server.interface';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { ModalService } from '../../services/modal.service';
+import { ModalBase } from '../../modals/modal.base';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
 
   constructor(
     private _serversService: ServersService,
+    private _modalService: ModalService,
     private _router: Router
   ) {}
 
@@ -26,7 +29,32 @@ export class SideBarComponent implements OnInit {
   }
 
   public openModalServer(): void {
-    this._serversService.isServerModalOpen$.next(true);
+    this._modalService.openModal({
+      onEditMode: true,
+      title: 'Create server',
+      textInput: '',
+      placeholder: 'Enter server name',
+      close: this.onCloseModal,
+      delete: this.onDeleteModal,
+      save: this.onSaveModal,
+      create: this.onCreateModal,
+    })
+  }
+
+  public onCloseModal(): void {
+    console.log('onCloseServerModal')
+  }
+
+  public onDeleteModal(): void {
+    console.log('onDeleteServerModal')
+  }
+
+  public onSaveModal(textInput: string): void {
+    console.log('onSaveServerModal', textInput)
+  }
+
+  public onCreateModal(): void {
+    console.log('onCreateServerModal')
   }
 
   public onServerDetails(id: string) {

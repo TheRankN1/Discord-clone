@@ -1,0 +1,19 @@
+<ng-container *ngIf='isOpen$ | async'>
+  <div *ngIf='state$ | async as state' class='modal-container'>
+    <div class='modal-content'>
+      <h3>{{ state.title }}</h3>
+      <input #inputRef type='text' [(ngModel)]='state.textInput' [attr.placeholder]='state.placeholder' />
+      <div class='buttons'>
+        <button (click)='close(state)'>Cancel</button>
+
+        <ng-container *ngIf='state.onEditMode === true'>
+          <button class='save-button' [disabled]="state.textInput === ''" (click)='delete(state)'>Delete</button>
+          <button class='save-button' [disabled]="state.textInput === ''" (click)='save(state)'>Save</button>
+        </ng-container>
+        <ng-container *ngIf='state.onEditMode === false'>
+          <button class='save-button' [disabled]="state.textInput === ''" (click)='create(state)'>Create</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
