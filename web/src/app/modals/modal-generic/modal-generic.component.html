@@ -6,10 +6,10 @@
       <div class='buttons'>
         <button (click)='close(state)'>Cancel</button>
 
-        <ng-container *ngIf='state.onEditMode === true'>
-          <button class='save-button' [disabled]="state.textInput === ''" (click)='delete(state)'>Delete</button>
+        <div class="on-edit-mode" *ngIf='state.onEditMode === true'>
+          <button class='delete-button' (click)='delete(state)'>Delete</button>
           <button class='save-button' [disabled]="state.textInput === ''" (click)='save(state)'>Save</button>
-        </ng-container>
+        </div>
         <ng-container *ngIf='state.onEditMode === false'>
           <button class='save-button' [disabled]="state.textInput === ''" (click)='create(state)'>Create</button>
         </ng-container>

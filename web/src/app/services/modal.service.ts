@@ -9,7 +9,7 @@ export interface ModalState {
   close: () => void;
   delete: () => void;
   save: (text: string) => void;
-  create: () => void;
+  create: (text: string) => void;
 }
 
 @Injectable({

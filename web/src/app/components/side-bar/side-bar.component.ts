@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ServersService } from '../../services/servers.service';
-import { ServerInterface } from '../../interfaces/server.interface';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { ModalService } from '../../services/modal.service';
-import { ModalBase } from '../../modals/modal.base';
+import {Component, OnInit} from '@angular/core';
+import {ServersService} from '../../services/servers.service';
+import {ServerInterface} from '../../interfaces/server.interface';
+import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
+import {ModalService} from '../../services/modal.service';
+import {ModalBase} from '../../modals/modal.base';
 
 @Component({
   selector: 'app-side-bar',
@@ -18,7 +18,8 @@ export class SideBarComponent implements OnInit, ModalBase {
     private _serversService: ServersService,
     private _modalService: ModalService,
     private _router: Router
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this.servers$ = this._serversService.servers$;
@@ -30,14 +31,14 @@ export class SideBarComponent implements OnInit, ModalBase {
 
   public openModalServer(): void {
     this._modalService.openModal({
-      onEditMode: true,
+      onEditMode: false,
       title: 'Create server',
       textInput: '',
       placeholder: 'Enter server name',
-      close: this.onCloseModal,
-      delete: this.onDeleteModal,
-      save: this.onSaveModal,
-      create: this.onCreateModal,
+      close: this.onCloseModal.bind(this),
+      delete: this.onDeleteServerModal.bind(this),
+      save: this.onSaveModal.bind(this),
+      create: this.onCreateServerModal.bind(this),
     })
   }
 
@@ -45,16 +46,21 @@ export class SideBarComponent implements OnInit, ModalBase {
     console.log('onCloseServerModal')
   }
 
-  public onDeleteModal(): void {
-    console.log('onDeleteServerModal')
+  public onDeleteServerModal(): void {
+    // const currentServer: ServerInterface = this._serversService.currentServer$.value;
+    // this._serversService.deleteServer(currentServer.id);
   }
 
   public onSaveModal(textInput: string): void {
     console.log('onSaveServerModal', textInput)
   }
 
-  public onCreateModal(): void {
-    console.log('onCreateServerModal')
+  public onCreateServerModal(textInput: string): void {
+    if (!textInput) {
+      return;
+    }
+    this._serversService.addServer(textInput)
+
   }
 
   public onServerDetails(id: string) {

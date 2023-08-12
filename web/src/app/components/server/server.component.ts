@@ -15,6 +15,8 @@ import { ModalBase } from '../../modals/modal.base';
 })
 export class ServerComponent implements OnInit, OnDestroy, ModalBase {
   public currentServer!: ServerInterface;
+  public currentCategory!: CategoryInterface;
+  public currentChannel!: ChannelInterface;
   public servers!: Array<ServerInterface>;
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -38,6 +40,8 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
 
         this._serversService.setCurrentServer(serverId);
         this._serversService.currentServer$.subscribe(server => (this.currentServer = server));
+        this._serversService.currentCategory$.subscribe(category => (this.currentCategory = category));
+        this._serversService.currentChannel$.subscribe(channel => (this.currentChannel = channel));
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();
@@ -51,60 +55,113 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
     this._destroy$.complete();
   }
 
-  // TODO: not completed
-  public openCategoryModal(): void {
+  // ##### SERVER #####
+
+  public openEditServerModal(server: ServerInterface): void {
     this._modalService.openModal({
       onEditMode: true,
+      title: 'Edit server',
+      textInput: '',
+      placeholder: 'Enter server name',
+      close: this.onCloseModal.bind(this),
+      delete: this.onDeleteServerModal.bind(this),
+      save: this.onSaveServer.bind(this),
+      create: this.onCreateModal.bind(this),
+    })
+    this._serversService.currentServer$.next(server);
+  }
+  public onDeleteServerModal(): void {
+    this._serversService.deleteServer(this.currentServer.id);
+    this._router.navigate(['localhost/4200'])
+  }
+  public onSaveServer(textInput: string): void {
+    this._serversService.editServer(textInput , this.currentServer.id);
+  }
+
+  // ##### CATEGORIES #####
+
+  public openCategoryModal(): void {
+    this._modalService.openModal({
+      onEditMode: false,
       title: 'Create category',
       textInput: '',
       placeholder: 'Enter category name',
-      close: this.onCloseCategoryModal,
-      delete: this.onDeleteModal,
-      save: this.onSaveModal,
-      create: this.onCreateModal,
+      close: this.onCloseModal,
+      delete: this.onDeleteCategoryModal.bind(this),
+      save: this.onSaveCategoryModal.bind(this),
+      create: this.onCreateCategoryModal.bind(this),
     })
   }
-
-  // TODO: not completed
-  public openChannelModal(category: CategoryInterface): void {
+  public openEditCategoryModal (category:CategoryInterface): void  {
     this._modalService.openModal({
       onEditMode: true,
+      title: 'Edit category',
+      textInput: '',
+      placeholder: 'Enter category name',
+      close: this.onCloseModal,
+      delete: this.onDeleteCategoryModal.bind(this),
+      save: this.onSaveCategoryModal.bind(this),
+      create: this.onCreateCategoryModal.bind(this),
+    })
+    this._serversService.currentCategory$.next(category);
+  };
+  public onCreateCategoryModal(categoryTitle:string): void{
+    this._serversService.addCategory(categoryTitle , this.currentServer.id);
+  }
+  public onSaveCategoryModal(categoryTitle:string): void{
+    this._serversService.editCategory(categoryTitle , this.currentServer.id , this.currentCategory.id);
+  }
+  public onDeleteCategoryModal(): void{
+    this._serversService.deleteCategory(this.currentServer.id , this.currentCategory.id);
+  }
+
+  // ##### CHANNELS #####
+  public openCreateChannelModal(category: CategoryInterface): void {
+    this._modalService.openModal({
+      onEditMode: false,
       title: 'Create channel',
       textInput: '',
       placeholder: 'Enter channel name',
-      close: this.onCloseCategoryModal,
-      delete: this.onDeleteModal,
-      save: this.onSaveModal,
-      create: this.onCreateModal,
+      close: this.onCloseModal.bind(this),
+      delete: this.onDeleteChannelModal.bind(this),
+      save: this.onEditChannelModal.bind(this),
+      create: this.onCreateChannelModal.bind(this),
     })
     this._serversService.currentCategory$.next(category);
   }
-
-  public openEditChannelModal(category: CategoryInterface, channel: ChannelInterface): void {
-    this._serversService.currentCategory$.next(category);
+  public openEditChannelModal(category: CategoryInterface , channel : ChannelInterface): void {
+    this._modalService.openModal({
+      onEditMode: true,
+      title: 'Edit channel',
+      textInput: '',
+      placeholder: 'Enter channel name',
+      close: this.onCloseModal.bind(this),
+      delete: this.onDeleteChannelModal.bind(this),
+      save: this.onEditChannelModal.bind(this),
+      create: this.onCreateChannelModal.bind(this),
+    })
     this._serversService.currentChannel$.next(channel);
-  }
-
-  public openEditCategoryModal(category: CategoryInterface): void {
     this._serversService.currentCategory$.next(category);
   }
-
-  public openEditServerModal(server: ServerInterface): void {
-    this.currentServer = this._serversService.currentServer$.value;
+  public onCreateChannelModal(channelTitle:string): void{
+    this._serversService.addChannel(channelTitle , this.currentServer.id , this.currentCategory.id);
+  }
+  public onEditChannelModal(channelTitle:string): void{
+    this._serversService.editChannel(channelTitle , this.currentServer.id , this.currentCategory.id , this.currentChannel.id);
+  }
+  public onDeleteChannelModal(): void{
+    this._serversService.deleteChannel(this.currentServer.id , this.currentCategory.id , this.currentChannel.id);
   }
 
-  onCloseCategoryModal(): void {
+
+  onCloseModal(): void {
   }
 
   onCreateModal(): void {
   }
 
-  onDeleteModal(): void {
-  }
-
-  onSaveModal(textInput: string): void {
-  }
-
   openModalServer(): void {
   }
+
+
 }

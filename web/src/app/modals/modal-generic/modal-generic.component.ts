@@ -10,7 +10,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
-
+  public textInput: string | undefined = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -57,7 +57,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   }
 
   public create(state: ModalState): void {
-    state.create();
+    state.create(state.textInput);
     this._modalService.reset();
   }
 }
