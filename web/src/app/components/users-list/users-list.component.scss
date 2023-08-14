@@ -1,0 +1,74 @@
+:host {
+  width: 254px;
+  background: #2a2d31;
+  height: 100vh;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+
+    .avatar {
+      width: 55px;
+      height: 55px;
+      background: red;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: transparent;
+        bottom: 0;
+        right: 0;
+        border: 5px solid #2a2d31;
+      }
+
+      &.online {
+        &:before {
+          background: green;
+        }
+      }
+
+      &.offline {
+        &:before {
+          background: grey;
+        }
+      }
+
+      &.idle {
+        &:before {
+          background: yellow;
+        }
+      }
+
+      &.doNotDisturb {
+        &:before {
+          background: red;
+        }
+      }
+    }
+  }
+
+  .category {
+    font-size: 18px;
+    color: grey;
+  }
+}

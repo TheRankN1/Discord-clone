@@ -17,6 +17,7 @@ import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-e
 import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
+import { UsersListComponent } from "./components/users-list/users-list.component";
 
 const COMPONENTS = [
   SideBarComponent,
@@ -28,7 +29,8 @@ const COMPONENTS = [
   ModalChannel,
   ModalEditChannelComponent,
   ModalEditCategoryComponent,
-  ModalEditServerComponent
+  ModalEditServerComponent,
+  UsersListComponent
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];

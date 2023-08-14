@@ -1,0 +1,9 @@
+<div class="users" *ngFor="let user of users">
+  <span class="category">{{user.categoryName}}</span>
+  <div class="user">
+    <div class="avatar" [ngStyle]="{ 'background-color': user.bg }" class="{{user.status}}">
+      {{user.name | avatarInitials}}
+    </div>
+    <span class="name">{{user.name}}</span>
+  </div>
+</div>
