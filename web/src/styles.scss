@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
 @import 'assets/fonts/css/discord.css';
-@import "src/app/scss/layout";
+@import 'src/app/scss/layout';
 // Components
 @import './src/app/directives/tooltip/tooltip';
 @import './src/assets/scss/components/modal';
@@ -14,4 +14,3 @@ body {
   overflow-x: hidden;
   font-family: 'Cabin', sans-serif;
 }
-

@@ -16,9 +16,7 @@
   </select>
 </div>
 
-<div class="icons" [ngClass]="[iconsSize , color]">
-  <discord-icon *ngFor="let icon of projectIcons" [name]="icon"
-                [cdkCopyToClipboard]="copyToClipboard(icon)"
-                [ngClass]="[iconsSize , color]">
+<div class="icons" [ngClass]="[iconsSize, color]">
+  <discord-icon *ngFor="let icon of projectIcons" [name]="icon" [cdkCopyToClipboard]="copyToClipboard(icon)" [ngClass]="[iconsSize, color]">
   </discord-icon>
 </div>

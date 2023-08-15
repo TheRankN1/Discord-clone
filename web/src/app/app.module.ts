@@ -17,10 +17,10 @@ import { ModalEditCategoryComponent } from './modals/modal-edit-category/modal-e
 import { ModalEditServerComponent } from './modals/modal-edit-server/modal-edit-server.component';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
-import {IconsComponent} from "./components/icons/icons.component";
-import {IconComponent} from "./components/icon/icon.component";
-import {ClipboardModule} from "@angular/cdk/clipboard";
-import {HttpClientModule} from "@angular/common/http";
+import { IconsComponent } from './components/icons/icons.component';
+import { IconComponent } from './components/icon/icon.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { HttpClientModule } from '@angular/common/http';
 
 const COMPONENTS = [
   SideBarComponent,
@@ -37,7 +37,16 @@ const COMPONENTS = [
   IconComponent
 ];
 
-const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule , ClipboardModule , HttpClientModule];
+const MODULES = [
+  CommonModule,
+  BrowserModule,
+  FormsModule,
+  ReactiveFormsModule,
+  AppRoutes,
+  TooltipModule,
+  ClipboardModule,
+  HttpClientModule
+];
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 
 @NgModule({
