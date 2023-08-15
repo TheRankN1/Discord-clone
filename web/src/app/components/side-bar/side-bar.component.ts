@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ServersService} from '../../services/servers.service';
-import {ServerInterface} from '../../interfaces/server.interface';
-import {Router} from '@angular/router';
-import {BehaviorSubject} from 'rxjs';
-import {ModalService} from '../../services/modal.service';
-import {ModalBase} from '../../modals/modal.base';
+import { Component, OnInit } from '@angular/core';
+import { ServersService } from '../../services/servers.service';
+import { ServerInterface } from '../../interfaces/server.interface';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { ModalService } from '../../services/modal.service';
+import { ModalBase } from '../../modals/modal.base';
 
 @Component({
   selector: 'app-side-bar',
@@ -18,8 +18,7 @@ export class SideBarComponent implements OnInit, ModalBase {
     private _serversService: ServersService,
     private _modalService: ModalService,
     private _router: Router
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.servers$ = this._serversService.servers$;
@@ -38,12 +37,12 @@ export class SideBarComponent implements OnInit, ModalBase {
       close: this.onCloseModal.bind(this),
       delete: this.onDeleteServerModal.bind(this),
       save: this.onSaveModal.bind(this),
-      create: this.onCreateServerModal.bind(this),
-    })
+      create: this.onCreateServerModal.bind(this)
+    });
   }
 
   public onCloseModal(): void {
-    console.log('onCloseServerModal')
+    console.log('onCloseServerModal');
   }
 
   public onDeleteServerModal(): void {
@@ -52,15 +51,14 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public onSaveModal(textInput: string): void {
-    console.log('onSaveServerModal', textInput)
+    console.log('onSaveServerModal', textInput);
   }
 
   public onCreateServerModal(textInput: string): void {
     if (!textInput) {
       return;
     }
-    this._serversService.addServer(textInput)
-
+    this._serversService.addServer(textInput);
   }
 
   public onServerDetails(id: string) {

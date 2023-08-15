@@ -8,14 +8,12 @@ import { ModalService, ModalState } from '../../services/modal.service';
 })
 export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
-  public isOpen$: Observable<boolean> = this._modalService.isOpen$
+  public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
   public textInput: string | undefined = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(
-    private _modalService: ModalService,
-  ) {}
+  constructor(private _modalService: ModalService) {}
 
   public ngOnInit(): void {
     this._isOpenListener();

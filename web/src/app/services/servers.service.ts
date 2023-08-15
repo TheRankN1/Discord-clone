@@ -29,8 +29,7 @@ export class ServersService {
 
   public addServer(title: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
-    if(!title)
-      return;
+    if (!title) return;
 
     servers.push({
       id: GeneratorHelpers.uuid(),
