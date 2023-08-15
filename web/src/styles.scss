@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
 @import 'assets/fonts/css/discord.css';
-
+@import "src/app/scss/layout";
 // Components
 @import './src/app/directives/tooltip/tooltip';
 @import './src/assets/scss/components/modal';
@@ -15,44 +15,3 @@ body {
   font-family: 'Cabin', sans-serif;
 }
 
-.ellipsis {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-discord-icon {
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  &.small {
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  &.big {
-    svg {
-      width: 32px;
-      height: 32px;
-    }
-  }
-
-  &.xl {
-    svg {
-      width: 64px;
-      height: 64px;
-    }
-  }
-
-
-  &.xxl {
-    svg {
-      width: 64px;
-      height: 64px;
-    }
-  }
-}

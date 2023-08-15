@@ -8,6 +8,7 @@ import {projectIcons} from "../icon/project-icons";
 })
 export class IconsComponent implements OnInit{
   public iconsSize :string = '';
+  public color :string = '';
   public projectIcons !: Array<string>;
 
   public ngOnInit(): void{

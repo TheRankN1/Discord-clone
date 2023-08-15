@@ -7,7 +7,7 @@ const ICON_TYPE = '.svg';
 
 @Component({
   selector:'discord-icon',
-  templateUrl:'icon.component.html',
+  template: '',
   styleUrls:['icon.component.scss'],
 })
 
@@ -23,7 +23,8 @@ export class IconComponent implements OnInit , OnChanges{
     this.subscription.add(
       this.http
         .get(`${ICONS_PATH}/${this.name}${ICON_TYPE}`, { responseType: 'text' })
-        .subscribe(value => (this.svg = this.sanitizer.bypassSecurityTrustHtml(value)))
+        .subscribe(value => {(this.svg = this.sanitizer.bypassSecurityTrustHtml(value))}
+        )
     );
   }
 

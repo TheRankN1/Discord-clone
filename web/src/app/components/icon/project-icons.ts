@@ -22,4 +22,8 @@ export const projectIcons: any = [
   'text-channel',
   'trash',
   'two-persons',
+  'exit',
+  'security',
+  'level-boost',
+  'folder-plus'
 ];
