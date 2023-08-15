@@ -1,0 +1,14 @@
+<h1>DISCORD ICONS</h1>
+
+<select [(ngModel)]="iconsSize">
+  <option value="small">Small</option>
+  <option value="">Normal</option>
+  <option value="big">Big</option>
+  <option value="xl">XL</option>
+  <option value="xxl">XXL</option>
+</select>
+
+<discord-icon *ngFor="let icon of projectIcons" [name]="icon"
+                [cdkCopyToClipboard]="copyToClipboard(icon)"
+              [ngClass]="iconsSize">
+</discord-icon>

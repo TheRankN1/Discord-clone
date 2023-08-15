@@ -26,5 +26,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "includes": ["src/custom.d.ts"]
 }
