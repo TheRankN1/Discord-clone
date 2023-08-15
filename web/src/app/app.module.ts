@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { ModalServerComponent } from './modals/modal-server/modal-server.component';
 import { ServerComponent } from './components/server/server.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvatarComponent } from './components/avatar/avatar.component';
@@ -16,7 +15,6 @@ import { ModalGenericComponent } from './modals/modal-generic/modal-generic.comp
 
 const COMPONENTS = [
   SideBarComponent,
-  ModalServerComponent,
   ServerComponent,
   AvatarComponent,
   AppComponent,

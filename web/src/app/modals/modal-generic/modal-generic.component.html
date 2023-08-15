@@ -5,7 +5,6 @@
       <input #inputRef type='text' [(ngModel)]='state.textInput' [attr.placeholder]='state.placeholder' />
       <div class='buttons'>
         <button (click)='close(state)'>Cancel</button>
-
         <div class="on-edit-mode" *ngIf='state.onEditMode === true'>
           <button class='delete-button' (click)='delete(state)'>Delete</button>
           <button class='save-button' [disabled]="state.textInput === ''" (click)='save(state)'>Save</button>

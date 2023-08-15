@@ -72,7 +72,7 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
   }
   public onDeleteServerModal(): void {
     this._serversService.deleteServer(this.currentServer.id);
-    this._router.navigate(['localhost/4200'])
+    this._router.navigate(['/servers'])
   }
   public onSaveServer(textInput: string): void {
     this._serversService.editServer(textInput , this.currentServer.id);
