@@ -11,6 +11,8 @@ import { AppRoutes } from './app.routes';
 import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
+import { IconComponent } from './components/icon/icon.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
@@ -20,12 +22,13 @@ const COMPONENTS = [
   ServerComponent,
   AvatarComponent,
   AppComponent,
+  IconComponent,
   ModalGenericComponent,
   ChatComponent,
   UsersListComponent
 ];
 
-const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
+const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 
 @NgModule({

@@ -1,15 +1,18 @@
+@import 'src/app/scss/colors';
+
 .scrolling-container {
   height: calc(100vh - 24px);
   padding: 12px;
   overflow-x: hidden;
-  background: #1e1f22;
+  background: $discord-blue-color-020;
+
   app-avatar {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
   .add-new {
-    background: #36393f;
-    color: rgba(59, 165, 93, 1);
+    background: $discord-blue-color-light;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,11 +29,12 @@
     }
   }
 }
+
 .scrolling-container::-webkit-scrollbar {
   width: 8px;
 }
 
 .scrolling-container::-webkit-scrollbar-thumb {
-  background-color: #d0c9c9;
+  background-color: $color-grey;
   border-radius: 4px;
 }

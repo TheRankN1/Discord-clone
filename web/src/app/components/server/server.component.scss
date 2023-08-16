@@ -1,3 +1,5 @@
+@import 'src/app/scss/colors';
+
 .scrolling-container {
   height: 100vh;
   width: 240px;
@@ -5,14 +7,14 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: #2a2d31;
+  background: $discord-blue-color-010;
 
   &::-webkit-scrollbar {
     width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #d0c9c9;
+    background-color: $color-grey;
     border-radius: 4px;
   }
 }
@@ -20,22 +22,10 @@
 .server {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: $color-white;
 
-  .add {
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid grey;
-    cursor: pointer;
-    color: #fff;
-  }
-
-  i {
+  app-icon {
     visibility: hidden;
-    color: grey;
-    cursor: pointer;
   }
 
   &-name {
@@ -55,9 +45,9 @@
 
     &:hover {
       font-weight: bold;
-      background: #36373c;
+      background: $discord-blue-color-light;
 
-      i {
+      app-icon {
         visibility: visible;
       }
     }
@@ -67,7 +57,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    color: #b9bbbe;
+    color: $color-grey-010;
 
     strong {
       flex: 1;
@@ -76,10 +66,10 @@
     }
 
     &:hover {
-      color: #fff;
+      color: $color-white;
       font-weight: bold;
 
-      i {
+      app-icon {
         visibility: visible;
       }
     }
@@ -92,7 +82,7 @@
     font-weight: 700;
     line-height: 115.9%;
     letter-spacing: -0.085px;
-    color: #b9bbbe;
+    color: $color-grey-010;
     font-size: 18px;
 
     span {
@@ -102,19 +92,21 @@
     }
 
     &:hover {
-      background: #36373c;
+      background: $discord-blue-color-light;
 
-      i {
+      app-icon {
         visibility: visible;
       }
     }
   }
 }
+
 .server {
   &-name,
   &-category,
   &-channel {
     padding: 12px;
+
     &:hover {
       cursor: pointer;
     }

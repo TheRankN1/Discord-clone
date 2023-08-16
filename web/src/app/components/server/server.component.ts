@@ -18,6 +18,8 @@ export class ServerComponent implements OnInit, OnDestroy {
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
   public servers!: Array<ServerInterface>;
+  public isHoveredAdd = false;
+  public isHoveredPen = false;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
