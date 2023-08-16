@@ -8,7 +8,7 @@
     <ng-container *ngFor="let category of server.categories">
       <div class="server-category">
         <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
-        <app-icon [name]="'add-message'" (click)="openChannelModal(category)"></app-icon>
+        <app-icon [name]="'add-message'" (click)="openCreateChannelModal(category)"></app-icon>
         <app-icon [name]="'pen'" (click)="openEditCategoryModal(category)"></app-icon>
       </div>
       <div class="server-channel" *ngFor="let channel of category.channels">
