@@ -9,6 +9,7 @@
   background: rgba(0, 0, 0, 0.3);
   width: 100vw;
   height: 100vh;
+
   .modal-content {
     width: 400px;
     padding: 20px;
@@ -23,6 +24,12 @@
       display: flex;
       gap: 10px;
       justify-content: space-between;
+
+      .on-edit-mode {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
 
       .delete-button {
         &:hover {

@@ -27,12 +27,13 @@ export class ServersService {
 
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
-  public addServer(props: string): void {
+  public addServer(title: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
+    if (!title) return;
 
     servers.push({
       id: GeneratorHelpers.uuid(),
-      title: props,
+      title: title,
       isActive: false,
       serverBgColor: GeneratorHelpers.color(),
       categories: []
