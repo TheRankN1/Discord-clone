@@ -7,6 +7,7 @@
 }
 
 discord-icon {
+
   svg {
     width: 24px;
     height: 24px;
@@ -56,6 +57,15 @@ discord-icon {
     svg {
       path {
         fill: $color-warning;
+      }
+    }
+  }
+
+  &.color-green {
+    svg {
+      path {
+        fill: $color-green;
+        border: none;
       }
     }
   }
