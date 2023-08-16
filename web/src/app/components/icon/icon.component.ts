@@ -1,4 +1,4 @@
-import {Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -7,8 +7,7 @@ const ICON_TYPE = '.svg';
 
 @Component({
   selector: 'app-icon',
-  template: '<div [class.color-grey]="isHovered"' +
-    ' (mouseenter)="mouseenter()" (mouseleave)="mouseover()"></div>',
+  template: '<div [class.color-grey]="isHovered"' + ' (mouseenter)="mouseenter()" (mouseleave)="mouseover()"></div>',
   styleUrls: ['icon.component.scss']
 })
 export class IconComponent implements OnInit, OnChanges {
@@ -49,7 +48,6 @@ export class IconComponent implements OnInit, OnChanges {
       );
     }
   }
-
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
