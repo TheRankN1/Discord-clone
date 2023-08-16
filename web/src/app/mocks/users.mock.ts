@@ -1,11 +1,11 @@
-import {GeneratorHelpers} from "../helpers/generator.helpers";
-import {UserCategoryInterface} from "../interfaces/user-category.interface";
+import { GeneratorHelpers } from '../helpers/generator.helpers';
+import { UserCategoryInterface } from '../interfaces/user-category.interface';
 
-export type UserStatusType = 'online' | 'offline' | 'idle' | 'doNotDisturb'
+export type UserStatusType = 'online' | 'offline' | 'idle' | 'doNotDisturb';
 export const USERS_MOCK: Array<UserCategoryInterface> = [
   {
     categoryName: 'Programmer',
-    users:[
+    users: [
       {
         name: 'Costel',
         status: 'online',
@@ -15,12 +15,12 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
         name: 'Costel',
         status: 'offline',
         bg: GeneratorHelpers.color()
-      },
+      }
     ]
   },
   {
     categoryName: 'Rapan',
-    users:[
+    users: [
       {
         name: 'Petrut',
         status: 'idle',
@@ -30,7 +30,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
   },
   {
     categoryName: 'Rapan',
-    users:[
+    users: [
       {
         name: 'Costel',
         status: 'online',
@@ -40,7 +40,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
   },
   {
     categoryName: 'Chelbos',
-    users:[
+    users: [
       {
         name: 'Gigel',
         status: 'doNotDisturb',
@@ -52,5 +52,5 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
         bg: GeneratorHelpers.color()
       }
     ]
-  },
-]
+  }
+];
