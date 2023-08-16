@@ -19,6 +19,8 @@ import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
 import { IconComponent } from './components/icon/icon.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChatComponent } from './components/chat/chat.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 const COMPONENTS = [
   SideBarComponent,
@@ -31,7 +33,9 @@ const COMPONENTS = [
   ModalEditChannelComponent,
   ModalEditCategoryComponent,
   ModalEditServerComponent,
-  IconComponent
+  IconComponent,
+  ChatComponent,
+  UsersListComponent
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];

@@ -1,0 +1,8 @@
+@import "src/app/scss/colors";
+
+:host {
+  background: $discord-blue-color-010;
+  width: 254px;
+  height: 100vh;
+  color: $color-white;
+}
