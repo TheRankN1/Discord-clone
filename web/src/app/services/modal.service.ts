@@ -6,10 +6,10 @@ export interface ModalState {
   title: string;
   textInput: string;
   placeholder: string;
-  close: () => void;
+  close?: () => void;
   delete: () => void;
   save: (text: string) => void;
-  create: (text: string) => void;
+  create?: (text: string) => void;
 }
 
 @Injectable({

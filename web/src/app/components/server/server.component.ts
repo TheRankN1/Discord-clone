@@ -13,7 +13,7 @@ import { ModalBase } from '../../modals/modal.base';
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss']
 })
-export class ServerComponent implements OnInit, OnDestroy, ModalBase {
+export class ServerComponent implements OnInit, OnDestroy{
   public currentServer!: ServerInterface;
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
@@ -63,10 +63,8 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
       title: 'Edit server',
       textInput: '',
       placeholder: 'Enter server name',
-      close: this.onCloseModal.bind(this),
       delete: this.onDeleteServerModal.bind(this),
       save: this.onSaveServer.bind(this),
-      create: this.onCreateModal.bind(this)
     });
     this._serversService.currentServer$.next(server);
   }
@@ -86,7 +84,6 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
       title: 'Create category',
       textInput: '',
       placeholder: 'Enter category name',
-      close: this.onCloseModal,
       delete: this.onDeleteCategoryModal.bind(this),
       save: this.onSaveCategoryModal.bind(this),
       create: this.onCreateCategoryModal.bind(this)
@@ -98,7 +95,6 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
       title: 'Edit category',
       textInput: '',
       placeholder: 'Enter category name',
-      close: this.onCloseModal,
       delete: this.onDeleteCategoryModal.bind(this),
       save: this.onSaveCategoryModal.bind(this),
       create: this.onCreateCategoryModal.bind(this)
@@ -122,7 +118,6 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
       title: 'Create channel',
       textInput: '',
       placeholder: 'Enter channel name',
-      close: this.onCloseModal.bind(this),
       delete: this.onDeleteChannelModal.bind(this),
       save: this.onEditChannelModal.bind(this),
       create: this.onCreateChannelModal.bind(this)
@@ -135,7 +130,6 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
       title: 'Edit channel',
       textInput: '',
       placeholder: 'Enter channel name',
-      close: this.onCloseModal.bind(this),
       delete: this.onDeleteChannelModal.bind(this),
       save: this.onEditChannelModal.bind(this),
       create: this.onCreateChannelModal.bind(this)
@@ -152,10 +146,4 @@ export class ServerComponent implements OnInit, OnDestroy, ModalBase {
   public onDeleteChannelModal(): void {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
   }
-
-  onCloseModal(): void {}
-
-  onCreateModal(): void {}
-
-  openModalServer(): void {}
 }
