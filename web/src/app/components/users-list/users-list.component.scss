@@ -1,74 +1,77 @@
+@import 'src/app/scss/colors';
+
 :host {
+  background: $discord-blue-color-010;
   width: 254px;
-  background: #2a2d31;
   height: 100vh;
+  color: $color-white;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
 
-.users {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 
-  .user {
+  .users {
     display: flex;
-    align-items: center;
-    gap: 20px;
-    color: #fff;
+    flex-direction: column;
+    gap: 10px;
 
-    .avatar {
-      width: 55px;
-      height: 55px;
-      background: red;
-      border-radius: 50%;
-      position: relative;
+    .user {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 20px;
+      color: #fff;
 
-      &:before {
-        content: '';
-        position: absolute;
-        width: 15px;
-        height: 15px;
+      .avatar {
+        width: 55px;
+        height: 55px;
+        background: red;
         border-radius: 50%;
-        background: transparent;
-        bottom: 0;
-        right: 0;
-        border: 5px solid #2a2d31;
-      }
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      &.online {
         &:before {
-          background: green;
+          content: '';
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background: transparent;
+          bottom: 0;
+          right: 0;
+          border: 5px solid #2a2d31;
         }
-      }
 
-      &.offline {
-        &:before {
-          background: grey;
+        &.online {
+          &:before {
+            background: green;
+          }
         }
-      }
 
-      &.idle {
-        &:before {
-          background: yellow;
+        &.offline {
+          &:before {
+            background: grey;
+          }
         }
-      }
 
-      &.doNotDisturb {
-        &:before {
-          background: red;
+        &.idle {
+          &:before {
+            background: yellow;
+          }
+        }
+
+        &.doNotDisturb {
+          &:before {
+            background: red;
+          }
         }
       }
     }
-  }
 
-  .category {
-    font-size: 18px;
-    color: grey;
+    .category {
+      font-size: 18px;
+      color: grey;
+    }
   }
 }
