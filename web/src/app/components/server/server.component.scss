@@ -1,4 +1,4 @@
-@import "src/app/scss/colors";
+@import 'src/app/scss/colors';
 
 .scrolling-container {
   height: 100vh;
@@ -19,14 +19,13 @@
   }
 }
 
-
 .server {
   display: flex;
   flex-direction: column;
   color: $color-white;
 
   discord-icon {
-    visibility:hidden;
+    visibility: hidden;
   }
 
   &-name {

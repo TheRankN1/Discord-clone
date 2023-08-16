@@ -34,15 +34,7 @@ const COMPONENTS = [
   IconComponent
 ];
 
-const MODULES = [
-  CommonModule,
-  BrowserModule,
-  FormsModule,
-  ReactiveFormsModule,
-  AppRoutes,
-  TooltipModule,
-  HttpClientModule
-];
+const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 
 @NgModule({

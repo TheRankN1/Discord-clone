@@ -2,20 +2,50 @@
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title != ''">
       <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
-      <discord-icon [name]="'add-message'" [class.color-grey]="isHoveredAdd === true" (mouseenter)="isHoveredAdd = true" (mouseleave)="isHoveredAdd = false" (click)="openCategoryModal()" ></discord-icon>
-      <discord-icon [name]="'pen'"  [class.color-grey]="isHoveredPen === true" (mouseenter)="isHoveredPen = true" (mouseleave)="isHoveredPen = false" (click)="openEditServerModal(server)"></discord-icon>
+      <discord-icon
+        [name]="'add-message'"
+        [class.color-grey]="isHoveredAdd === true"
+        (mouseenter)="isHoveredAdd = true"
+        (mouseleave)="isHoveredAdd = false"
+        (click)="openCategoryModal()"
+      ></discord-icon>
+      <discord-icon
+        [name]="'pen'"
+        [class.color-grey]="isHoveredPen === true"
+        (mouseenter)="isHoveredPen = true"
+        (mouseleave)="isHoveredPen = false"
+        (click)="openEditServerModal(server)"
+      ></discord-icon>
     </div>
     <ng-container *ngFor="let category of server.categories">
       <div class="server-category">
         <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
-        <discord-icon [name]="'add-message'"  [class.color-grey]="isHoveredAdd === true" (mouseenter)="isHoveredAdd = true" (mouseleave)="isHoveredAdd = false" (click)="openChannelModal(category)" ></discord-icon>
-        <discord-icon [name]="'pen'"  [class.color-grey]="isHoveredPen === true" (mouseenter)="isHoveredPen = true" (mouseleave)="isHoveredPen = false" (click)="openEditCategoryModal(category)"></discord-icon>
+        <discord-icon
+          [name]="'add-message'"
+          [class.color-grey]="isHoveredAdd === true"
+          (mouseenter)="isHoveredAdd = true"
+          (mouseleave)="isHoveredAdd = false"
+          (click)="openChannelModal(category)"
+        ></discord-icon>
+        <discord-icon
+          [name]="'pen'"
+          [class.color-grey]="isHoveredPen === true"
+          (mouseenter)="isHoveredPen = true"
+          (mouseleave)="isHoveredPen = false"
+          (click)="openEditCategoryModal(category)"
+        ></discord-icon>
       </div>
       <div class="server-channel" *ngFor="let channel of category.channels">
         <span [tooltip]="channel.title" position="top" class="ellipsis">
           {{ channel.title }}
         </span>
-        <discord-icon [name]="'pen'" [class.color-grey]="isHoveredPen === true" (mouseenter)="isHoveredPen = true" (mouseleave)="isHoveredPen = false"  (click)="openEditChannelModal(category , channel)"></discord-icon>
+        <discord-icon
+          [name]="'pen'"
+          [class.color-grey]="isHoveredPen === true"
+          (mouseenter)="isHoveredPen = true"
+          (mouseleave)="isHoveredPen = false"
+          (click)="openEditChannelModal(category, channel)"
+        ></discord-icon>
       </div>
     </ng-container>
   </ng-container>
