@@ -15,8 +15,15 @@ import { ModalGenericComponent } from './modals/modal-generic/modal-generic.comp
 import { ChatComponent } from './components/chat/chat.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 
-const COMPONENTS = [SideBarComponent, ServerComponent, AvatarComponent, AppComponent, ModalGenericComponent , ChatComponent , UsersListComponent];
-
+const COMPONENTS = [
+  SideBarComponent,
+  ServerComponent,
+  AvatarComponent,
+  AppComponent,
+  ModalGenericComponent,
+  ChatComponent,
+  UsersListComponent
+];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];

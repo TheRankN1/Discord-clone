@@ -13,7 +13,7 @@ import { ModalBase } from '../../modals/modal.base';
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss']
 })
-export class ServerComponent implements OnInit, OnDestroy{
+export class ServerComponent implements OnInit, OnDestroy {
   public currentServer!: ServerInterface;
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
@@ -64,7 +64,7 @@ export class ServerComponent implements OnInit, OnDestroy{
       textInput: '',
       placeholder: 'Enter server name',
       delete: this.onDeleteServerModal.bind(this),
-      save: this.onSaveServer.bind(this),
+      save: this.onSaveServer.bind(this)
     });
     this._serversService.currentServer$.next(server);
   }

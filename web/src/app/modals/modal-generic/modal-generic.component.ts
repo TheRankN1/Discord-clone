@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {filter, Observable, Subject, takeUntil} from 'rxjs';
-import {ModalService, ModalState} from '../../services/modal.service';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { filter, Observable, Subject, takeUntil } from 'rxjs';
+import { ModalService, ModalState } from '../../services/modal.service';
 
 @Component({
   selector: 'app-modal-generic',
@@ -13,8 +13,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   public textInput: string | undefined = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _modalService: ModalService) {
-  }
+  constructor(private _modalService: ModalService) {}
 
   public ngOnInit(): void {
     this._isOpenListener();
@@ -55,8 +54,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   }
 
   public create(state: ModalState): void {
-    if (!state.create)
-      return;
+    if (!state.create) return;
     state.create(state.textInput);
     this._modalService.reset();
   }
