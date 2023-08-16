@@ -12,8 +12,11 @@ import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
 import { TooltipModule } from './directives/tooltip/tooltip.module';
 import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
 import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
-const COMPONENTS = [SideBarComponent, ServerComponent, AvatarComponent, AppComponent, ModalGenericComponent];
+const COMPONENTS = [SideBarComponent, ServerComponent, AvatarComponent, AppComponent, ModalGenericComponent , ChatComponent , UsersListComponent];
+
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule];
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
