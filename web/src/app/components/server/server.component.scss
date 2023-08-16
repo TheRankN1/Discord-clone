@@ -24,7 +24,7 @@
   flex-direction: column;
   color: $color-white;
 
-  discord-icon {
+  app-icon {
     visibility: hidden;
   }
 
@@ -47,7 +47,7 @@
       font-weight: bold;
       background: $discord-blue-color-light;
 
-      discord-icon {
+      app-icon {
         visibility: visible;
       }
     }
@@ -69,7 +69,7 @@
       color: $color-white;
       font-weight: bold;
 
-      discord-icon {
+      app-icon {
         visibility: visible;
       }
     }
@@ -94,7 +94,7 @@
     &:hover {
       background: $discord-blue-color-light;
 
-      discord-icon {
+      app-icon {
         visibility: visible;
       }
     }

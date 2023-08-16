@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -6,14 +6,26 @@ const ICONS_PATH = 'assets/icons/svg';
 const ICON_TYPE = '.svg';
 
 @Component({
-  selector: 'discord-icon',
-  template: '',
+  selector: 'app-icon',
+  template: '<div [class.color-grey]="isHovered"' +
+    ' (mouseenter)="mouseenter()" (mouseleave)="mouseover()"></div>',
   styleUrls: ['icon.component.scss']
 })
 export class IconComponent implements OnInit, OnChanges {
   @Input() public name = '';
   @HostBinding('innerHTML') public svg: any;
   private subscription = new Subscription();
+  @HostBinding('class.color-grey') public isHovered = false;
+
+  @HostListener('mouseenter')
+  mouseenter() {
+    this.isHovered = true;
+  }
+
+  @HostListener('mouseleave')
+  mouseover() {
+    this.isHovered = false;
+  }
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -37,6 +49,7 @@ export class IconComponent implements OnInit, OnChanges {
       );
     }
   }
+
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
