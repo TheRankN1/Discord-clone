@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const COMPONENTS = [
   SideBarComponent,
@@ -25,7 +27,9 @@ const COMPONENTS = [
   IconComponent,
   ModalGenericComponent,
   ChatComponent,
-  UsersListComponent
+  UsersListComponent,
+  LoginComponent,
+  RegisterComponent
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];
