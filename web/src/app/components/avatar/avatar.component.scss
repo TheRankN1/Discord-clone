@@ -13,7 +13,11 @@
     border-radius: 50%;
     font-size: 16px;
     color: $color-white;
-
+    position: relative;
+    &.small {
+      width: 32px;
+      height: 32px;
+    }
     &:hover {
       cursor: pointer;
       border-radius: 30%;
@@ -30,6 +34,49 @@
         height: 40px;
         background: $color-white;
         border-radius: 0px 2px 2px 0px;
+        border: none;
+        bottom: 2px;
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      bottom: 0;
+      right: 0;
+      border: 3px solid $discord-blue-color-010;
+    }
+
+    &.online {
+      &:before {
+        background: $color-green;
+      }
+    }
+
+    &.offline {
+      &:before {
+        background: $color-grey;
+      }
+    }
+
+    &.idle {
+      &:before {
+        background: $color-idle;
+      }
+    }
+
+    &.doNotDisturb {
+      &:before {
+        background: $color-error;
+      }
+    }
+    &.server {
+      &:before {
+        border: none;
       }
     }
   }

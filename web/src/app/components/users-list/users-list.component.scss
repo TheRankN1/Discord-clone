@@ -18,60 +18,13 @@
     .user {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 10px;
       color: $color-white;
 
-      .avatar {
-        width: 55px;
-        height: 55px;
-        background: $color-error;
-        border-radius: 50%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &:before {
-          content: '';
-          position: absolute;
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          background: transparent;
-          bottom: 0;
-          right: 0;
-          border: 5px solid $discord-blue-color-010;
-        }
-
-        &.online {
-          &:before {
-            background: $color-green;
-          }
-        }
-
-        &.offline {
-          &:before {
-            background: $color-grey;
-          }
-        }
-
-        &.idle {
-          &:before {
-            background: $color-idle;
-          }
-        }
-
-        &.doNotDisturb {
-          &:before {
-            background: $color-error;
-          }
-        }
+      .category {
+        font-size: 14px;
+        color: $color-grey-010;
       }
-    }
-
-    .category {
-      font-size: 14px;
-      color: $color-grey-010;
     }
   }
 }

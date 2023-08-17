@@ -1,9 +1,7 @@
-<div class="users" *ngFor="let categoryUser of categoryOfUsers">
+<div class="users" *ngFor="let categoryUser of categoryOfUsers; trackBy: trackByFn">
   <span class="category">{{ categoryUser.categoryName }}</span>
-  <div class="user" *ngFor="let user of categoryUser.users">
-    <div class="avatar" [ngStyle]="{ 'background-color': user.bg }" class="{{ user.status }}">
-      {{ user.name | avatarInitials }}
-    </div>
+  <div class="user" *ngFor="let user of categoryUser.users; trackBy: trackByFn">
+    <app-avatar [dimension]="'small'" [title]="user.name" [userBgColor]="user.userBgColor" [status]="user.status"></app-avatar>
     <span class="name">{{ user.name }}</span>
   </div>
 </div>

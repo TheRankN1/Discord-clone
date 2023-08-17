@@ -1,9 +1,9 @@
-import { UserStatusType } from '../mocks/users.mock';
+import { UserStatusType } from '../components/types/user.type';
 
-export interface UsersInterface {
-  icon?: string;
-  status: UserStatusType;
+export interface UserInterface {
+  id: string;
   name: string;
-  activity?: string;
-  bg: string;
+  status: UserStatusType;
+  activity: string;
+  userBgColor: string;
 }

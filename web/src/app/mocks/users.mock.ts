@@ -1,20 +1,35 @@
 import { GeneratorHelpers } from '../helpers/generator.helpers';
 import { UserCategoryInterface } from '../interfaces/user-category.interface';
 
-export type UserStatusType = 'online' | 'offline' | 'idle' | 'doNotDisturb';
 export const USERS_MOCK: Array<UserCategoryInterface> = [
   {
     categoryName: 'Programmer',
     users: [
       {
+        id: '1',
         name: 'Costel',
         status: 'online',
-        bg: GeneratorHelpers.color()
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
       },
       {
-        name: 'Costel',
+        id: '1',
+        name: 'Gigel',
         status: 'offline',
-        bg: GeneratorHelpers.color()
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
+      }
+    ]
+  },
+  {
+    categoryName: 'Matei',
+    users: [
+      {
+        id: '1',
+        name: 'Costel',
+        status: 'doNotDisturb',
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
       }
     ]
   },
@@ -22,19 +37,11 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     categoryName: 'Rapan',
     users: [
       {
-        name: 'Petrut',
-        status: 'idle',
-        bg: GeneratorHelpers.color()
-      }
-    ]
-  },
-  {
-    categoryName: 'Rapan',
-    users: [
-      {
+        id: '1',
         name: 'Costel',
         status: 'online',
-        bg: GeneratorHelpers.color()
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
       }
     ]
   },
@@ -42,14 +49,25 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     categoryName: 'Chelbos',
     users: [
       {
-        name: 'Gigel',
-        status: 'doNotDisturb',
-        bg: GeneratorHelpers.color()
+        id: '1',
+        name: 'Costel',
+        status: 'online',
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
       },
       {
-        name: 'Matei',
-        status: 'doNotDisturb',
-        bg: GeneratorHelpers.color()
+        id: '1',
+        name: 'Costel',
+        status: 'online',
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
+      },
+      {
+        id: '1',
+        name: '',
+        status: 'online',
+        activity: '',
+        userBgColor: GeneratorHelpers.color()
       }
     ]
   }

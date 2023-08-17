@@ -7,6 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class AvatarComponent {
   @Input() public isActive = false;
-  @Input() public serverBgColor = '';
+  @Input() public userBgColor = '';
   @Input() public title: string = '';
+  @Input() public status: string = '';
+  @Input() public dimension: string = '';
 }

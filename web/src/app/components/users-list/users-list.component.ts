@@ -10,10 +10,11 @@ import { UserCategoryInterface } from '../../interfaces/user-category.interface'
 })
 export class UsersListComponent implements OnInit {
   public categoryOfUsers!: Array<UserCategoryInterface>;
-  public serverBgColor: string = '';
 
   public ngOnInit(): void {
     this.categoryOfUsers = USERS_MOCK;
-    this.serverBgColor = GeneratorHelpers.color();
+  }
+  public trackByFn(index: number): number {
+    return index;
   }
 }
