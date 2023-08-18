@@ -9,7 +9,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
         id: '1',
         name: 'Costel',
         status: 'online',
-        activity: '',
+        activity: 'Se joaca acum : Roblox',
         userBgColor: GeneratorHelpers.color()
       },
       {

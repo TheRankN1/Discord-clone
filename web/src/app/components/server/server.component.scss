@@ -31,14 +31,13 @@
   &-name {
     display: flex;
     gap: 16px;
-
+    justify-content: space-between;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.735px;
 
     strong {
-      flex: 1;
       font-size: 24px;
       display: block;
     }
@@ -49,6 +48,7 @@
 
       app-icon {
         visibility: visible;
+        color: $color-grey;
       }
     }
   }
@@ -60,7 +60,6 @@
     color: $color-grey-010;
 
     strong {
-      flex: 1;
       font-size: 14px;
       display: block;
     }
@@ -84,9 +83,9 @@
     letter-spacing: -0.085px;
     color: $color-grey-010;
     font-size: 18px;
+    justify-content: space-between;
 
     span {
-      flex: 1;
 
       display: block;
     }
@@ -106,9 +105,18 @@
   &-category,
   &-channel {
     padding: 12px;
+    justify-content: space-between;
 
-    &:hover {
-      cursor: pointer;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      app-icon {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 }

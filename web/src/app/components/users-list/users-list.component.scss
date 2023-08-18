@@ -15,15 +15,34 @@
     flex-direction: column;
     gap: 10px;
 
+    .category {
+      display: flex;
+      align-items: center;
+      color: $color-grey-010;
+      gap:4px;
+
+      &-name {
+        font-size: 14px;
+      }
+
+      .number-of-users {
+        font-size: 12px;
+      }
+    }
     .user {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: $color-white;
 
-      .category {
-        font-size: 14px;
-        color: $color-grey-010;
+
+      &-details {
+        display: flex;
+        flex-direction: column;
+
+        .activity {
+          font-size: 10px;
+          color: $color-grey;
+        }
       }
     }
   }
