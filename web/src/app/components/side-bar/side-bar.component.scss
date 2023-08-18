@@ -9,6 +9,9 @@
   app-avatar {
     margin-top: 10px;
     margin-bottom: 10px;
+    &:before {
+      border: none;
+    }
   }
 
   .add-new {
@@ -31,10 +34,10 @@
 }
 
 .scrolling-container::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 .scrolling-container::-webkit-scrollbar-thumb {
-  background-color: $color-grey;
+  background-color: $color-black;
   border-radius: 4px;
 }

@@ -14,16 +14,18 @@ export class IconComponent implements OnInit, OnChanges {
   @Input() public name = '';
   @HostBinding('innerHTML') public svg: any;
   private subscription = new Subscription();
-  @HostBinding('class.color-grey') public isHovered = false;
-
+  @HostBinding('class.color-white') public isHovered = false;
+  @HostBinding('class.color-grey') public isNotHovered = true;
   @HostListener('mouseenter')
   mouseenter() {
     this.isHovered = true;
+    this.isNotHovered = false;
   }
 
   @HostListener('mouseleave')
   mouseover() {
     this.isHovered = false;
+    this.isNotHovered = true;
   }
 
   constructor(

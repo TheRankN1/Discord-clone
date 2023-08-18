@@ -13,14 +13,27 @@
     border-radius: 50%;
     font-size: 16px;
     color: $color-white;
+    position: relative;
 
-    &:hover {
-      cursor: pointer;
-      border-radius: 30%;
+    &.small {
+      width: 32px;
+      height: 32px;
+    }
+
+    &.bg-image {
+      background-color: transparent !important;
+    }
+
+    &.square-on-hover {
+      &:hover {
+        cursor: pointer;
+        border-radius: 30%;
+      }
     }
 
     &.active {
       position: relative;
+
       &:before {
         content: '';
         position: absolute;
@@ -30,7 +43,52 @@
         height: 40px;
         background: $color-white;
         border-radius: 0px 2px 2px 0px;
+        border: none;
+        bottom: 2px;
       }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      bottom: 0;
+      right: 0;
+    }
+
+    &.online {
+      &:before {
+        border: 3px solid $discord-blue-color-010;
+        background: $color-green;
+      }
+    }
+
+    &.offline {
+      &:before {
+        border: 3px solid $discord-blue-color-010;
+        background: $color-grey;
+      }
+    }
+
+    &.idle {
+      &:before {
+        border: 3px solid $discord-blue-color-010;
+        background: $color-idle;
+      }
+    }
+
+    &.do-not-disturb {
+      &:before {
+        border: 3px solid $discord-blue-color-010;
+        background: $color-error;
+      }
+    }
+    img {
+      width: 36px;
+      height: 36px;
     }
   }
 }

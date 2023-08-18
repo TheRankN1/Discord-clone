@@ -6,7 +6,6 @@ import { ServersService } from '../../services/servers.service';
 import { CategoryInterface } from '../../interfaces/category.interface';
 import { ChannelInterface } from '../../interfaces/channel.interface';
 import { ModalService } from '../../services/modal.service';
-import { ModalBase } from '../../modals/modal.base';
 
 @Component({
   selector: 'app-server',
