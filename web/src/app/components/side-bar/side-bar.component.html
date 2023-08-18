@@ -4,8 +4,9 @@
       (click)="onServerDetails(server.id)"
       [title]="server.title"
       [isActive]="server.isActive"
-      [userBgColor]="server.serverBgColor"
-      [status]="'server'"
+      [bgColor]="server.serverBgColor"
+      [squareOnHover]="true"
+      [bgImage]="''"
     ></app-avatar>
   </ng-container>
   <div class="add-new" (click)="openModalServer()">

@@ -6,4 +6,5 @@ export interface UserInterface {
   status: UserStatusType;
   activity: string;
   userBgColor: string;
+  avatar:string;
 }

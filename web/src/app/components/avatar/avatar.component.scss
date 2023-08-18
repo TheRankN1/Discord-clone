@@ -14,20 +14,26 @@
     font-size: 16px;
     color: $color-white;
     position: relative;
+
     &.small {
       width: 32px;
       height: 32px;
-      &:hover {
-        border-radius: 50%;
-      }
     }
-    &:hover {
-      cursor: pointer;
-      border-radius: 30%;
+
+    &.bg-image{
+      background-color:transparent !important;
+    }
+
+    &.square-on-hover {
+      &:hover {
+        cursor: pointer;
+        border-radius: 30%;
+      }
     }
 
     &.active {
       position: relative;
+
       &:before {
         content: '';
         position: absolute;
@@ -51,36 +57,38 @@
       background: transparent;
       bottom: 0;
       right: 0;
-      border: 3px solid $discord-blue-color-010;
     }
 
     &.online {
       &:before {
+        border: 3px solid $discord-blue-color-010;
         background: $color-green;
       }
     }
 
     &.offline {
       &:before {
+        border: 3px solid $discord-blue-color-010;
         background: $color-grey;
       }
     }
 
     &.idle {
       &:before {
+        border: 3px solid $discord-blue-color-010;
         background: $color-idle;
       }
     }
 
-    &.doNotDisturb {
+    &.do-not-disturb {
       &:before {
+        border: 3px solid $discord-blue-color-010;
         background: $color-error;
       }
     }
-    &.server {
-      &:before {
-        border: none;
-      }
+    img{
+      width: 36px;
+      height: 36px;
     }
   }
 }

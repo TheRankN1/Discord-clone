@@ -5,7 +5,7 @@
     <span class="number-of-users">{{ categoryUser.users.length }}</span>
   </div>
   <div class="user" *ngFor="let user of categoryUser.users; trackBy: trackByFn">
-    <app-avatar [dimension]="'small'" [title]="user.name" [userBgColor]="user.userBgColor" [status]="user.status"></app-avatar>
+    <app-avatar [dimension]="'small'" [bgImage]="user.avatar" [title]="user.name" [bgColor]="user.userBgColor" [status]="user.status"></app-avatar>
     <div class="user-details">
       <span class="name">{{ user.name }}</span>
       <span class="activity">{{ user.activity }}</span>

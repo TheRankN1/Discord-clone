@@ -9,6 +9,9 @@
   app-avatar {
     margin-top: 10px;
     margin-bottom: 10px;
+    &:before{
+      border:none;
+    }
   }
 
   .add-new {
