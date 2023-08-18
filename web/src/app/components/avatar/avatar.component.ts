@@ -13,5 +13,5 @@ export class AvatarComponent {
   @Input() public dimension: string = '';
   @Input() public squareOnHover: boolean = false;
   @Input() public bgImage: string | undefined = undefined;
-  @Input() public server : boolean = false;
+  @Input() public server: boolean = false;
 }

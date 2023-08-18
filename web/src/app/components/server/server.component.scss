@@ -1,22 +1,13 @@
 @import 'src/app/scss/colors';
 
 .scrolling-container {
-  height: 100vh;
+  height: calc(100vh - 24px);
   width: 240px;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
   background: $discord-blue-color-010;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: $color-grey;
-    border-radius: 4px;
-  }
 }
 
 .server {
@@ -118,4 +109,13 @@
       }
     }
   }
+}
+
+.scrolling-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
 }

@@ -1,10 +1,14 @@
-<div class="avatar , {{ status }} , {{ dimension }}" [class.active]="isActive === true"
-     [class.square-on-hover]="squareOnHover===true" [style.background-color]="bgColor" [class.bg-image]="bgImage!=''">
-  <span *ngIf="squareOnHover===true">  {{ title | avatarInitials }} </span>
-  <ng-container *ngIf="bgImage!==''; else logo">
-    <img src="{{bgImage}}" alt="">
+<div
+  class="avatar , {{ status }} , {{ dimension }}"
+  [class.active]="isActive === true"
+  [class.square-on-hover]="squareOnHover === true"
+  [style.background-color]="bgColor"
+>
+  <span *ngIf="squareOnHover === true"> {{ title | avatarInitials }} </span>
+  <ng-container *ngIf="bgImage; else logo">
+    <img src="{{ bgImage }}" alt="" />
   </ng-container>
   <ng-template #logo>
-    <app-icon *ngIf="squareOnHover===false" class="color-grey" [name]="'logo'"></app-icon>
+    <app-icon *ngIf="squareOnHover === false" class="color-grey" name="logo"></app-icon>
   </ng-template>
 </div>
