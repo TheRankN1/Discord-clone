@@ -1,6 +1,8 @@
+
 import {Component, OnInit} from '@angular/core';
 import {USERS_MOCK} from '../../mocks/users.mock';
 import {UserCategoryInterface} from '../../interfaces/user-category.interface';
+
 
 @Component({
   selector: 'app-users-list',

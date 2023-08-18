@@ -17,14 +17,7 @@ export class ServersService {
     ServerInitialization.defaultCategory()
   );
   public currentChannel$: BehaviorSubject<ChannelInterface> = new BehaviorSubject<ChannelInterface>(ServerInitialization.defaultChannel());
-
-  public isServerModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isEditChannelModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isEditCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isEditServerModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
   public addServer(title: string): void {
@@ -188,15 +181,6 @@ export class ServersService {
       this.currentServer$.next({ ...foundServer });
       this.servers$.next(servers);
     }
-  }
-
-  public setCurrentChannel(channelId: string): void {
-    const currentCategory = this.currentCategory$.value;
-    const foundChannel = currentCategory.channels.find(channel => channel.id == channelId);
-    if (!foundChannel) {
-      return;
-    }
-    this.currentChannel$.next(foundChannel);
   }
 
   public getServersFromLocalStorage(): void {

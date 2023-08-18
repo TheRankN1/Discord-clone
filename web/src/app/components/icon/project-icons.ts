@@ -1,4 +1,4 @@
-export const projectIcons: any = [
+export const projectIcons: Array<string> = [
   'add-message',
   'arrow-down',
   'arrow-left',
