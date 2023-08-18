@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { ServerDetailsComponent } from './components/server-details/server-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { CommonModule } from '@angular/common';
@@ -19,10 +18,10 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ServerComponent} from "./components/server/server.component";
+import {ServerDetailsComponent} from "./components/server-details/server-details.component";
 
 const COMPONENTS = [
   SideBarComponent,
-  ServerDetailsComponent,
   AvatarComponent,
   AppComponent,
   IconComponent,
@@ -31,7 +30,8 @@ const COMPONENTS = [
   UsersListComponent,
   LoginComponent,
   RegisterComponent,
-  ServerComponent
+  ServerComponent,
+  ServerDetailsComponent
 ];
 
 const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];

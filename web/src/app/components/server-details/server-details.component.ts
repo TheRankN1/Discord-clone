@@ -1,12 +1,11 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
-import { ServerInterface } from '../../interfaces/server.interface';
-import { ServersService } from '../../services/servers.service';
-import { CategoryInterface } from '../../interfaces/category.interface';
-import { ChannelInterface } from '../../interfaces/channel.interface';
-import { ModalService } from '../../services/modal.service';
-import { ModalBase } from '../../modals/modal.base';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Subject, takeUntil} from 'rxjs';
+import {ServerInterface} from '../../interfaces/server.interface';
+import {ServersService} from '../../services/servers.service';
+import {CategoryInterface} from '../../interfaces/category.interface';
+import {ChannelInterface} from '../../interfaces/channel.interface';
+import {ModalService} from '../../services/modal.service';
 
 @Component({
   selector: 'app-server-details',
@@ -62,9 +61,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public openEditServerModal(server: ServerInterface): void {
     this._modalService.openModal({
       onEditMode: true,
-      title: 'Edit server-details',
+      title: 'Edit server',
       textInput: '',
-      placeholder: 'Enter server-details name',
+      placeholder: 'Enter server name',
       delete: this.onDeleteServerModal.bind(this),
       save: this.onSaveServer.bind(this)
     });

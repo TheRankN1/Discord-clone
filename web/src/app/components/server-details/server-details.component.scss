@@ -1,7 +1,7 @@
 @import 'src/app/scss/colors';
 
 .scrolling-container {
-  height: 100vh;
+  height: calc(100vh - 24px);
   width: 240px;
   overflow-x: hidden;
   display: flex;
@@ -111,4 +111,13 @@
       cursor: pointer;
     }
   }
+}
+
+.scrolling-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
 }
