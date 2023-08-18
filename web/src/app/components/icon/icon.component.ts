@@ -15,7 +15,7 @@ export class IconComponent implements OnInit, OnChanges {
   @HostBinding('innerHTML') public svg: any;
   private subscription = new Subscription();
   @HostBinding('class.color-white') public isHovered = false;
-  @HostBinding('class.color-grey') public isNotHovered= true;
+  @HostBinding('class.color-grey') public isNotHovered = true;
   @HostListener('mouseenter')
   mouseenter() {
     this.isHovered = true;
