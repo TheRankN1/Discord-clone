@@ -31,9 +31,9 @@ export class SideBarComponent implements OnInit, ModalBase {
   public openModalServer(): void {
     this._modalService.openModal({
       onEditMode: false,
-      title: 'Create server',
+      title: 'Create server-details',
       textInput: '',
-      placeholder: 'Enter server name',
+      placeholder: 'Enter server-details name',
       close: this.onCloseModal.bind(this),
       delete: this.onDeleteServerModal.bind(this),
       save: this.onSaveModal.bind(this),

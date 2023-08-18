@@ -1,0 +1,114 @@
+@import 'src/app/scss/colors';
+
+.scrolling-container {
+  height: 100vh;
+  width: 240px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: $discord-blue-color-010;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-grey;
+    border-radius: 4px;
+  }
+}
+
+.server {
+  display: flex;
+  flex-direction: column;
+  color: $color-white;
+
+  app-icon {
+    visibility: hidden;
+  }
+
+  &-name {
+    display: flex;
+    gap: 16px;
+
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.735px;
+
+    strong {
+      flex: 1;
+      font-size: 24px;
+      display: block;
+    }
+
+    &:hover {
+      font-weight: bold;
+      background: $discord-blue-color-light;
+
+      app-icon {
+        visibility: visible;
+      }
+    }
+  }
+
+  &-category {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: $color-grey-010;
+
+    strong {
+      flex: 1;
+      font-size: 14px;
+      display: block;
+    }
+
+    &:hover {
+      color: $color-white;
+      font-weight: bold;
+
+      app-icon {
+        visibility: visible;
+      }
+    }
+  }
+
+  &-channel {
+    display: flex;
+    gap: 16px;
+    margin-left: 12px;
+    font-weight: 700;
+    line-height: 115.9%;
+    letter-spacing: -0.085px;
+    color: $color-grey-010;
+    font-size: 18px;
+
+    span {
+      flex: 1;
+
+      display: block;
+    }
+
+    &:hover {
+      background: $discord-blue-color-light;
+
+      app-icon {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.server {
+  &-name,
+  &-category,
+  &-channel {
+    padding: 12px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

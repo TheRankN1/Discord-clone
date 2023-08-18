@@ -1,22 +1,4 @@
-<div class="scrolling-container server">
-  <ng-container *ngIf="currentServer as server">
-    <div class="server-name" *ngIf="server.title != ''">
-      <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
-      <app-icon [name]="'add-message'" (click)="openCategoryModal()"></app-icon>
-      <app-icon [name]="'pen'" (click)="openEditServerModal(server)"></app-icon>
-    </div>
-    <ng-container *ngFor="let category of server.categories">
-      <div class="server-category">
-        <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
-        <app-icon [name]="'add-message'" (click)="openCreateChannelModal(category)"></app-icon>
-        <app-icon [name]="'pen'" (click)="openEditCategoryModal(category)"></app-icon>
-      </div>
-      <div class="server-channel" *ngFor="let channel of category.channels">
-        <span [tooltip]="channel.title" position="top" class="ellipsis">
-          {{ channel.title }}
-        </span>
-        <app-icon [name]="'pen'" (click)="openEditChannelModal(category, channel)"></app-icon>
-      </div>
-    </ng-container>
-  </ng-container>
-</div>
+<app-side-bar></app-side-bar>
+<app-server-details></app-server-details>
+<app-chat></app-chat>
+<app-users-list></app-users-list>
