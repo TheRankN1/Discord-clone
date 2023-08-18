@@ -6,12 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./avatar.component.scss']
 })
 export class AvatarComponent {
-  @Input() public isActive: boolean = false;
-  @Input() public bgColor: string = '';
-  @Input() public title: string = '';
-  @Input() public status: string = '';
-  @Input() public dimension: string = '';
-  @Input() public squareOnHover: boolean = false;
+  @Input() public isActive = false;
+  @Input() public bgColor = '';
+  @Input() public title = '';
+  @Input() public status = '';
+  @Input() public dimension = '';
+  @Input() public squareOnHover = false;
   @Input() public bgImage: string | undefined = undefined;
-  @Input() public server: boolean = false;
+  @Input() public server = false;
 }

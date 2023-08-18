@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../interfaces/server.interface';
@@ -17,8 +17,6 @@ export class ServerComponent implements OnInit, OnDestroy {
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
   public servers!: Array<ServerInterface>;
-  public isHoveredAdd = false;
-  public isHoveredPen = false;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -71,7 +69,7 @@ export class ServerComponent implements OnInit, OnDestroy {
   }
   public onDeleteServerModal(): void {
     this._serversService.deleteServer(this.currentServer.id);
-    this._router.navigate(['/servers']);
+    this._router.navigate(['/servers']).then();
   }
   public onSaveServer(textInput: string): void {
     this._serversService.editServer(textInput, this.currentServer.id);

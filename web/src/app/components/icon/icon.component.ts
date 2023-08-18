@@ -1,7 +1,17 @@
-import { Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  HostListener,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+
 const ICONS_PATH = 'assets/icons/svg';
 const ICON_TYPE = '.svg';
 
@@ -10,9 +20,9 @@ const ICON_TYPE = '.svg';
   template: '<div [class.color-grey]="isHovered"' + ' (mouseenter)="mouseenter()" (mouseleave)="mouseover()"></div>',
   styleUrls: ['icon.component.scss']
 })
-export class IconComponent implements OnInit, OnChanges {
+export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public name = '';
-  @HostBinding('innerHTML') public svg: any;
+  @HostBinding('innerHTML') public svg!: SafeHtml;
   private subscription = new Subscription();
   @HostBinding('class.color-white') public isHovered = false;
   @HostBinding('class.color-grey') public isNotHovered = true;

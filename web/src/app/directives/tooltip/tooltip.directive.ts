@@ -7,7 +7,7 @@ type Position = 'top' | 'bottom' | 'left' | 'right';
   selector: '[tooltip]'
 })
 export class TooltipDirective implements OnInit {
-  @Input() public tooltip: string = '';
+  @Input() public tooltip = '';
   @Input() public position: Position = 'bottom';
 
   constructor(private el: ElementRef) {}

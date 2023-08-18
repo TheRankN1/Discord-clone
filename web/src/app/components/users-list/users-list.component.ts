@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { USERS_MOCK } from '../../mocks/users.mock';
-import { GeneratorHelpers } from '../../helpers/generator.helpers';
 import { UserCategoryInterface } from '../../interfaces/user-category.interface';
 
 @Component({

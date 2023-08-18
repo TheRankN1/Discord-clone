@@ -1,5 +1,5 @@
 <div class="scrolling-container">
-  <ng-container *ngFor="let server of servers$ | async as servers; trackBy: trackByFn">
+  <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
     <app-avatar
       (click)="onServerDetails(server.id)"
       [title]="server.title"
