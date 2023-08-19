@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Subject, takeUntil} from 'rxjs';
-import {ServerInterface} from '../../interfaces/server.interface';
-import {ServersService} from '../../services/servers.service';
-import {CategoryInterface} from '../../interfaces/category.interface';
-import {ChannelInterface} from '../../interfaces/channel.interface';
-import {ModalService} from '../../services/modal.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { ServerInterface } from '../../../../interfaces/server.interface';
+import { ServersService } from '../../../../services/servers.service';
+import { CategoryInterface } from '../../../../interfaces/category.interface';
+import { ChannelInterface } from '../../../../interfaces/channel.interface';
+import { ModalService } from '../../../../services/modal.service';
 
 @Component({
   selector: 'app-server-details',

@@ -1,20 +1,21 @@
-@import "src/app/scss/colors";
+@import 'src/app/scss/colors';
 
-:host{
+:host {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  gap:20px;
-  color:$color-white;
+  gap: 20px;
+  color: $color-white;
 }
-.username , .password{
+.username,
+.password {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:5px;
+  gap: 5px;
 }
 input {
   border: none;
@@ -29,17 +30,17 @@ input {
     font-size: 14px;
   }
 }
-button{
+button {
   display: flex;
   padding: 5px 15px;
   flex-direction: column;
   align-items: center;
   border-radius: 2.124px;
   background: $color-blue;
-  color:$color-white;
-  border:none;
+  color: $color-white;
+  border: none;
   cursor: pointer;
 }
-.go-to{
+.go-to {
   cursor: pointer;
 }

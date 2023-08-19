@@ -1,18 +1,15 @@
-import {Component} from "@angular/core";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector:'app-register',
-  templateUrl:'register.component.html',
-  styleUrls:['register.component.scss']
+  selector: 'app-register',
+  templateUrl: 'register.component.html',
+  styleUrls: ['register.component.scss']
 })
-export class RegisterComponent{
+export class RegisterComponent {
+  constructor(private _router: Router) {}
 
-  constructor(private _router:Router) {
+  public goTo(): void {
+    this._router.navigate(['/auth/login']);
   }
-
-  public goTo(): void{
-    this._router.navigate(['/auth/login'])
-  }
-
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ServersService } from '../../services/servers.service';
-import { ServerInterface } from '../../interfaces/server.interface';
+import { ServersService } from '../../../../services/servers.service';
+import { ServerInterface } from '../../../../interfaces/server.interface';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { ModalService } from '../../services/modal.service';
-import { ModalBase } from '../../modals/modal.base';
+import { ModalService } from '../../../../services/modal.service';
+import { ModalBase } from '../../../../modals/modal.base';
 
 @Component({
   selector: 'app-side-bar',
@@ -64,6 +64,6 @@ export class SideBarComponent implements OnInit, ModalBase {
   public onServerDetails(id: string) {
     this._serversService.isCategoryModalOpen$.next(false);
     this._serversService.setCurrentServer(id);
-    this._router.navigate(['/servers', id]).then();
+    this._router.navigate(['/servers/details', id]).then();
   }
 }
