@@ -58,9 +58,13 @@ export class SideBarComponent implements OnInit, ModalBase {
     this._serversService.addServer(textInput);
   }
 
-  public onServerDetails(id: string) {
+  public onServerDetails(id: string): void {
     this._serversService.isCategoryModalOpen$.next(false);
     this._serversService.setCurrentServer(id);
     this._router.navigate(['/servers/details', id]).then();
+  }
+
+  public logout(): void {
+    this._router.navigate(['auth']);
   }
 }

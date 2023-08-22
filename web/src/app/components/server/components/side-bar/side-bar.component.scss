@@ -5,6 +5,9 @@
   padding: 12px;
   overflow-x: hidden;
   background: $discord-blue-color-020;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   app-avatar {
     margin-top: 10px;
@@ -14,7 +17,7 @@
     }
   }
 
-  .add-new {
+  .side-bar-action {
     background: $discord-blue-color-light;
     display: flex;
     align-items: center;

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
+import { GeneratorHelpers } from '../helpers/generator.helpers';
 
-const USERS_LOCALSTORAGE_KEY = 'users';
+const USERS_LOCALSTORAGE_KEY = 'databaseUsers';
+const USER_LOGGED_ID_KEY = 'loggedUserId';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class AuthService {
     const foundUsername: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username;
     });
-    if (!foundUsername) users.push({ username, password });
+    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password });
     this.users$.next(users);
     localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
 
@@ -27,6 +29,7 @@ export class AuthService {
     const foundUser: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username && user.password === password;
     });
+    if (foundUser) localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(foundUser.id));
     return !!foundUser;
   }
 

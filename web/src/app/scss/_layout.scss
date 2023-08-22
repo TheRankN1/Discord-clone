@@ -63,7 +63,7 @@ app-icon {
   &.color-green {
     svg {
       path {
-        fill: $color-green;
+        fill: $color-green !important;
         border: none;
       }
     }
@@ -72,7 +72,7 @@ app-icon {
   &.color-error {
     svg {
       path {
-        fill: $color-error;
+        fill: $color-error !important;
       }
     }
   }
