@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
-import { RegisterComponent } from './components/register/register.component';
-import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { LoginComponent } from './components/login/login.component';
 import { ServerModule } from './components/server/server.module';
 import { CommonModule } from '@angular/common';
 import { AppRoutes } from './app.routes';
 import { ServerComponent } from './components/server/server.component';
+import { AuthModule } from './components/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
-const COMPONENTS = [AppComponent, ModalGenericComponent, RegisterComponent, LoginComponent, ServerComponent];
+const COMPONENTS = [AppComponent, ModalGenericComponent, ServerComponent];
+const MODULES = [CommonModule, FormsModule, AuthModule, BrowserModule, ServerModule, AppRoutes];
 
 @NgModule({
   declarations: [COMPONENTS],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule, BrowserModule, ServerModule, AppRoutes],
+  imports: [MODULES],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

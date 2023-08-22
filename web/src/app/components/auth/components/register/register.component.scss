@@ -1,4 +1,4 @@
-@import 'src/app/scss/colors';
+@import '../../../../scss/colors';
 
 :host {
   display: flex;
@@ -10,6 +10,7 @@
   gap: 20px;
   color: $color-white;
 }
+
 .username,
 .password {
   display: flex;
@@ -17,6 +18,7 @@
   align-items: center;
   gap: 5px;
 }
+
 input {
   border: none;
   background: #292b2f;
@@ -30,6 +32,7 @@ input {
     font-size: 14px;
   }
 }
+
 button {
   display: flex;
   padding: 5px 15px;
@@ -40,7 +43,26 @@ button {
   color: $color-white;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    opacity: 70%;
+  }
 }
+
 .go-to {
   cursor: pointer;
+}
+
+.user-already-exist {
+  color: $color-warning;
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 15px;
+}
+
+.user-created {
+  color: $color-green;
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 15px;
 }

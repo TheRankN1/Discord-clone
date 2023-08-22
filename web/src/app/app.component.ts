@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from './services/servers.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,14 @@ import { ServersService } from './services/servers.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private _serverService: ServersService) {}
+  constructor(
+    private _serverService: ServersService,
+    private _authService: AuthService
+  ) {}
   public ngOnInit(): void {
     this._serverService.getServersFromLocalStorage();
     this._serverService.listenToServersAndUpdateLocalStorage();
+    this._authService.getUsersFromLocalStorage();
+    this._authService.listenToUsersAndUpdateLocalStorage();
   }
 }

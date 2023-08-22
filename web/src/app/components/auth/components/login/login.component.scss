@@ -1,0 +1,61 @@
+@import '../../../../scss/colors';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  gap: 20px;
+  color: $color-white;
+}
+
+.username,
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+input {
+  border: none;
+  background: #292b2f;
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px 0 8px 8px;
+  color: #fff;
+
+  &::placeholder {
+    color: grey;
+    font-size: 14px;
+  }
+}
+
+button {
+  display: flex;
+  padding: 5px 15px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2.124px;
+  background: $color-blue;
+  color: $color-white;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 70%;
+  }
+}
+
+.go-to {
+  cursor: pointer;
+}
+
+.user-doesnt-exist {
+  color: $color-warning;
+  font-size: 16px;
+  padding: 16px;
+  border-radius: 15px;
+}

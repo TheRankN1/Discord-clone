@@ -1,0 +1,11 @@
+<div class="username">
+  <span>Username</span>
+  <div *ngIf="userDoesntExistError" class="user-doesnt-exist">This user doesn't exist !</div>
+  <input [(ngModel)]="username" type="text" placeholder="Username..." />
+</div>
+<div class="password">
+  <span>Password</span>
+  <input [(ngModel)]="password" type="password" placeholder="Password..." />
+</div>
+<button (click)="login()">Login</button>
+<span>Don't have an account ? <span class="go-to" (click)="goTo()">Go to register</span></span>

@@ -98,9 +98,9 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     users: [
       {
         id: '1',
-        name: 'Costel',
+        name: 'Rares',
         status: 'online',
-        activity: '',
+        activity: 'Se joaca acum : League Of Legends',
         userBgColor: GeneratorHelpers.color(),
         avatar: ''
       }

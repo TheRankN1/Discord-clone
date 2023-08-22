@@ -45,10 +45,7 @@ export class SideBarComponent implements OnInit, ModalBase {
     console.log('onCloseServerModal');
   }
 
-  public onDeleteServerModal(): void {
-    // const currentServer: ServerInterface = this._serversService.currentServer$.value;
-    // this._serversService.deleteServer(currentServer.id);
-  }
+  public onDeleteServerModal(): void {}
 
   public onSaveModal(textInput: string): void {
     console.log('onSaveServerModal', textInput);
