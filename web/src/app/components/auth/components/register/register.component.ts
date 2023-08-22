@@ -18,7 +18,7 @@ export class RegisterComponent {
     private _authService: AuthService
   ) {}
 
-  public goTo(): void {
+  public navigateToLogin(): void {
     this._router.navigate(['/auth/login']);
   }
 
