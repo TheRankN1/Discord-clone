@@ -1,0 +1,13 @@
+<h1>Register</h1>
+<div *ngIf="usernameTakenError" class="user-already-exist">This user already exist !</div>
+<div *ngIf="userCreated" class="user-created">User created !</div>
+<div class="username">
+  <span>Username</span>
+  <input [(ngModel)]="username" type="text" placeholder="Username..." />
+</div>
+<div class="password">
+  <span>Password</span>
+  <input [(ngModel)]="password" type="password" placeholder="Password..." />
+</div>
+<button (click)="register()">Register</button>
+<span>Already have an account ? <span class="go-to" (click)="navigateToLogin()">Go to login</span></span>

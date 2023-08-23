@@ -1,38 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SideBarComponent } from './components/side-bar/side-bar.component';
-import { ServerComponent } from './components/server/server.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AvatarComponent } from './components/avatar/avatar.component';
+import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { ServerModule } from './components/server/server.module';
 import { CommonModule } from '@angular/common';
 import { AppRoutes } from './app.routes';
-import { IsNotEmptyPipe } from './pipes/is-not-empty.pipe';
-import { TooltipModule } from './directives/tooltip/tooltip.module';
-import { AvatarInitialsPipe } from './pipes/avatar-initials.pipe';
-import { IconComponent } from './components/icon/icon.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ModalGenericComponent } from './modals/modal-generic/modal-generic.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { UsersListComponent } from './components/users-list/users-list.component';
+import { ServerComponent } from './components/server/server.component';
+import { AuthModule } from './components/auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
-const COMPONENTS = [
-  SideBarComponent,
-  ServerComponent,
-  AvatarComponent,
-  AppComponent,
-  IconComponent,
-  ModalGenericComponent,
-  ChatComponent,
-  UsersListComponent
-];
-
-const MODULES = [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule, AppRoutes, TooltipModule, HttpClientModule];
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
+const COMPONENTS = [AppComponent, ModalGenericComponent, ServerComponent];
+const MODULES = [CommonModule, FormsModule, AuthModule, BrowserModule, ServerModule, AppRoutes];
 
 @NgModule({
-  declarations: [COMPONENTS, PIPES],
+  declarations: [COMPONENTS],
   imports: [MODULES],
   bootstrap: [AppComponent]
 })

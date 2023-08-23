@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ServersService } from '../../services/servers.service';
-import { ServerInterface } from '../../interfaces/server.interface';
+import { ServersService } from '../../../../services/servers.service';
+import { ServerInterface } from '../../../../interfaces/server.interface';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { ModalService } from '../../services/modal.service';
-import { ModalBase } from '../../modals/modal.base';
+import { ModalService } from '../../../../services/modal.service';
+import { ModalBase } from '../../../../modals/modal.base';
 
 @Component({
   selector: 'app-side-bar',
@@ -31,9 +31,9 @@ export class SideBarComponent implements OnInit, ModalBase {
   public openModalServer(): void {
     this._modalService.openModal({
       onEditMode: false,
-      title: 'Create server',
+      title: 'Create server-details',
       textInput: '',
-      placeholder: 'Enter server name',
+      placeholder: 'Enter server-details name',
       close: this.onCloseModal.bind(this),
       delete: this.onDeleteServerModal.bind(this),
       save: this.onSaveModal.bind(this),
@@ -45,10 +45,7 @@ export class SideBarComponent implements OnInit, ModalBase {
     console.log('onCloseServerModal');
   }
 
-  public onDeleteServerModal(): void {
-    // const currentServer: ServerInterface = this._serversService.currentServer$.value;
-    // this._serversService.deleteServer(currentServer.id);
-  }
+  public onDeleteServerModal(): void {}
 
   public onSaveModal(textInput: string): void {
     console.log('onSaveServerModal', textInput);
@@ -61,9 +58,13 @@ export class SideBarComponent implements OnInit, ModalBase {
     this._serversService.addServer(textInput);
   }
 
-  public onServerDetails(id: string) {
+  public onServerDetails(id: string): void {
     this._serversService.isCategoryModalOpen$.next(false);
     this._serversService.setCurrentServer(id);
-    this._router.navigate(['/servers', id]).then();
+    this._router.navigate(['/servers/details', id]).then();
+  }
+
+  public logout(): void {
+    this._router.navigate(['auth']);
   }
 }
