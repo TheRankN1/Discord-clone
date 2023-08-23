@@ -1,5 +1,5 @@
 <div class="scrolling-container server">
-  <ng-container *ngIf="currentServer as server">
+  <ng-container class="server-container" *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title != ''">
       <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
       <div>
@@ -30,3 +30,4 @@
     </ng-container>
   </ng-container>
 </div>
+<app-logged-user></app-logged-user>

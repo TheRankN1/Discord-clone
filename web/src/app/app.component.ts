@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
     this._serverService.getServersFromLocalStorage();
     this._serverService.listenToServersAndUpdateLocalStorage();
     this._authService.getUsersFromLocalStorage();
+    this._authService.getLoggedUserFromLocalStorage();
     this._authService.listenToUsersAndUpdateLocalStorage();
+    this._authService.listenToDataBaseUserAndUpdateLocalStorage();
   }
 }

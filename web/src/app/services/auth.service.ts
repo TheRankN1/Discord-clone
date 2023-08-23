@@ -11,6 +11,11 @@ const USER_LOGGED_ID_KEY = 'loggedUserId';
 })
 export class AuthService {
   public users$: BehaviorSubject<Array<UserDataBaseInterface>> = new BehaviorSubject<Array<UserDataBaseInterface>>([]);
+  public user$: BehaviorSubject<UserDataBaseInterface> = new BehaviorSubject<UserDataBaseInterface>({
+    username: '',
+    id: '',
+    password: ''
+  });
 
   public addUser(username: string, password: string): boolean {
     const users: Array<UserDataBaseInterface> = this.users$.value;
@@ -29,7 +34,10 @@ export class AuthService {
     const foundUser: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username && user.password === password;
     });
-    if (foundUser) localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(foundUser.id));
+    if (foundUser) {
+      localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(foundUser));
+      this.user$.next(foundUser);
+    }
     return !!foundUser;
   }
 
@@ -38,10 +46,22 @@ export class AuthService {
     this.users$.next(users ? JSON.parse(users) : []);
   }
 
+  public getLoggedUserFromLocalStorage(): void {
+    const user: string | null = localStorage.getItem(USER_LOGGED_ID_KEY);
+    this.user$.next(user ? JSON.parse(user) : {});
+  }
+
   public listenToUsersAndUpdateLocalStorage(): void {
     this.users$.subscribe({
       next: (users: Array<UserDataBaseInterface>) => {
         localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
+      }
+    });
+  }
+  public listenToDataBaseUserAndUpdateLocalStorage(): void {
+    this.user$.subscribe({
+      next: (user: UserDataBaseInterface) => {
+        localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(user));
       }
     });
   }

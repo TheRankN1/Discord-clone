@@ -1,13 +1,14 @@
 @import 'colors';
-
+:host {
+  background: $discord-blue-color-010;
+}
 .scrolling-container {
-  height: 100vh;
+  height: calc(100vh - 48px);
   width: 240px;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: $discord-blue-color-010;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -121,6 +122,8 @@
     gap: 10px;
     align-items: center;
   }
+}
+app-logged-user {
 }
 
 .scrolling-container::-webkit-scrollbar {
