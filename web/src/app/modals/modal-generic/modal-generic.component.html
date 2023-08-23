@@ -17,7 +17,7 @@
               <div class="radio"></div>
             </label>
             <div (click)="selectText()"></div>
-            <input type="radio" name="channel-type" id="radio-text" value="text" [(ngModel)]="value"/>
+            <input type="radio" name="channel-type" id="radio-text" value="text" [(ngModel)]="value" />
           </div>
           <div class="type" (click)="selectAudio()" [class.active]="value === 'audio'">
             <label for="radio-audio">
@@ -31,7 +31,7 @@
               <div class="radio"></div>
             </label>
             <div (click)="selectText()"></div>
-            <input type="radio" name="channel-type" id="radio-audio" value="audio" [(ngModel)]="value"/>
+            <input type="radio" name="channel-type" id="radio-audio" value="audio" [(ngModel)]="value" />
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
       <div class="input">
         <app-icon *ngIf="value === 'audio' && state.type === 'channel'" class="small" name="audio-channel"></app-icon>
         <app-icon *ngIf="value === 'text' && state.type === 'channel'" class="small" name="text-channel"></app-icon>
-        <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder"/>
+        <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder" />
       </div>
       <div class="buttons">
         <button (click)="close()">Cancel</button>
