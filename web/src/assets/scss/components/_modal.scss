@@ -15,7 +15,7 @@
   .modal-content {
     width: 410px;
     padding: 20px;
-    background: #202225;
+    background: $discord-blue-color-040;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -38,9 +38,12 @@
       }
 
       .delete-button {
+        background: $color-error-010;
+        cursor: pointer;
+
         &:hover {
-          color: #fff;
-          background: #d20a0a;
+          color: $color-white;
+          background: $color-error-010;
         }
       }
 
@@ -61,16 +64,16 @@
         border-radius: 5px;
 
         &:hover {
-          color: #000;
-          background: #fff;
+          color: $color-black;
+          background: $color-white;
         }
 
         &.save-button {
-          background: #02437d;
+          background: $color-blue-010;
 
           &:hover {
-            color: #fff;
-            background: #033a6c;
+            color: $color-white;
+            background: $color-blue-020;
           }
         }
 
@@ -82,7 +85,7 @@
     }
 
     .input {
-      background: #292b2f;
+      background: $discord-blue-color-050;
       border-radius: 4px;
       display: flex;
       align-items: center;
@@ -92,7 +95,7 @@
         background: transparent;
         outline: none;
         padding: 8px 0 8px 8px;
-        color: #fff;
+        color: $color-white;
         width: 100%;
 
         &::placeholder {
@@ -118,7 +121,7 @@
         .type {
           display: flex;
           align-items: center;
-          padding: 8px;
+          padding: 8px 16px;
           border-radius: 5px;
           justify-content: space-between;
 
@@ -140,29 +143,36 @@
             }
           }
 
+          input[type='radio'] {
+            width: 16px;
+            height: 16px;
+            visibility: hidden;
+          }
+
           .radio {
             width: 16px;
             height: 16px;
+            border: 1px solid $color-grey;
             border-radius: 50%;
-            border: 2px solid $color-grey;
             cursor: pointer;
-            position: relative;
           }
 
           &.active {
             background: rgba(250, 250, 250, 0.2) !important;
 
             .radio {
+              position: relative;
+
               &:before {
                 content: '';
                 width: 10px;
                 height: 10px;
-                position: absolute;
-                background: $color-grey;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+                background: $color-grey;
                 border-radius: 50%;
+                position: absolute;
               }
             }
           }
@@ -175,4 +185,11 @@
       }
     }
   }
+}
+
+label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

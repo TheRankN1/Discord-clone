@@ -12,10 +12,9 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
-  public activeRadioText = true;
-  public activeRadioAudio = false;
   public currentCategory!: CategoryInterface;
   public type: ChannelTypeEnum = ChannelTypeEnum.audio;
+  public value = '';
 
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -23,6 +22,12 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._isOpenListener();
+    this.state$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: state => {
+        this.type = state?.data.channelType;
+        this.value = this.type;
+      }
+    });
   }
 
   public ngOnDestroy(): void {
@@ -50,7 +55,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   }
 
   public save(state: ModalState): void {
-    state.save(state.textInput);
+    state.save(state.textInput, this.type);
     this._modalService.reset();
   }
 
@@ -64,14 +69,12 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
     state.create(state.textInput, this.type);
     this._modalService.reset();
   }
-  public selectText() {
-    this.activeRadioText = true;
-    this.activeRadioAudio = false;
+
+  public selectText(): void {
     this.type = ChannelTypeEnum.text;
   }
-  public selectAudio() {
-    this.activeRadioText = false;
-    this.activeRadioAudio = true;
+
+  public selectAudio(): void {
     this.type = ChannelTypeEnum.audio;
   }
 }

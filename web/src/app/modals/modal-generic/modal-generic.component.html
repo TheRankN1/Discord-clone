@@ -2,50 +2,50 @@
   <div *ngIf="state$ | async as state" class="modal-container">
     <div class="modal-content">
       <h3>{{ state.title }}</h3>
-      <div *ngIf="state.title === 'Create channel' || state.title === 'Edit channel'" class="channel-types">
+      <div *ngIf="state.type === 'channel'" class="channel-types">
         <span class="title">CHANNEL TYPE</span>
         <div class="types">
-          <div class="type" (click)="selectText()" [class.active]="activeRadioText">
-            <div class="type-details-container">
-              <app-icon name="text-channel"></app-icon>
-              <div class="details">
-                <strong>Text</strong>
-                <span>Send messages,images,GIFs,emoji,opinions,and puns</span>
+          <div class="type" (click)="selectText()" [class.active]="value === 'text'">
+            <label for="radio-text">
+              <div class="type-details-container">
+                <app-icon name="text-channel"></app-icon>
+                <div class="details">
+                  <strong>Text</strong>
+                  <span>Send messages,images,GIFs,emoji,opinions,and puns</span>
+                </div>
               </div>
-            </div>
-            <div class="radio"></div>
+              <div class="radio"></div>
+            </label>
+            <div (click)="selectText()"></div>
+            <input type="radio" name="channel-type" id="radio-text" value="text" [(ngModel)]="value"/>
           </div>
-          <div class="type" (click)="selectAudio()" [class.active]="activeRadioAudio">
-            <div class="type-details-container">
-              <app-icon name="audio-channel"></app-icon>
-              <div class="details">
-                <strong>Audio</strong>
-                <span>Hang out together with voice,video,and screen share</span>
+          <div class="type" (click)="selectAudio()" [class.active]="value === 'audio'">
+            <label for="radio-audio">
+              <div class="type-details-container">
+                <app-icon name="audio-channel"></app-icon>
+                <div class="details">
+                  <strong>Audio</strong>
+                  <span>Hang out together with voice,video,and screen share</span>
+                </div>
               </div>
-            </div>
-            <div class="radio"></div>
+              <div class="radio"></div>
+            </label>
+            <div (click)="selectText()"></div>
+            <input type="radio" name="channel-type" id="radio-audio" value="audio" [(ngModel)]="value"/>
           </div>
         </div>
       </div>
-      <strong *ngIf="state.title === 'Create channel'">CHANNEL NAME</strong>
+      <strong>{{ state.type.toUpperCase() }} NAME</strong>
       <div class="input">
-        <app-icon
-          *ngIf="activeRadioAudio && (state.title === 'Create channel' || state.title === 'Edit channel')"
-          class="small"
-          name="audio-channel"
-        ></app-icon>
-        <app-icon
-          *ngIf="activeRadioText && (state.title === 'Create channel' || state.title === 'Edit channel')"
-          class="small"
-          name="text-channel"
-        ></app-icon>
-        <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder" />
+        <app-icon *ngIf="value === 'audio' && state.type === 'channel'" class="small" name="audio-channel"></app-icon>
+        <app-icon *ngIf="value === 'text' && state.type === 'channel'" class="small" name="text-channel"></app-icon>
+        <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder"/>
       </div>
       <div class="buttons">
         <button (click)="close()">Cancel</button>
         <div class="on-edit-mode" *ngIf="state.onEditMode === true">
-          <button class="delete-button" (click)="delete(state)">Delete</button>
           <button class="save-button" [disabled]="state.textInput === ''" (click)="save(state)">Save</button>
+          <button class="delete-button" (click)="delete(state)">Delete</button>
         </div>
         <ng-container *ngIf="state.onEditMode === false">
           <button class="save-button" [disabled]="state.textInput === ''" (click)="create(state)">Create</button>

@@ -127,7 +127,7 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
-  public editChannel(name: string, serverId: string, categoryId: string, channelId: string): void {
+  public editChannel(name: string, serverId: string, categoryId: string, channelId: string, type: ChannelTypeEnum): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
@@ -146,6 +146,7 @@ export class ServersService {
     }
 
     foundChannel.title = name;
+    foundChannel.type = type;
     this.servers$.next(servers);
   }
 
