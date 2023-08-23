@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { ChannelTypeEnum } from '../enums/channel-type.enum';
 
 export interface ModalState {
   onEditMode: boolean;
@@ -9,7 +10,7 @@ export interface ModalState {
   close?: () => void;
   delete: () => void;
   save: (text: string) => void;
-  create?: (text: string) => void;
+  create?: (text: string, type: ChannelTypeEnum) => void;
 }
 
 @Injectable({

@@ -2,6 +2,7 @@ import { ServerInterface } from '../interfaces/server.interface';
 import { CategoryInterface } from '../interfaces/category.interface';
 import { ChannelInterface } from '../interfaces/channel.interface';
 import { GeneratorHelpers } from './generator.helpers';
+import { ChannelTypeEnum } from '../enums/channel-type.enum';
 
 export class ServerInitialization {
   public static defaultServer(): ServerInterface {
@@ -25,7 +26,8 @@ export class ServerInitialization {
   public static defaultChannel(): ChannelInterface {
     return {
       id: '',
-      title: ''
+      title: '',
+      type: ChannelTypeEnum.text
     };
   }
 }

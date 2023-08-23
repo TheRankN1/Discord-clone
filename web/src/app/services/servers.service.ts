@@ -5,6 +5,7 @@ import { CategoryInterface } from '../interfaces/category.interface';
 import { GeneratorHelpers } from '../helpers/generator.helpers';
 import { ServerInitialization } from '../helpers/server.initialization';
 import { ChannelInterface } from '../interfaces/channel.interface';
+import { ChannelTypeEnum } from '../enums/channel-type.enum';
 
 const SERVER_LOCALSTORAGE_KEY = 'servers_list';
 
@@ -52,7 +53,7 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
-  public addChannel(name: string, serverId: string, categoryId: string): void {
+  public addChannel(name: string, serverId: string, categoryId: string, type: ChannelTypeEnum): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
@@ -66,7 +67,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid() });
+    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type });
     this.servers$.next(servers);
   }
 

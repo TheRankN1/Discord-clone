@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService, ModalState } from '../../services/modal.service';
+import { ChannelTypeEnum } from '../../enums/channel-type.enum';
+import { CategoryInterface } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-modal-generic',
@@ -10,6 +12,11 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
+  public activeRadioText = true;
+  public activeRadioAudio = false;
+  public currentCategory!: CategoryInterface;
+  public type: ChannelTypeEnum = ChannelTypeEnum.audio;
+
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(private _modalService: ModalService) {}
@@ -54,7 +61,17 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
 
   public create(state: ModalState): void {
     if (!state.create) return;
-    state.create(state.textInput);
+    state.create(state.textInput, this.type);
     this._modalService.reset();
+  }
+  public selectText() {
+    this.activeRadioText = true;
+    this.activeRadioAudio = false;
+    this.type = ChannelTypeEnum.text;
+  }
+  public selectAudio() {
+    this.activeRadioText = false;
+    this.activeRadioAudio = true;
+    this.type = ChannelTypeEnum.audio;
   }
 }

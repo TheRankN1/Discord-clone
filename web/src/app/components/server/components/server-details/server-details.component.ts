@@ -6,6 +6,7 @@ import { ServersService } from '../../../../services/servers.service';
 import { CategoryInterface } from '../../../../interfaces/category.interface';
 import { ChannelInterface } from '../../../../interfaces/channel.interface';
 import { ModalService } from '../../../../services/modal.service';
+import { ChannelTypeEnum } from '../../../../enums/channel-type.enum';
 
 @Component({
   selector: 'app-server-details',
@@ -19,6 +20,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public servers!: Array<ServerInterface>;
   public isHoveredAdd = false;
   public isHoveredPen = false;
+  public ChannelTypeEnum = ChannelTypeEnum;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -138,8 +140,8 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._serversService.currentChannel$.next(channel);
     this._serversService.currentCategory$.next(category);
   }
-  public onCreateChannelModal(channelTitle: string): void {
-    this._serversService.addChannel(channelTitle, this.currentServer.id, this.currentCategory.id);
+  public onCreateChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
+    this._serversService.addChannel(channelTitle, this.currentServer.id, this.currentCategory.id, type);
   }
   public onEditChannelModal(channelTitle: string): void {
     this._serversService.editChannel(channelTitle, this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
