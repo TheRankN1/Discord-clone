@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { ChannelTypeEnum } from '../enums/channel-type.enum';
+import { ModalType } from '../components/types/modal.type';
 
 export interface ModalState {
   onEditMode: boolean;
   title: string;
   textInput: string;
   placeholder: string;
+  type: ModalType;
   close?: () => void;
   delete: () => void;
-  save: (text: string) => void;
-  create?: (text: string) => void;
+  save: (text: string, type: ChannelTypeEnum) => void;
+  create?: (text: string, type: ChannelTypeEnum) => void;
+  data?: any;
 }
 
 @Injectable({

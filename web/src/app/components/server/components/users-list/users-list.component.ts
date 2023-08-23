@@ -13,6 +13,7 @@ export class UsersListComponent implements OnInit {
   public ngOnInit(): void {
     this.categoryOfUsers = USERS_MOCK;
   }
+
   public trackByFn(index: number): number {
     return index;
   }
