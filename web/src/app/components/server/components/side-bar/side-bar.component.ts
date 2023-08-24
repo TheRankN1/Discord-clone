@@ -36,7 +36,7 @@ export class SideBarComponent implements OnInit, ModalBase {
       title: 'Create server',
       textInput: '',
       type: 'server',
-      placeholder: 'Enter server-details name',
+      placeholder: 'Enter server name',
       create: this.onCreateServerModal.bind(this)
     });
   }
