@@ -1,5 +1,5 @@
 <ng-container *ngIf="isOpen$ | async">
-  <div *ngIf="state$ | async as state" class="modal-container">
+  <div *ngIf="state" class="modal-container">
     <div class="modal-content">
       <h3>{{ state.title }}</h3>
       <div *ngIf="state.type === 'channel'" class="channel-types">
