@@ -45,10 +45,10 @@
         <button  *ngIf="state.onEditMode === true" class="delete-button" (click)="delete(state)">Delete</button>
         <div class="on-edit-mode">
           <button (click)="close()">Cancel</button>
-          <button  *ngIf="state.onEditMode === true" class="save-button" [disabled]="state.textInput === ''" (click)="save(state)">Save</button>
+          <button  *ngIf="state.onEditMode === true" class="save-button" [disabled]="state.textInput.trim().length===0" (click)="save(state)">Save</button>
         </div>
-        <ng-container *ngIf="state.onEditMode === false">
-          <button class="create-button" [disabled]="state.textInput === ''" (click)="create(state)">Create</button>
+        <ng-container  *ngIf="state.onEditMode === false">
+          <button class="create-button" [disabled]="state.textInput.trim().length===0" (click)="create(state)">Create</button>
         </ng-container>
       </div>
     </div>
