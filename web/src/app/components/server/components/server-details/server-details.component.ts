@@ -53,9 +53,12 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe(user => {
-      this.loggedUser = user;
+    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe(loggedUser => {
+      this.loggedUser = loggedUser;
     });
+    if(!this.loggedUser.hasOwnProperty('id')){
+      this._router.navigate(['auth/login']).then();
+    }
   }
 
   public ngOnDestroy(): void {

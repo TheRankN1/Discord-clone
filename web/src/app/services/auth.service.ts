@@ -4,7 +4,7 @@ import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
 import { GeneratorHelpers } from '../helpers/generator.helpers';
 
 const USERS_LOCALSTORAGE_KEY = 'databaseUsers';
-const USER_LOGGED_ID_KEY = 'loggedUserId';
+const USER_LOGGED_KEY = 'loggedUser';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class AuthService {
       return user.username === username && user.password === password;
     });
     if (foundUser) {
-      localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(foundUser));
+      localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(foundUser));
       this.loggedUser$.next(foundUser);
     }
     return !!foundUser;
@@ -49,8 +49,17 @@ export class AuthService {
   }
 
   public getLoggedUserFromLocalStorage(): void {
-    const user: string | null = localStorage.getItem(USER_LOGGED_ID_KEY);
-    this.loggedUser$.next(user ? JSON.parse(user) : {});
+    const loggedUser: string | null = localStorage.getItem(USER_LOGGED_KEY);
+    this.loggedUser$.next(loggedUser ? JSON.parse(loggedUser) : {});
+  }
+
+  public logoutFromLocalStorage(): void{
+    this.loggedUser$.next({ id: '',
+      username: '',
+      fullName: '',
+      password: '',
+      bgColor: ''});
+    localStorage.removeItem(USER_LOGGED_KEY);
   }
 
   public listenToUsersAndUpdateLocalStorage(): void {
@@ -63,7 +72,7 @@ export class AuthService {
   public listenToDataBaseUserAndUpdateLocalStorage(): void {
     this.loggedUser$.subscribe({
       next: (user: UserDataBaseInterface) => {
-        localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(user));
+        localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(user));
       }
     });
   }

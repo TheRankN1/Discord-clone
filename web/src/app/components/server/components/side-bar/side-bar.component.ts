@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ModalService } from '../../../../services/modal.service';
 import { ModalBase } from '../../../../modals/modal.base';
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-side-bar',
@@ -17,7 +18,8 @@ export class SideBarComponent implements OnInit, ModalBase {
   constructor(
     private _serversService: ServersService,
     private _modalService: ModalService,
-    private _router: Router
+    private _router: Router,
+    private _authService:AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -53,6 +55,7 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public logout(): void {
-    this._router.navigate(['auth']).then();
+    this._authService.logoutFromLocalStorage();
+      this._router.navigate(['auth/login']).then();
   }
 }
