@@ -42,13 +42,13 @@
         <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder" />
       </div>
       <div class="buttons">
-        <button (click)="close()">Cancel</button>
-        <div class="on-edit-mode" *ngIf="state.onEditMode === true">
-          <button class="save-button" [disabled]="state.textInput === ''" (click)="save(state)">Save</button>
-          <button class="delete-button" (click)="delete(state)">Delete</button>
+        <button  *ngIf="state.onEditMode === true" class="delete-button" (click)="delete(state)">Delete</button>
+        <div class="on-edit-mode">
+          <button (click)="close()">Cancel</button>
+          <button  *ngIf="state.onEditMode === true" class="save-button" [disabled]="state.textInput === ''" (click)="save(state)">Save</button>
         </div>
         <ng-container *ngIf="state.onEditMode === false">
-          <button class="save-button" [disabled]="state.textInput === ''" (click)="create(state)">Create</button>
+          <button class="create-button" [disabled]="state.textInput === ''" (click)="create(state)">Create</button>
         </ng-container>
       </div>
     </div>

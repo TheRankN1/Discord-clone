@@ -68,7 +68,7 @@
           background: $color-white;
         }
 
-        &.save-button {
+        &.save-button , &.create-button {
           background: $color-blue-010;
 
           &:hover {
