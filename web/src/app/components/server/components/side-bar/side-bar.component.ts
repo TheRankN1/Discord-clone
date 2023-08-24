@@ -35,21 +35,8 @@ export class SideBarComponent implements OnInit, ModalBase {
       textInput: '',
       type: 'server',
       placeholder: 'Enter server-details name',
-      close: this.onCloseModal.bind(this),
-      delete: this.onDeleteServerModal.bind(this),
-      save: this.onSaveModal.bind(this),
       create: this.onCreateServerModal.bind(this)
     });
-  }
-
-  public onCloseModal(): void {
-    console.log('onCloseServerModal');
-  }
-
-  public onDeleteServerModal(): void {}
-
-  public onSaveModal(textInput: string): void {
-    console.log('onSaveServerModal', textInput);
   }
 
   public onCreateServerModal(textInput: string): void {
@@ -66,6 +53,6 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public logout(): void {
-    this._router.navigate(['auth']);
+    this._router.navigate(['auth']).then();
   }
 }

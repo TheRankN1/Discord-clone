@@ -18,8 +18,6 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
   public servers!: Array<ServerInterface>;
-  public isHoveredAdd = false;
-  public isHoveredPen = false;
   public ChannelTypeEnum = ChannelTypeEnum;
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -75,7 +73,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public onDeleteServerModal(): void {
     this._serversService.deleteServer(this.currentServer.id);
-    this._router.navigate(['/servers']);
+    this._router.navigate(['/servers']).then();
   }
 
   public onSaveServer(textInput: string): void {

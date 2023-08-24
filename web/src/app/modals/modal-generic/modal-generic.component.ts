@@ -2,7 +2,6 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService, ModalState } from '../../services/modal.service';
 import { ChannelTypeEnum } from '../../enums/channel-type.enum';
-import { CategoryInterface } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-modal-generic',
@@ -12,20 +11,23 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
-  public currentCategory!: CategoryInterface;
-  public type: ChannelTypeEnum = ChannelTypeEnum.audio;
-  public value = '';
+  public channelType: ChannelTypeEnum = ChannelTypeEnum.audio;
+  public selectedChannelType = '';
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _modalService: ModalService) {}
+  constructor(private _modalService: ModalService) {
+  }
 
   public ngOnInit(): void {
     this._isOpenListener();
     this.state$.pipe(takeUntil(this._destroy$)).subscribe({
       next: state => {
-        this.type = state?.data.channelType;
-        this.value = this.type;
+        // Channel modal flow
+        if(state?.data?.channelType) {
+          this.channelType = state?.data.channelType;
+          this.selectedChannelType = this.channelType;
+        }
       }
     });
   }
@@ -55,26 +57,26 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   }
 
   public save(state: ModalState): void {
-    state.save(state.textInput, this.type);
+    state.save ? state.save(state.textInput, this.channelType) : undefined;
     this._modalService.reset();
   }
 
   public delete(state: ModalState): void {
-    state.delete();
+    state.delete ? state.delete() : undefined;
     this._modalService.reset();
   }
 
   public create(state: ModalState): void {
     if (!state.create) return;
-    state.create(state.textInput, this.type);
+    state.create(state.textInput, this.channelType);
     this._modalService.reset();
   }
 
   public selectText(): void {
-    this.type = ChannelTypeEnum.text;
+    this.channelType = ChannelTypeEnum.text;
   }
 
   public selectAudio(): void {
-    this.type = ChannelTypeEnum.audio;
+    this.channelType = ChannelTypeEnum.audio;
   }
 }

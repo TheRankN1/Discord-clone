@@ -19,7 +19,7 @@ export class RegisterComponent {
   ) {}
 
   public navigateToLogin(): void {
-    this._router.navigate(['/auth/login']);
+    this._router.navigate(['/auth/login']).then();
   }
 
   public register(): void {
@@ -27,7 +27,7 @@ export class RegisterComponent {
       this._authService.addUser(this.username, this.password);
       this.userCreated = true;
       this.usernameTakenError = false;
-      this._router.navigate(['/auth/login']);
+      this._router.navigate(['/auth/login']).then();
     } else {
       this.usernameTakenError = true;
       this.userCreated = false;

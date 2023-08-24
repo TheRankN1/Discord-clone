@@ -1,6 +1,6 @@
 <div class="scrolling-container server">
   <ng-container class="server-container" *ngIf="currentServer as server">
-    <div class="server-name" *ngIf="server.title != ''">
+    <div class="server-name" *ngIf="server.title !== ''">
       <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
       <div>
         <app-icon [name]="'add-message'" (click)="openCategoryModal()"></app-icon>

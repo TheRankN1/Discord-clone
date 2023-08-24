@@ -18,12 +18,12 @@ export class LoginComponent {
   ) {}
 
   public navigateToRegister(): void {
-    this._router.navigate(['/auth/register']);
+    this._router.navigate(['/auth/register']).then();
   }
 
   public login(): void {
     if (this._authService.login(this.username, this.password)) {
-      this._router.navigate(['/servers']);
+      this._router.navigate(['/servers']).then();
     } else {
       this.userDoesntExistError = true;
     }
