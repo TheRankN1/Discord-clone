@@ -1,7 +1,7 @@
 @import 'colors';
 
 .scrolling-container {
-  height: calc(100vh - 24px);
+  height: 100vh;
   padding: 12px;
   overflow-x: hidden;
   background: $discord-blue-color-020;
@@ -28,6 +28,7 @@
     font-size: 24px;
     font-weight: 600;
     margin-top: 10px;
+    flex-shrink: 0;
 
     &:hover {
       cursor: pointer;
