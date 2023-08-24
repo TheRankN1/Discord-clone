@@ -3,15 +3,15 @@
 <div *ngIf="userCreated" class="user-created">User created !</div>
 <div class="username">
   <span>Username</span>
-  <input [(ngModel)]="username" type="text" placeholder="Username" />
+  <input [(ngModel)]="username" (input)="clearError()" type="text" placeholder="Username" />
 </div>
 <div class="name">
   <span>Full Name</span>
-  <input [(ngModel)]="fullName" type="text" placeholder="Name" />
+  <input [(ngModel)]="fullName" (input)="clearError()" type="text" placeholder="Name" />
 </div>
 <div class="password">
   <span>Password</span>
-  <input [(ngModel)]="password" type="password" placeholder="Password" />
+  <input  [(ngModel)]="password" (input)="clearError()" type="password" placeholder="Password" />
 </div>
 <button (click)="register()">Register</button>
 <span>Already have an account ? <span class="go-to" (click)="navigateToLogin()">Go to login</span></span>

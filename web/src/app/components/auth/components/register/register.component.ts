@@ -34,4 +34,8 @@ export class RegisterComponent {
       this.userCreated = false;
     }
   }
+
+  public clearError(): void{
+      this.usernameTakenError = false;
+  }
 }
