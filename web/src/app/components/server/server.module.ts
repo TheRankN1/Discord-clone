@@ -13,7 +13,6 @@ import { IsNotEmptyPipe } from '../../pipes/is-not-empty.pipe';
 import { AvatarInitialsPipe } from '../../pipes/avatar-initials.pipe';
 import { ServerRoutesModule } from './server.routes';
 import { CommonModule } from '@angular/common';
-import { LoggedUserComponent } from './components/logged-user/logged-user.component';
 
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 const COMPONENTS = [
@@ -23,7 +22,6 @@ const COMPONENTS = [
   AvatarComponent,
   SideBarComponent,
   IconComponent,
-  LoggedUserComponent
 ];
 const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule];
 

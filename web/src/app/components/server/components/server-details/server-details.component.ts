@@ -7,6 +7,8 @@ import { CategoryInterface } from '../../../../interfaces/category.interface';
 import { ChannelInterface } from '../../../../interfaces/channel.interface';
 import { ModalService } from '../../../../services/modal.service';
 import { ChannelTypeEnum } from '../../../../enums/channel-type.enum';
+import {UserDataBaseInterface} from "../../../../interfaces/user-data-base.interface";
+import {AuthService} from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-server-details',
@@ -20,12 +22,14 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public servers!: Array<ServerInterface>;
   public ChannelTypeEnum = ChannelTypeEnum;
   private _destroy$: Subject<void> = new Subject<void>();
+  public loggedUser!: UserDataBaseInterface;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _serversService: ServersService,
-    private _modalService: ModalService
+    private _modalService: ModalService,
+    private _authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -35,6 +39,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         const serverId: string | null = params.get('serverId');
 
         if (!serverId) {
+          this._serversService.makeAllServerInactive();
           return;
         }
 
@@ -47,6 +52,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
           this._router.navigate(['']).then();
         }
       }
+    });
+    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe(user => {
+      this.loggedUser = user;
     });
   }
 

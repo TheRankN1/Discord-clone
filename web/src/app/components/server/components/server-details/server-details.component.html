@@ -30,4 +30,11 @@
     </ng-container>
   </ng-container>
 </div>
-<app-logged-user></app-logged-user>
+<div class="logged-user">
+  <app-avatar [bgColor]="loggedUser.bgColor" dimension="small"></app-avatar>
+  <div class="names">
+    <strong>{{ loggedUser.username }}</strong>
+    <span *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</span>
+    <span>{{ loggedUser.fullName }}</span>
+  </div>
+</div>
