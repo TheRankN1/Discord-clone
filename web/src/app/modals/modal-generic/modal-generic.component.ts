@@ -11,8 +11,8 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
-  public channelType: ChannelTypeEnum = ChannelTypeEnum.audio;
-  public selectedChannelType = '';
+  public channelType: ChannelTypeEnum = ChannelTypeEnum.text;
+  public selectedChannelType = ChannelTypeEnum.text;
 
   private _destroy$: Subject<void> = new Subject<void>();
 
