@@ -11,6 +11,7 @@ const ICON_TYPE = '.svg';
   template: '<div [class.color-grey]="isHovered"' + ' (mouseenter)="mouseenter()" (mouseleave)="mouseover()"></div>',
   styleUrls: ['icon.component.scss']
 })
+
 export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public name = '';
   @HostBinding('innerHTML') public svg!: SafeHtml;

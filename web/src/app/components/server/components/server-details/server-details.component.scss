@@ -1,10 +1,10 @@
 @import 'colors';
 
+$logged-user-container: 48px;
+
 :host {
   background: $discord-blue-color-010;
 }
-
-$logged-user-container: 48px;
 
 .scrolling-container {
   height: calc(100vh - #{$logged-user-container});
