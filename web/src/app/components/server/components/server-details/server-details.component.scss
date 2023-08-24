@@ -54,6 +54,7 @@ $logged-user-container: 66px;
 
       app-icon {
         visibility: visible;
+        cursor: pointer;
       }
     }
   }
@@ -76,6 +77,7 @@ $logged-user-container: 66px;
 
       app-icon {
         visibility: visible;
+        cursor: pointer;
       }
     }
   }
@@ -101,6 +103,7 @@ $logged-user-container: 66px;
 
       app-icon {
         visibility: visible;
+        cursor: pointer;
       }
     }
 
@@ -117,10 +120,6 @@ $logged-user-container: 66px;
   &-category,
   &-channel {
     padding: 12px;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   div {

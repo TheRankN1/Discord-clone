@@ -88,7 +88,7 @@ app-icon {
   &.color-white {
     svg {
       path {
-        fill: $color-white;
+        fill: $color-white !important;
       }
     }
   }

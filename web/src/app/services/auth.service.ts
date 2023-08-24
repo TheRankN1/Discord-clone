@@ -19,12 +19,12 @@ export class AuthService {
     bgColor: ''
   });
 
-  public addUser(username: string, password: string, name: string): boolean {
+  public addUser(username: string, password: string, fullName: string): boolean {
     const users: Array<UserDataBaseInterface> = this.users$.value;
     const foundUsername: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username;
     });
-    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color() });
+    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color() , fullName:fullName});
     this.users$.next(users);
     localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
 
