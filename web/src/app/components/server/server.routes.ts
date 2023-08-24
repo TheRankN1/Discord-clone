@@ -9,6 +9,10 @@ const routes: Routes = [
     component: ServerComponent,
     children: [
       {
+        path: '',
+        component: ServerDetailsComponent
+      },
+      {
         path: 'details/:serverId',
         component: ServerDetailsComponent
       }

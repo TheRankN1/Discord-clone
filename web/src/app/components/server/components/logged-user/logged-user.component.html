@@ -1,2 +1,6 @@
-<app-avatar [bgImage]="userAvatar.bgImage" [bgColor]="userAvatar.bgColor" dimension="small"></app-avatar>
-<strong>{{ user.username }}</strong>
+<app-avatar [bgColor]="user.bgColor" dimension="small"></app-avatar>
+<div class="names">
+  <strong>{{ user.username }}</strong>
+  <span *ngIf="!user.fullName">{{ user.username }}</span>
+  <span>{{ user.fullName }}</span>
+</div>

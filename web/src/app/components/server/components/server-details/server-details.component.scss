@@ -1,9 +1,13 @@
 @import 'colors';
+
 :host {
   background: $discord-blue-color-010;
 }
+
+$logged-user-container: 48px;
+
 .scrolling-container {
-  height: calc(100vh - 48px);
+  height: calc(100vh - #{$logged-user-container});
   width: 240px;
   overflow-x: hidden;
   display: flex;
@@ -99,6 +103,7 @@
         visibility: visible;
       }
     }
+
     .channel-container {
       app-icon {
         visibility: visible;
@@ -117,13 +122,12 @@
       cursor: pointer;
     }
   }
+
   div {
     display: flex;
     gap: 10px;
     align-items: center;
   }
-}
-app-logged-user {
 }
 
 .scrolling-container::-webkit-scrollbar {

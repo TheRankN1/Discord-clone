@@ -10,12 +10,11 @@
   gap: 20px;
   color: $color-white;
 }
-
+.name,
 .username,
 .password {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 5px;
 }
 
@@ -51,18 +50,21 @@ button {
 
 .go-to {
   cursor: pointer;
+  text-decoration-line: underline;
 }
 
 .user-already-exist {
   color: $color-warning;
   font-size: 16px;
-  padding: 16px;
   border-radius: 15px;
+  visibility: hidden;
+  &.visible {
+    visibility: visible;
+  }
 }
 
 .user-created {
   color: $color-green;
   font-size: 16px;
-  padding: 16px;
   border-radius: 15px;
 }

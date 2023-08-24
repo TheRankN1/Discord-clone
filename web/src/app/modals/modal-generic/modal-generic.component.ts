@@ -16,15 +16,14 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
 
   private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _modalService: ModalService) {
-  }
+  constructor(private _modalService: ModalService) {}
 
   public ngOnInit(): void {
     this._isOpenListener();
     this.state$.pipe(takeUntil(this._destroy$)).subscribe({
       next: state => {
         // Channel modal flow
-        if(state?.data?.channelType) {
+        if (state?.data?.channelType) {
           this.channelType = state?.data.channelType;
           this.selectedChannelType = this.channelType;
         }

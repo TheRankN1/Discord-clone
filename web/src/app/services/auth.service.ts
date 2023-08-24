@@ -11,18 +11,20 @@ const USER_LOGGED_ID_KEY = 'loggedUserId';
 })
 export class AuthService {
   public users$: BehaviorSubject<Array<UserDataBaseInterface>> = new BehaviorSubject<Array<UserDataBaseInterface>>([]);
-  public user$: BehaviorSubject<UserDataBaseInterface> = new BehaviorSubject<UserDataBaseInterface>({
-    username: '',
+  public loggedUser$: BehaviorSubject<UserDataBaseInterface> = new BehaviorSubject<UserDataBaseInterface>({
     id: '',
-    password: ''
+    username: '',
+    fullName: '',
+    password: '',
+    bgColor: ''
   });
 
-  public addUser(username: string, password: string): boolean {
+  public addUser(username: string, password: string, name: string): boolean {
     const users: Array<UserDataBaseInterface> = this.users$.value;
     const foundUsername: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username;
     });
-    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password });
+    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color() });
     this.users$.next(users);
     localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
 
@@ -36,7 +38,7 @@ export class AuthService {
     });
     if (foundUser) {
       localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(foundUser));
-      this.user$.next(foundUser);
+      this.loggedUser$.next(foundUser);
     }
     return !!foundUser;
   }
@@ -48,7 +50,7 @@ export class AuthService {
 
   public getLoggedUserFromLocalStorage(): void {
     const user: string | null = localStorage.getItem(USER_LOGGED_ID_KEY);
-    this.user$.next(user ? JSON.parse(user) : {});
+    this.loggedUser$.next(user ? JSON.parse(user) : {});
   }
 
   public listenToUsersAndUpdateLocalStorage(): void {
@@ -59,7 +61,7 @@ export class AuthService {
     });
   }
   public listenToDataBaseUserAndUpdateLocalStorage(): void {
-    this.user$.subscribe({
+    this.loggedUser$.subscribe({
       next: (user: UserDataBaseInterface) => {
         localStorage.setItem(USER_LOGGED_ID_KEY, JSON.stringify(user));
       }

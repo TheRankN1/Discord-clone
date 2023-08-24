@@ -35,7 +35,6 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         const serverId: string | null = params.get('serverId');
 
         if (!serverId) {
-          this._router.navigate(['']).then();
           return;
         }
 

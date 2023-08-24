@@ -10,6 +10,7 @@ import { AuthService } from '../../../../services/auth.service';
 export class RegisterComponent {
   public username: string = '';
   public password: string = '';
+  public fullName: string = '';
   public usernameTakenError: boolean = false;
   public userCreated: boolean = false;
 
@@ -23,8 +24,8 @@ export class RegisterComponent {
   }
 
   public register(): void {
-    if (!this._authService.addUser(this.username, this.password)) {
-      this._authService.addUser(this.username, this.password);
+    if (!this._authService.addUser(this.username, this.password, this.fullName)) {
+      this._authService.addUser(this.username, this.password, this.fullName);
       this.userCreated = true;
       this.usernameTakenError = false;
       this._router.navigate(['/auth/login']).then();

@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<div *ngIf="userDoesntExistError" class="user-doesnt-exist">The username or password is incorrect !</div>
+<div [class.visible]="userDoesntExistError" class="user-doesnt-exist">The username or password is incorrect !</div>
 <div class="username">
   <span>Username</span>
   <input [(ngModel)]="username" type="text" placeholder="Username" />
