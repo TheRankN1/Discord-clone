@@ -15,14 +15,7 @@ import { ServerRoutesModule } from './server.routes';
 import { CommonModule } from '@angular/common';
 
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
-const COMPONENTS = [
-  ChatComponent,
-  ServerDetailsComponent,
-  UsersListComponent,
-  AvatarComponent,
-  SideBarComponent,
-  IconComponent,
-];
+const COMPONENTS = [ChatComponent, ServerDetailsComponent, UsersListComponent, AvatarComponent, SideBarComponent, IconComponent];
 const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule];
 
 @NgModule({

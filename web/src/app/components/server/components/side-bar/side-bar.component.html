@@ -10,10 +10,10 @@
       ></app-avatar>
     </ng-container>
     <div class="side-bar-action" (mouseenter)="onHoverCreateServer()" (mouseleave)="onEndHoverCreateServer()" (click)="openModalServer()">
-      <app-icon [class.color-white]="isHoveredCreateServer" name=plus class="small color-green"></app-icon>
+      <app-icon [class.color-white]="isHoveredCreateServer" name="plus" class="small color-green"></app-icon>
     </div>
   </div>
-  <div class="side-bar-action exit" (mouseenter)="onHoverExit()" (mouseleave)="onEndHoverExit()"  (click)="logout()">
-    <app-icon [class.color-white]="isHoveredExit" name=exit class="small color-error"></app-icon>
+  <div class="side-bar-action exit" (mouseenter)="onHoverExit()" (mouseleave)="onEndHoverExit()" (click)="logout()">
+    <app-icon [class.color-white]="isHoveredExit" name="exit" class="small color-error"></app-icon>
   </div>
 </div>

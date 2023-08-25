@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ModalService } from '../../../../services/modal.service';
 import { ModalBase } from '../../../../modals/modal.base';
-import {AuthService} from "../../../../services/auth.service";
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,14 +14,14 @@ import {AuthService} from "../../../../services/auth.service";
 })
 export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
-  public   isHoveredExit = false;
-  public   isHoveredCreateServer = false;
+  public isHoveredExit = false;
+  public isHoveredCreateServer = false;
 
   constructor(
     private _serversService: ServersService,
     private _modalService: ModalService,
     private _router: Router,
-    private _authService:AuthService
+    private _authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -58,22 +58,22 @@ export class SideBarComponent implements OnInit, ModalBase {
 
   public logout(): void {
     this._authService.logoutFromLocalStorage();
-      this._router.navigate(['auth/login']).then();
+    this._router.navigate(['auth/login']).then();
   }
 
-  public onHoverExit(){
+  public onHoverExit() {
     this.isHoveredExit = true;
   }
 
-  public onEndHoverExit(){
+  public onEndHoverExit() {
     this.isHoveredExit = false;
   }
 
-  public onHoverCreateServer(){
+  public onHoverCreateServer() {
     this.isHoveredCreateServer = true;
   }
 
-  public onEndHoverCreateServer(){
+  public onEndHoverCreateServer() {
     this.isHoveredCreateServer = false;
   }
 }

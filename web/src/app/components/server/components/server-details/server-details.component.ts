@@ -7,8 +7,8 @@ import { CategoryInterface } from '../../../../interfaces/category.interface';
 import { ChannelInterface } from '../../../../interfaces/channel.interface';
 import { ModalService } from '../../../../services/modal.service';
 import { ChannelTypeEnum } from '../../../../enums/channel-type.enum';
-import {UserDataBaseInterface} from "../../../../interfaces/user-data-base.interface";
-import {AuthService} from "../../../../services/auth.service";
+import { UserDataBaseInterface } from '../../../../interfaces/user-data-base.interface';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-server-details',
@@ -19,10 +19,10 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public currentServer!: ServerInterface;
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
-  public servers!: Array<ServerInterface>;
-  public ChannelTypeEnum = ChannelTypeEnum;
+  public ChannelTypeEnum: typeof ChannelTypeEnum = ChannelTypeEnum;
+  public servers: Array<ServerInterface> = [];
+  public loggedUser: UserDataBaseInterface | null = null;
   private _destroy$: Subject<void> = new Subject<void>();
-  public loggedUser!: UserDataBaseInterface;
 
   constructor(
     private _route: ActivatedRoute,
@@ -53,12 +53,15 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe(loggedUser => {
-      this.loggedUser = loggedUser;
+    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: (loggedUser: UserDataBaseInterface | null) => {
+        this.loggedUser = loggedUser;
+
+        if (!loggedUser) {
+          this._router.navigate(['auth/login']).then();
+        }
+      }
     });
-    if(!this.loggedUser.hasOwnProperty('id')){
-      this._router.navigate(['auth/login']).then();
-    }
   }
 
   public ngOnDestroy(): void {

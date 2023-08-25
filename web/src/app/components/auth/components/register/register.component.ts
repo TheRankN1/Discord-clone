@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from '../../../../services/auth.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +20,7 @@ export class RegisterComponent {
   constructor(
     private _router: Router,
     private _authService: AuthService
-  ) {
-  }
+  ) {}
 
   public navigateToLogin(): void {
     this._router.navigate(['/auth/login']).then();
@@ -49,13 +48,14 @@ export class RegisterComponent {
       this._router.navigate(['/auth/login']).then();
     } else {
       this.usernameTakenError = true;
-      if(this.registerErrorNameAndPassword || this.registerErrorUsername || this.registerErrorPassword)
-        this.usernameTakenError=false;
+      if (this.registerErrorNameAndPassword || this.registerErrorUsername || this.registerErrorPassword) {
+        this.usernameTakenError = false;
+      }
       this.userCreated = false;
     }
   }
 
-  public clearError(): void{
+  public clearError(): void {
     this.usernameTakenError = false;
     this.registerErrorUsername = false;
     this.registerErrorPassword = false;

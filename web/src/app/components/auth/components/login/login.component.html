@@ -1,18 +1,17 @@
 <h1>Login</h1>
-<div [class.visible]="loginError &&!(loginErrorNameAndPassword || loginErrorPassword || loginErrorUsername)"
-     class="error">The username or password is incorrect !
+<div [class.visible]="loginError && !(loginErrorNameAndPassword || loginErrorPassword || loginErrorUsername)" class="error">
+  The username or password is incorrect !
 </div>
 <div [class.visible]="loginErrorNameAndPassword" class="error">Username , Password is mandatory !</div>
 <div class="username">
   <span>Username</span>
-  <input (input)="clearError()" [(ngModel)]="username" type="text" placeholder="Username" [required]="username===''"/>
+  <input (input)="clearError()" [(ngModel)]="username" type="text" placeholder="Username" [required]="username === ''" />
 </div>
 <div [class.visible]="loginErrorUsername" class="error">Username is mandatory !</div>
 
 <div class="password">
   <span>Password</span>
-  <input (input)="clearError()" [(ngModel)]="password" type="password" placeholder="Password"
-         [required]="password===''"/>
+  <input (input)="clearError()" [(ngModel)]="password" type="password" placeholder="Password" [required]="password === ''" />
 </div>
 <div [class.visible]="loginErrorPassword" class="error">Password is mandatory !</div>
 

@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./components/server/server.module').then(m => m.ServerModule)
   },
   {
-    path:'**',
-    redirectTo:'auth'
+    path: '**',
+    redirectTo: 'auth'
   }
 ];
 

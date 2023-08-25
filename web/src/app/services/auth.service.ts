@@ -11,39 +11,40 @@ const USER_LOGGED_KEY = 'loggedUser';
 })
 export class AuthService {
   public users$: BehaviorSubject<Array<UserDataBaseInterface>> = new BehaviorSubject<Array<UserDataBaseInterface>>([]);
-  public loggedUser$: BehaviorSubject<UserDataBaseInterface> = new BehaviorSubject<UserDataBaseInterface>({
-    id: '',
-    username: '',
-    fullName: '',
-    password: '',
-    bgColor: ''
-  });
+  public loggedUser$: BehaviorSubject<UserDataBaseInterface | null> = new BehaviorSubject<UserDataBaseInterface | null>(null);
 
   public addUser(username: string, password: string, fullName: string): boolean {
+    if (username === '' || password === '') {
+      return true;
+    }
+
     const users: Array<UserDataBaseInterface> = this.users$.value;
     const foundUsername: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username;
     });
-    if(username==='' || password==='')
-      return true;
-    if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color() , fullName:fullName});
-    this.users$.next(users);
-    localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
+
+    if (!foundUsername) {
+      users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color(), fullName: fullName });
+      this.users$.next(users);
+    }
 
     return !!foundUsername;
   }
 
   public login(username: string, password: string): boolean {
+    if (username === '' || password === '') {
+      return false;
+    }
+
     const users: Array<UserDataBaseInterface> = this.users$.value;
     const foundUser: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username && user.password === password;
     });
-    if(username==='' || password==="")
-      return false;
+
     if (foundUser) {
-      localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(foundUser));
       this.loggedUser$.next(foundUser);
     }
+
     return !!foundUser;
   }
 
@@ -57,13 +58,8 @@ export class AuthService {
     this.loggedUser$.next(loggedUser ? JSON.parse(loggedUser) : {});
   }
 
-  public logoutFromLocalStorage(): void{
-    this.loggedUser$.next({ id: '',
-      username: '',
-      fullName: '',
-      password: '',
-      bgColor: ''});
-    localStorage.removeItem(USER_LOGGED_KEY);
+  public logoutFromLocalStorage(): void {
+    this.loggedUser$.next(null);
   }
 
   public listenToUsersAndUpdateLocalStorage(): void {
@@ -76,8 +72,12 @@ export class AuthService {
 
   public listenToDataBaseUserAndUpdateLocalStorage(): void {
     this.loggedUser$.subscribe({
-      next: (user: UserDataBaseInterface) => {
-        localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(user));
+      next: (user: UserDataBaseInterface | null) => {
+        if (user) {
+          localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(user));
+        } else {
+          localStorage.removeItem(USER_LOGGED_KEY);
+        }
       }
     });
   }

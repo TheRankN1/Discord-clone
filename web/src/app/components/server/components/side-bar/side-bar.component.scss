@@ -35,13 +35,13 @@
       cursor: pointer;
       border-radius: 30%;
     }
-    &.exit{
-      &:hover{
+    &.exit {
+      &:hover {
         background: $color-error;
       }
-      app-icon{
-        svg{
-          path{
+      app-icon {
+        svg {
+          path {
             fill: white;
           }
         }

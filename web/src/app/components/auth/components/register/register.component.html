@@ -13,7 +13,7 @@
 <div [class.visible]="registerErrorUsername" class="error">Username is mandatory !</div>
 <div class="password">
   <span>Password</span>
-  <input  [(ngModel)]="password" (input)="clearError()" type="password" placeholder="Password" />
+  <input [(ngModel)]="password" (input)="clearError()" type="password" placeholder="Password" />
 </div>
 <div [class.visible]="registerErrorPassword" class="error">Password is mandatory !</div>
 <button (click)="register()">Register</button>
