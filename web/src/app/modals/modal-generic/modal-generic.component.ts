@@ -90,12 +90,19 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   public setTheValueOnEnter(event: KeyboardEvent) : void{
 
     if (event.key === 'Enter') {
-      if (this.state) {
+      if(this.state?.textInput.trim().length===0) {
+        this.close();
+      }else if (this.state) {
         if (!this.state.onEditMode) {
           this.create(this.state);
         } else {
           this.save(this.state);
         }
+      }
+    }
+    if(event.key === ' ' && this.state) {
+      if (this.state.textInput) {
+       this.state.textInput= this.state.textInput.trim();
       }
     }
     if (event.key === 'Escape') {
