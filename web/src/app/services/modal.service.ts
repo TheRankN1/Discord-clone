@@ -10,8 +10,8 @@ export interface ModalState {
   placeholder: string;
   type: ModalType;
   close?: () => void;
-  delete: () => void;
-  save: (text: string, type: ChannelTypeEnum) => void;
+  delete?: () => void;
+  save?: (text: string, type: ChannelTypeEnum) => void;
   create?: (text: string, type: ChannelTypeEnum) => void;
   data?: any;
 }

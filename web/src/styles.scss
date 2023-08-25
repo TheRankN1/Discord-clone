@@ -3,7 +3,6 @@
 // Components
 @import './src/app/directives/tooltip/tooltip';
 @import './src/assets/scss/components/modal';
-
 body {
   width: 100vw;
   height: 100vh;
@@ -12,4 +11,8 @@ body {
   background: $discord-blue-color-030;
   overflow-x: hidden;
   font-family: 'Cabin', sans-serif;
+}
+
+input {
+  outline: none;
 }

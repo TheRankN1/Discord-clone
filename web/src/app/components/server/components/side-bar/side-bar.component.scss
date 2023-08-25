@@ -28,10 +28,24 @@
     font-size: 24px;
     font-weight: 600;
     margin-top: 10px;
+    flex-shrink: 0;
 
     &:hover {
+      background: $color-green;
       cursor: pointer;
       border-radius: 30%;
+    }
+    &.exit {
+      &:hover {
+        background: $color-error;
+      }
+      app-icon {
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
     }
   }
 }

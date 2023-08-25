@@ -1,11 +1,11 @@
 <ng-container *ngIf="isOpen$ | async">
-  <div *ngIf="state$ | async as state" class="modal-container">
+  <div *ngIf="state" class="modal-container">
     <div class="modal-content">
       <h3>{{ state.title }}</h3>
       <div *ngIf="state.type === 'channel'" class="channel-types">
         <span class="title">CHANNEL TYPE</span>
         <div class="types">
-          <div class="type" (click)="selectText()" [class.active]="value === 'text'">
+          <div class="type" (click)="channelTypeText.click()" [class.active]="selectedChannelType === 'text'">
             <label for="radio-text">
               <div class="type-details-container">
                 <app-icon name="text-channel"></app-icon>
@@ -16,10 +16,10 @@
               </div>
               <div class="radio"></div>
             </label>
-            <div (click)="selectText()"></div>
-            <input type="radio" name="channel-type" id="radio-text" value="text" [(ngModel)]="value" />
+            <div></div>
+            <input #channelTypeText type="radio" name="channel-type" id="radio-text" value="text" [(ngModel)]="selectedChannelType" />
           </div>
-          <div class="type" (click)="selectAudio()" [class.active]="value === 'audio'">
+          <div class="type" (click)="channelTypeAudio.click()" [class.active]="selectedChannelType === 'audio'">
             <label for="radio-audio">
               <div class="type-details-container">
                 <app-icon name="audio-channel"></app-icon>
@@ -30,25 +30,38 @@
               </div>
               <div class="radio"></div>
             </label>
-            <div (click)="selectText()"></div>
-            <input type="radio" name="channel-type" id="radio-audio" value="audio" [(ngModel)]="value" />
+            <div></div>
+            <input #channelTypeAudio type="radio" name="channel-type" id="radio-audio" value="audio" [(ngModel)]="selectedChannelType" />
           </div>
         </div>
       </div>
       <strong>{{ state.type.toUpperCase() }} NAME</strong>
       <div class="input">
-        <app-icon *ngIf="value === 'audio' && state.type === 'channel'" class="small" name="audio-channel"></app-icon>
-        <app-icon *ngIf="value === 'text' && state.type === 'channel'" class="small" name="text-channel"></app-icon>
-        <input #inputRef type="text" [(ngModel)]="state.textInput" [attr.placeholder]="state.placeholder" />
+        <app-icon *ngIf="selectedChannelType === 'audio' && state.type === 'channel'" class="small" name="audio-channel"></app-icon>
+        <app-icon *ngIf="selectedChannelType === 'text' && state.type === 'channel'" class="small" name="text-channel"></app-icon>
+        <input
+          #inputRef
+          type="text"
+          (keydown)="onTextInputChanged($event)"
+          [(ngModel)]="state.textInput"
+          [attr.placeholder]="state.placeholder"
+        />
       </div>
       <div class="buttons">
-        <button (click)="close()">Cancel</button>
-        <div class="on-edit-mode" *ngIf="state.onEditMode === true">
-          <button class="save-button" [disabled]="state.textInput === ''" (click)="save(state)">Save</button>
-          <button class="delete-button" (click)="delete(state)">Delete</button>
+        <button *ngIf="state.onEditMode === true" class="delete-button" (click)="delete(state)">Delete</button>
+        <div class="on-edit-mode">
+          <button (click)="close()">Cancel</button>
+          <button
+            *ngIf="state.onEditMode === true"
+            class="save-button"
+            [disabled]="state.textInput.trim().length === 0"
+            (click)="save(state)"
+          >
+            Save
+          </button>
         </div>
         <ng-container *ngIf="state.onEditMode === false">
-          <button class="save-button" [disabled]="state.textInput === ''" (click)="create(state)">Create</button>
+          <button class="create-button" [disabled]="state.textInput.trim().length === 0" (click)="create(state)">Create</button>
         </ng-container>
       </div>
     </div>

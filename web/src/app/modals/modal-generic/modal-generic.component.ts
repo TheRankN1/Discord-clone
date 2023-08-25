@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { filter, Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService, ModalState } from '../../services/modal.service';
 import { ChannelTypeEnum } from '../../enums/channel-type.enum';
-import { CategoryInterface } from '../../interfaces/category.interface';
 
 @Component({
   selector: 'app-modal-generic',
@@ -12,9 +11,8 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   @ViewChild('inputRef') public inputRef!: ElementRef<HTMLInputElement>;
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
-  public currentCategory!: CategoryInterface;
-  public type: ChannelTypeEnum = ChannelTypeEnum.audio;
-  public value = '';
+  public selectedChannelType = ChannelTypeEnum.text;
+  public state: ModalState | undefined;
 
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -24,8 +22,8 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
     this._isOpenListener();
     this.state$.pipe(takeUntil(this._destroy$)).subscribe({
       next: state => {
-        this.type = state?.data.channelType;
-        this.value = this.type;
+        this.selectedChannelType = state?.data?.channelType || ChannelTypeEnum.text;
+        this.state = state;
       }
     });
   }
@@ -54,27 +52,50 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
     this._modalService.reset();
   }
 
-  public save(state: ModalState): void {
-    state.save(state.textInput, this.type);
-    this._modalService.reset();
+  public save(state?: ModalState): void {
+    if (state) {
+      state.save ? state.save(state.textInput, this.selectedChannelType) : undefined;
+      this._modalService.reset();
+    }
   }
 
   public delete(state: ModalState): void {
-    state.delete();
+    state.delete ? state.delete() : undefined;
     this._modalService.reset();
   }
 
-  public create(state: ModalState): void {
-    if (!state.create) return;
-    state.create(state.textInput, this.type);
-    this._modalService.reset();
+  public create(state?: ModalState): void {
+    if (state) {
+      if (!state.create) return;
+      state.create(state.textInput, this.selectedChannelType);
+      this._modalService.reset();
+    }
   }
 
-  public selectText(): void {
-    this.type = ChannelTypeEnum.text;
+  @HostListener('document:keydown', ['$event'])
+  public setTheValueOnEnter(event: KeyboardEvent): void {
+    if (event.key === 'Escape') {
+      this.close();
+    }
+
+    if (event.key === 'Enter') {
+      if (this.state?.textInput.trim().length === 0) {
+        this.close();
+      } else if (this.state) {
+        if (!this.state.onEditMode) {
+          this.create(this.state);
+        } else {
+          this.save(this.state);
+        }
+      }
+    }
   }
 
-  public selectAudio(): void {
-    this.type = ChannelTypeEnum.audio;
+  public onTextInputChanged(event: KeyboardEvent): void {
+    if (event.key === ' ' && this.state) {
+      if (this.state.textInput) {
+        this.state.textInput = this.state.textInput.trim();
+      }
+    }
   }
 }

@@ -7,6 +7,8 @@ import { CategoryInterface } from '../../../../interfaces/category.interface';
 import { ChannelInterface } from '../../../../interfaces/channel.interface';
 import { ModalService } from '../../../../services/modal.service';
 import { ChannelTypeEnum } from '../../../../enums/channel-type.enum';
+import { UserDataBaseInterface } from '../../../../interfaces/user-data-base.interface';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-server-details',
@@ -17,17 +19,17 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public currentServer!: ServerInterface;
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
-  public servers!: Array<ServerInterface>;
-  public isHoveredAdd = false;
-  public isHoveredPen = false;
-  public ChannelTypeEnum = ChannelTypeEnum;
+  public ChannelTypeEnum: typeof ChannelTypeEnum = ChannelTypeEnum;
+  public servers: Array<ServerInterface> = [];
+  public loggedUser: UserDataBaseInterface | null = null;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _serversService: ServersService,
-    private _modalService: ModalService
+    private _modalService: ModalService,
+    private _authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -37,7 +39,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         const serverId: string | null = params.get('serverId');
 
         if (!serverId) {
-          this._router.navigate(['']).then();
+          this._serversService.makeAllServerInactive();
           return;
         }
 
@@ -48,6 +50,15 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();
+        }
+      }
+    });
+    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: (loggedUser: UserDataBaseInterface | null) => {
+        this.loggedUser = loggedUser;
+
+        if (!loggedUser) {
+          this._router.navigate(['auth/login']).then();
         }
       }
     });
@@ -65,7 +76,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit server',
-      textInput: this.currentServer.title,
+      textInput: this.currentServer.title.trim(),
       type: 'server',
       placeholder: 'Enter server name',
       delete: this.onDeleteServerModal.bind(this),
@@ -75,7 +86,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public onDeleteServerModal(): void {
     this._serversService.deleteServer(this.currentServer.id);
-    this._router.navigate(['/servers']);
+    this._router.navigate(['/servers']).then();
   }
 
   public onSaveServer(textInput: string): void {
@@ -102,7 +113,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit category',
-      textInput: this.currentCategory.title,
+      textInput: this.currentCategory.title.trim(),
       placeholder: 'Enter category name',
       type: 'category',
       delete: this.onDeleteCategoryModal.bind(this),
@@ -144,7 +155,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit channel',
-      textInput: this.currentChannel.title,
+      textInput: this.currentChannel.title.trim(),
       type: 'channel',
       placeholder: 'Enter channel name',
       delete: this.onDeleteChannelModal.bind(this),

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ModalService } from '../../../../services/modal.service';
 import { ModalBase } from '../../../../modals/modal.base';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -13,11 +14,14 @@ import { ModalBase } from '../../../../modals/modal.base';
 })
 export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
+  public isHoveredExit = false;
+  public isHoveredCreateServer = false;
 
   constructor(
     private _serversService: ServersService,
     private _modalService: ModalService,
-    private _router: Router
+    private _router: Router,
+    private _authService: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -34,22 +38,9 @@ export class SideBarComponent implements OnInit, ModalBase {
       title: 'Create server',
       textInput: '',
       type: 'server',
-      placeholder: 'Enter server-details name',
-      close: this.onCloseModal.bind(this),
-      delete: this.onDeleteServerModal.bind(this),
-      save: this.onSaveModal.bind(this),
+      placeholder: 'Enter server name',
       create: this.onCreateServerModal.bind(this)
     });
-  }
-
-  public onCloseModal(): void {
-    console.log('onCloseServerModal');
-  }
-
-  public onDeleteServerModal(): void {}
-
-  public onSaveModal(textInput: string): void {
-    console.log('onSaveServerModal', textInput);
   }
 
   public onCreateServerModal(textInput: string): void {
@@ -66,6 +57,23 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public logout(): void {
-    this._router.navigate(['auth']);
+    this._authService.logoutFromLocalStorage();
+    this._router.navigate(['auth/login']).then();
+  }
+
+  public onHoverExit() {
+    this.isHoveredExit = true;
+  }
+
+  public onEndHoverExit() {
+    this.isHoveredExit = false;
+  }
+
+  public onHoverCreateServer() {
+    this.isHoveredCreateServer = true;
+  }
+
+  public onEndHoverCreateServer() {
+    this.isHoveredCreateServer = false;
   }
 }

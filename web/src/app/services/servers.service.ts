@@ -7,7 +7,7 @@ import { ServerInitialization } from '../helpers/server.initialization';
 import { ChannelInterface } from '../interfaces/channel.interface';
 import { ChannelTypeEnum } from '../enums/channel-type.enum';
 
-const SERVER_LOCALSTORAGE_KEY = 'servers_list';
+const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
 @Injectable({
   providedIn: 'root'
