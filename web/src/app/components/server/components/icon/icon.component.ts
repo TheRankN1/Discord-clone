@@ -14,7 +14,6 @@ const ICON_TYPE = '.svg';
 
 export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public name = '';
-  @Input() public color = '';
   @HostBinding('innerHTML') public svg!: SafeHtml;
   private subscription = new Subscription();
   @HostBinding('class.color-white') public isHovered = false;

@@ -36,7 +36,7 @@ $logged-user-container: 66px;
   &-name {
     display: flex;
     gap: 16px;
-
+    margin-top: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -103,7 +103,6 @@ $logged-user-container: 66px;
 
       app-icon {
         visibility: visible;
-        cursor: pointer;
       }
     }
 
