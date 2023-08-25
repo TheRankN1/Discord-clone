@@ -36,18 +36,21 @@ $logged-user-container: 66px;
   &-name {
     display: flex;
     gap: 16px;
-    margin-top: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    align-items: center;
     letter-spacing: -0.735px;
 
     strong {
       flex: 1;
       font-size: 24px;
       display: block;
+      padding-top: 14px;
     }
-
+  app-icon{
+    padding-top: 14px;
+  }
     &:hover {
       font-weight: bold;
       background: $discord-blue-color-light;
