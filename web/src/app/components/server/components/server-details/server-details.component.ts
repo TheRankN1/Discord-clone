@@ -73,7 +73,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit server',
-      textInput: this.currentServer.title,
+      textInput: this.currentServer.title.trim(),
       type: 'server',
       placeholder: 'Enter server name',
       delete: this.onDeleteServerModal.bind(this),
@@ -110,7 +110,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit category',
-      textInput: this.currentCategory.title,
+      textInput: this.currentCategory.title.trim(),
       placeholder: 'Enter category name',
       type: 'category',
       delete: this.onDeleteCategoryModal.bind(this),
@@ -152,7 +152,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._modalService.openModal({
       onEditMode: true,
       title: 'Edit channel',
-      textInput: this.currentChannel.title,
+      textInput: this.currentChannel.title.trim(),
       type: 'channel',
       placeholder: 'Enter channel name',
       delete: this.onDeleteChannelModal.bind(this),
