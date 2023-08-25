@@ -14,12 +14,14 @@ const ICON_TYPE = '.svg';
 
 export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @Input() public name = '';
+  @Input() public color = '';
   @HostBinding('innerHTML') public svg!: SafeHtml;
   private subscription = new Subscription();
   @HostBinding('class.color-white') public isHovered = false;
   @HostBinding('class.color-grey') public isNotHovered = true;
   @HostListener('mouseenter')
   mouseenter() {
+    if(this.color === 'grey')
     this.isHovered = true;
     this.isNotHovered = false;
   }
