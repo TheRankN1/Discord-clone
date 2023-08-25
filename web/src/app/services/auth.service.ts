@@ -24,6 +24,8 @@ export class AuthService {
     const foundUsername: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username;
     });
+    if(username==='' || password==='')
+      return true;
     if (!foundUsername) users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color() , fullName:fullName});
     this.users$.next(users);
     localStorage.setItem(USERS_LOCALSTORAGE_KEY, JSON.stringify(users));
@@ -36,6 +38,8 @@ export class AuthService {
     const foundUser: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
       return user.username === username && user.password === password;
     });
+    if(username==='' || password==="")
+      return false;
     if (foundUser) {
       localStorage.setItem(USER_LOGGED_KEY, JSON.stringify(foundUser));
       this.loggedUser$.next(foundUser);

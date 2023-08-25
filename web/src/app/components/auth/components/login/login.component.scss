@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   color: $color-white;
 }
 
@@ -53,11 +53,12 @@ button {
   text-decoration-line: underline;
 }
 
-.user-doesnt-exist {
+.error {
   color: $color-warning;
-  font-size: 16px;
+  font-size: 12px;
   border-radius: 15px;
   visibility: hidden;
+
   &.visible {
     visibility: visible;
   }

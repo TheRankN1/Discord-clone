@@ -12,7 +12,10 @@ import {UserDataBaseInterface} from "../../../../interfaces/user-data-base.inter
 export class LoginComponent implements OnInit , OnDestroy{
   public username: string = '';
   public password: string = '';
-  public userDoesntExistError: boolean = false;
+  public loginError: boolean = false;
+  public loginErrorUsername: boolean = false;
+  public loginErrorPassword: boolean = false;
+  public loginErrorNameAndPassword: boolean = false;
   public loggedUser!:UserDataBaseInterface
   private _destroy$ : Subject<void> = new Subject<void>();
 
@@ -41,12 +44,32 @@ export class LoginComponent implements OnInit , OnDestroy{
   }
 
   public login(): void {
+    if(this.username===''){
+      this.loginErrorUsername = true;
+    }
+
+    if(this.password===''){
+      this.loginErrorPassword = true;
+    }
+
+    if(this.username==='' && this.password===''){
+      this.loginErrorNameAndPassword = true;
+      this.loginErrorPassword = false;
+      this.loginErrorUsername = false;
+    }
+
     if (this._authService.login(this.username, this.password)) {
       this._router.navigate(['/servers']).then();
     } else {
-      this.userDoesntExistError = true;
+      this.loginError = true;
     }
   }
 
+  public clearError(): void{
+    this.loginError = false;
+    this.loginErrorUsername = false;
+    this.loginErrorPassword = false;
+    this.loginErrorNameAndPassword = false;
+  }
 
 }
