@@ -88,7 +88,6 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   public setTheValueOnEnter(event: KeyboardEvent) : void{
-
     if (event.key === 'Enter') {
       if(this.state?.textInput.trim().length===0) {
         this.close();

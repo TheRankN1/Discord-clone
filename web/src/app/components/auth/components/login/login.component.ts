@@ -71,5 +71,4 @@ export class LoginComponent implements OnInit , OnDestroy{
     this.loginErrorPassword = false;
     this.loginErrorNameAndPassword = false;
   }
-
 }

@@ -17,7 +17,6 @@ export class SideBarComponent implements OnInit, ModalBase {
   public   isHoveredExit = false;
   public   isHoveredCreateServer = false;
 
-
   constructor(
     private _serversService: ServersService,
     private _modalService: ModalService,
@@ -77,5 +76,4 @@ export class SideBarComponent implements OnInit, ModalBase {
   public onEndHoverCreateServer(){
     this.isHoveredCreateServer = false;
   }
-
 }

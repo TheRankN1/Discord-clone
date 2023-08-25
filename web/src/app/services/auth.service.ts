@@ -73,6 +73,7 @@ export class AuthService {
       }
     });
   }
+
   public listenToDataBaseUserAndUpdateLocalStorage(): void {
     this.loggedUser$.subscribe({
       next: (user: UserDataBaseInterface) => {
