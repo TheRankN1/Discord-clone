@@ -14,6 +14,9 @@ import {AuthService} from "../../../../services/auth.service";
 })
 export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
+  public   isHoveredExit = false;
+  public   isHoveredCreateServer = false;
+
 
   constructor(
     private _serversService: ServersService,
@@ -58,4 +61,21 @@ export class SideBarComponent implements OnInit, ModalBase {
     this._authService.logoutFromLocalStorage();
       this._router.navigate(['auth/login']).then();
   }
+
+  public onHoverExit(){
+    this.isHoveredExit = true;
+  }
+
+  public onEndHoverExit(){
+    this.isHoveredExit = false;
+  }
+
+  public onHoverCreateServer(){
+    this.isHoveredCreateServer = true;
+  }
+
+  public onEndHoverCreateServer(){
+    this.isHoveredCreateServer = false;
+  }
+
 }

@@ -21,7 +21,6 @@ export class IconComponent implements OnInit, OnChanges, OnDestroy {
   @HostBinding('class.color-grey') public isNotHovered = true;
   @HostListener('mouseenter')
   mouseenter() {
-    if(this.color === 'grey')
     this.isHovered = true;
     this.isNotHovered = false;
   }
