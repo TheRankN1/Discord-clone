@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this._serverService.getServersFromLocalStorage();
+    this._serverService.getUserLoggedServersFromLocalStorage();
     this._serverService.listenToServersAndUpdateLocalStorage();
     this._authService.getUsersFromLocalStorage();
     this._authService.getLoggedUserFromLocalStorage();

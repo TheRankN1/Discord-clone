@@ -24,7 +24,7 @@ export class AuthService {
     });
 
     if (!foundUsername) {
-      users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color(), fullName: fullName });
+      users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color(), fullName: fullName, servers: [] });
       this.users$.next(users);
     }
 
@@ -55,7 +55,7 @@ export class AuthService {
 
   public getLoggedUserFromLocalStorage(): void {
     const loggedUser: string | null = localStorage.getItem(USER_LOGGED_KEY);
-    this.loggedUser$.next(loggedUser ? JSON.parse(loggedUser) : {});
+    this.loggedUser$.next(loggedUser ? JSON.parse(loggedUser) : null);
   }
 
   public logoutFromLocalStorage(): void {

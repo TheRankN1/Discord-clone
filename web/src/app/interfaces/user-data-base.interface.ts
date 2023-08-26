@@ -4,4 +4,5 @@ export interface UserDataBaseInterface {
   password: string;
   bgColor: string;
   fullName?: string;
+  servers: Array<string>;
 }
