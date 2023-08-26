@@ -6,6 +6,6 @@ export interface ServerInterface {
   categories: Array<CategoryInterface>;
   serverBgColor: string;
   isActive: boolean;
-  createdBy?: string;
-  createdOn?: Date;
+  createdBy: string;
+  createdOn: Date;
 }

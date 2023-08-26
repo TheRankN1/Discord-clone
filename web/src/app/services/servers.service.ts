@@ -10,7 +10,6 @@ import { AuthService } from './auth.service';
 import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
-const LOGGED_USER_SERVER_LOCALSTORAGE_KEY = 'loggedUserServers';
 
 @Injectable({
   providedIn: 'root'
@@ -32,25 +31,18 @@ export class ServersService {
     const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
     const users: Array<UserDataBaseInterface> = this._authService.users$.value;
 
-    if (!title) {
-      return;
-    }
-
     servers.push({
       id: GeneratorHelpers.uuid(),
       title: title,
       isActive: false,
       serverBgColor: GeneratorHelpers.color(),
       categories: [],
-      createdBy: this._authService.loggedUser$.value?.id,
+      createdBy: this._authService.loggedUser$.value?.id || '',
       createdOn: new Date()
     });
 
     if (loggedUser) {
-      loggedUser?.servers?.push(servers[servers.length - 1]?.id);
-    }
-
-    if (loggedUser) {
+      loggedUser.servers.push(servers[servers.length - 1]?.id);
       let index = users.indexOf(loggedUser);
       users[index].servers = loggedUser.servers;
     }
@@ -62,15 +54,9 @@ export class ServersService {
   }
 
   public filterTheLoggedUserServers(): void {
-    let loggedUserServers: Array<ServerInterface>;
-
-    loggedUserServers = this.servers$.value.filter((server: ServerInterface) => {
-      if (!this._authService.loggedUser$.value) {
-        return;
-      }
-      return server.createdBy === this._authService.loggedUser$.value.id;
-    });
-
+    const loggedUserServers: Array<ServerInterface> = this.servers$.value.filter(
+      (server: ServerInterface) => server.createdBy === this._authService.loggedUser$.value?.id
+    );
     this.loggedUserServers$.next(loggedUserServers);
   }
 
@@ -228,11 +214,6 @@ export class ServersService {
     this.servers$.next(servers ? JSON.parse(servers) : []);
   }
 
-  public getUserLoggedServersFromLocalStorage(): void {
-    const loggedUserService: string | null = localStorage.getItem(LOGGED_USER_SERVER_LOCALSTORAGE_KEY);
-    this.loggedUserServers$.next(loggedUserService ? JSON.parse(loggedUserService) : []);
-  }
-
   public makeAllServerInactive(): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     servers.forEach(server => (server.isActive = false));
@@ -243,11 +224,6 @@ export class ServersService {
     this.servers$.subscribe({
       next: (servers: Array<ServerInterface>) => {
         localStorage.setItem(SERVER_LOCALSTORAGE_KEY, JSON.stringify(servers));
-      }
-    });
-    this.loggedUserServers$.subscribe({
-      next: (loggedUserServer: Array<ServerInterface>) => {
-        localStorage.setItem(LOGGED_USER_SERVER_LOCALSTORAGE_KEY, JSON.stringify(loggedUserServer));
       }
     });
   }

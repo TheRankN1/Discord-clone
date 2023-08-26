@@ -11,7 +11,9 @@ export class ServerInitialization {
       title: '',
       categories: [],
       isActive: false,
-      serverBgColor: GeneratorHelpers.color()
+      serverBgColor: GeneratorHelpers.color(),
+      createdBy: '',
+      createdOn: new Date()
     };
   }
 
