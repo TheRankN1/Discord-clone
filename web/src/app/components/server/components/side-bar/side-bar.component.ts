@@ -87,7 +87,7 @@ export class SideBarComponent implements OnInit, ModalBase {
     this.isHoveredSearchServer = false;
   }
 
-  public onSearchServer(){
+  public onSearchServer() {
     this._router.navigate(['search']);
   }
 }

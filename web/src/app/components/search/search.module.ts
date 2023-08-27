@@ -1,10 +1,8 @@
-import {NgModule} from "@angular/core";
-import {SearchRoutesModule} from "./search.routes";
-import {ServerModule} from "../server/server.module";
+import { NgModule } from '@angular/core';
+import { SearchRoutesModule } from './search.routes';
+import { ServerModule } from '../server/server.module';
 
 @NgModule({
-  imports: [SearchRoutesModule , ServerModule],
+  imports: [SearchRoutesModule, ServerModule]
 })
-export class SearchModule {
-
-}
+export class SearchModule {}
