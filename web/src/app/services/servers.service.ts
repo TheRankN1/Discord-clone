@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ServerInterface } from '../interfaces/server.interface';
-import { BehaviorSubject } from 'rxjs';
-import { CategoryInterface } from '../interfaces/category.interface';
-import { GeneratorHelpers } from '../helpers/generator.helpers';
-import { ServerInitialization } from '../helpers/server.initialization';
-import { ChannelInterface } from '../interfaces/channel.interface';
-import { ChannelTypeEnum } from '../enums/channel-type.enum';
-import { AuthService } from './auth.service';
-import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
+import {Injectable} from '@angular/core';
+import {ServerInterface} from '../interfaces/server.interface';
+import {BehaviorSubject} from 'rxjs';
+import {CategoryInterface} from '../interfaces/category.interface';
+import {GeneratorHelpers} from '../helpers/generator.helpers';
+import {ServerInitialization} from '../helpers/server.initialization';
+import {ChannelInterface} from '../interfaces/channel.interface';
+import {ChannelTypeEnum} from '../enums/channel-type.enum';
+import {AuthService} from './auth.service';
+import {UserDataBaseInterface} from '../interfaces/user-data-base.interface';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
@@ -24,7 +24,8 @@ export class ServersService {
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
   public loggedUserServers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService) {
+  }
 
   public addServer(title: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
@@ -43,8 +44,11 @@ export class ServersService {
 
     if (loggedUser) {
       loggedUser.servers.push(servers[servers.length - 1]?.id);
-      let index = users.indexOf(loggedUser);
-      users[index].servers = loggedUser.servers;
+      users.forEach((user, index) => {
+        if (user.id === loggedUser.id) {
+          users[index].servers = loggedUser.servers;
+        }
+      })
     }
 
     this.filterTheLoggedUserServers();
@@ -55,8 +59,26 @@ export class ServersService {
 
   public filterTheLoggedUserServers(): void {
     const loggedUserServers: Array<ServerInterface> = this.servers$.value.filter(
-      (server: ServerInterface) => server.createdBy === this._authService.loggedUser$.value?.id
+      (server: ServerInterface) => (server.createdBy === this._authService.loggedUser$.value?.id) ||
+        (this._authService.loggedUser$.value?.servers.includes(server.id))
     );
+    this.loggedUserServers$.next(loggedUserServers);
+  }
+
+  public joinServer(server: ServerInterface): void{
+    const loggedUserServers = this.loggedUserServers$.value;
+    const loggedUser = this._authService.loggedUser$.value;
+
+    if (loggedUser) {
+      server.createdBy = loggedUser.id;
+    }
+
+    if(loggedUser) {
+      loggedUser.servers.push(server.id);
+    }
+
+    loggedUserServers.push(server);
+    this._authService.loggedUser$.next(loggedUser);
     this.loggedUserServers$.next(loggedUserServers);
   }
 
@@ -91,7 +113,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type });
+    foundCategory.channels.push({title: name, id: GeneratorHelpers.uuid(), type: type});
     this.servers$.next(servers);
   }
 
@@ -103,7 +125,7 @@ export class ServersService {
       return;
     }
     foundServer.title = title;
-    this.currentServer$.next({ ...foundServer });
+    this.currentServer$.next({...foundServer});
     this.servers$.next(servers);
   }
 
@@ -204,7 +226,7 @@ export class ServersService {
       servers.forEach((server: ServerInterface) => {
         server.isActive = server.id === id;
       });
-      this.currentServer$.next({ ...foundServer });
+      this.currentServer$.next({...foundServer});
       this.servers$.next(servers);
     }
   }

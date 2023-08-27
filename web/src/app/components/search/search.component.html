@@ -1,0 +1,19 @@
+<app-side-bar></app-side-bar>
+<app-server-details></app-server-details>
+<div class="search-servers">
+  <strong>Search servers ! </strong>
+  <div class="search">
+    <input [(ngModel)]="serverName" type="text">
+  </div>
+  <div class="servers">
+    <ng-container *ngFor="let server of servers$ | async">
+      <div class="server" *ngIf="server.title.includes(serverName)">
+        <div class="avatar-name">
+          <app-avatar [squareOnHover]="true" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
+          <div class="name">{{server.title}}</div>
+        </div>
+        <div *ngIf="!loggedUserServers$.value.includes(server)" (click)="joinServer(server)" class="join">join</div>
+      </div>
+    </ng-container>
+  </div>
+</div>

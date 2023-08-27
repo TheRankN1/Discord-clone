@@ -16,6 +16,7 @@ export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
   public isHoveredExit = false;
   public isHoveredCreateServer = false;
+  public isHoveredSearchServer = false;
 
   constructor(
     private _serversService: ServersService,
@@ -76,5 +77,17 @@ export class SideBarComponent implements OnInit, ModalBase {
 
   public onEndHoverCreateServer() {
     this.isHoveredCreateServer = false;
+  }
+
+  public onHoverSearchServer() {
+    this.isHoveredSearchServer = true;
+  }
+
+  public onEndHoverSearchServer() {
+    this.isHoveredSearchServer = false;
+  }
+
+  public onSearchServer(){
+    this._router.navigate(['search']);
   }
 }

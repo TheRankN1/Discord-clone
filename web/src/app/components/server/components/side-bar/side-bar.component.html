@@ -1,5 +1,9 @@
+
 <div class="scrolling-container">
   <div>
+    <div class="side-bar-action" (mouseenter)="onHoverSearchServer()" (mouseleave)="onEndHoverSearchServer()" (click)="onSearchServer()">
+      <app-icon [class.color-white]="isHoveredSearchServer" name="search" class="small color-green"></app-icon>
+    </div>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
         (click)="onServerDetails(server.id)"
