@@ -3,7 +3,7 @@
 <div class="search-servers">
   <strong>Search servers ! </strong>
   <div class="search">
-    <input [(ngModel)]="serverName" type="text" />
+    <input [(ngModel)]="serverName" type="text" placeholder="Search server"/>
   </div>
   <div class="servers">
     <ng-container *ngFor="let server of servers$ | async">
