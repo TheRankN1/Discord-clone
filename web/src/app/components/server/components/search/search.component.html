@@ -3,16 +3,16 @@
 <div class="search-servers">
   <strong>Search servers ! </strong>
   <div class="search">
-    <input [(ngModel)]="serverName" type="text" placeholder="Search server"/>
+    <input [(ngModel)]="serverName" type="text" placeholder="Search server" />
   </div>
   <div class="servers">
     <ng-container *ngFor="let server of servers$ | async">
-      <div class="server" *ngIf="server.title | includesServerName:serverName">
+      <div class="server" *ngIf="server.title | includesServerName: serverName">
         <div class="avatar-name">
           <app-avatar [squareOnHover]="true" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
           <div class="name">{{ server.title }}</div>
         </div>
-        <div *ngIf="!(loggedUserServers$ | includesServer:server)" (click)="joinServer(server)" class="join">join</div>
+        <div *ngIf="!(loggedUserServers$ | includesServer: server)" (click)="joinServer(server)" class="join">join</div>
       </div>
     </ng-container>
   </div>
