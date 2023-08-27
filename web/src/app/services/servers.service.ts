@@ -70,9 +70,6 @@ export class ServersService {
 
     if (loggedUser) {
       server.createdBy = loggedUser.id;
-    }
-
-    if (loggedUser) {
       loggedUser.servers.push(server.id);
     }
 
@@ -129,7 +126,7 @@ export class ServersService {
   }
 
   public deleteServer(serverId: string): void {
-    const servers: Array<ServerInterface> = this.servers$.value;
+    const servers: Array<ServerInterface> = this.loggedUserServers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
     if (!foundServer) {

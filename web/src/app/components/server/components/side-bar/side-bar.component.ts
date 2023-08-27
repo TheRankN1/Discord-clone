@@ -88,6 +88,6 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public onSearchServer() {
-    this._router.navigate(['search']);
+    this._router.navigate(['search']).then();
   }
 }

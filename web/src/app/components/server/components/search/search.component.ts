@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ServerInterface } from '../../interfaces/server.interface';
-import { ServersService } from '../../services/servers.service';
+import { ServerInterface } from '../../../../interfaces/server.interface';
+import { ServersService } from '../../../../services/servers.service';
 
 @Component({
   selector: 'app-search',

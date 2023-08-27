@@ -1,4 +1,4 @@
-@import 'colors';
+@import 'src/app/scss/colors';
 
 :host {
   display: flex;
@@ -27,7 +27,7 @@
     input {
       border: none;
       background: $discord-blue-color-050;
-      width: 30%;
+      width: 700px;
       border-radius: 4px;
       padding: 8px 0 8px 8px;
       color: #fff;

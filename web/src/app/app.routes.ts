@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./components/server/server.module').then(m => m.ServerModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./components/search/search.module').then(m => m.SearchModule)
-  },
-  {
     path: '**',
     redirectTo: 'auth'
   }

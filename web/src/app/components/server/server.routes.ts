@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ServerDetailsComponent } from './components/server-details/server-details.component';
 import { NgModule } from '@angular/core';
 import { ServerComponent } from './server.component';
+import {SearchComponent} from "./components/search/search.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         component: ServerDetailsComponent
       }
     ]
+  },
+  {
+    path:'search',
+    component:SearchComponent
   }
 ];
 
