@@ -6,6 +6,8 @@ import { GeneratorHelpers } from '../helpers/generator.helpers';
 import { ServerInitialization } from '../helpers/server.initialization';
 import { ChannelInterface } from '../interfaces/channel.interface';
 import { ChannelTypeEnum } from '../enums/channel-type.enum';
+import { AuthService } from './auth.service';
+import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
@@ -20,20 +22,42 @@ export class ServersService {
   public currentChannel$: BehaviorSubject<ChannelInterface> = new BehaviorSubject<ChannelInterface>(ServerInitialization.defaultChannel());
   public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
+  public loggedUserServers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
+
+  constructor(private _authService: AuthService) {}
 
   public addServer(title: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
-    if (!title) return;
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+    const users: Array<UserDataBaseInterface> = this._authService.users$.value;
 
     servers.push({
       id: GeneratorHelpers.uuid(),
       title: title,
       isActive: false,
       serverBgColor: GeneratorHelpers.color(),
-      categories: []
+      categories: [],
+      createdBy: this._authService.loggedUser$.value?.id || '',
+      createdOn: new Date()
     });
 
+    if (loggedUser) {
+      loggedUser.servers.push(servers[servers.length - 1]?.id);
+      let index = users.indexOf(loggedUser);
+      users[index].servers = loggedUser.servers;
+    }
+
+    this.filterTheLoggedUserServers();
+    this._authService.loggedUser$.next(loggedUser);
+    this._authService.users$.next(users);
     this.servers$.next(servers);
+  }
+
+  public filterTheLoggedUserServers(): void {
+    const loggedUserServers: Array<ServerInterface> = this.servers$.value.filter(
+      (server: ServerInterface) => server.createdBy === this._authService.loggedUser$.value?.id
+    );
+    this.loggedUserServers$.next(loggedUserServers);
   }
 
   public addCategory(category: string, serverId: string): void {

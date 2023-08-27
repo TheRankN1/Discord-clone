@@ -25,7 +25,8 @@ export class SideBarComponent implements OnInit, ModalBase {
   ) {}
 
   public ngOnInit(): void {
-    this.servers$ = this._serversService.servers$;
+    this._serversService.filterTheLoggedUserServers();
+    this.servers$ = this._serversService.loggedUserServers$;
   }
 
   public trackByFn(index: number) {
