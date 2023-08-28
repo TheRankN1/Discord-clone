@@ -23,6 +23,8 @@ export class ServersService {
   public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
   public loggedUserServers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
+  public isLoggedSettingsModalOpen$:BehaviorSubject<boolean> = new BehaviorSubject(false);
+
 
   constructor(private _authService: AuthService) {}
 
@@ -51,6 +53,10 @@ export class ServersService {
     this._authService.loggedUser$.next(loggedUser);
     this._authService.users$.next(users);
     this.servers$.next(servers);
+  }
+
+  public openLoggedUserSettingsModal(){
+    this.isLoggedSettingsModalOpen$.next(true);
   }
 
   public filterTheLoggedUserServers(): void {

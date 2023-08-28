@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, Output , EventEmitter} from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import {BehaviorSubject, Subject, takeUntil} from 'rxjs';
 import { ServerInterface } from '../../../../interfaces/server.interface';
 import { ServersService } from '../../../../services/servers.service';
 import { CategoryInterface } from '../../../../interfaces/category.interface';
@@ -70,6 +70,10 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   }
 
   // ##### SERVER #####
+
+  public openLoggedUserSettingsModal(){
+    this._serversService.openLoggedUserSettingsModal();
+  }
 
   public openEditServerModal(server: ServerInterface): void {
     this._serversService.currentServer$.next(server);
