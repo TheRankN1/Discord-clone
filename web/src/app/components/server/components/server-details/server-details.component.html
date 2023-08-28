@@ -31,7 +31,7 @@
   </ng-container>
 </div>
 <div *ngIf="loggedUser" class="logged-user">
-  <app-avatar [bgColor]="loggedUser.bgColor" status="online" dimension="small"></app-avatar>
+  <app-avatar [bgColor]="loggedUser.bgColor" icon='logo' status="online" dimension="small"></app-avatar>
   <div class="names">
     <strong>{{ loggedUser.username }}</strong>
     <span *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</span>

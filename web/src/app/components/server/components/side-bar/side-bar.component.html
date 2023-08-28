@@ -1,22 +1,16 @@
 <div class="scrolling-container">
   <div>
-    <div class="side-bar-action" (mouseenter)="onHoverSearchServer()" (mouseleave)="onEndHoverSearchServer()" (click)="onSearchServer()">
-      <app-icon [class.color-white]="isHoveredSearchServer" name="search" class="small color-green"></app-icon>
-    </div>
+    <app-avatar (click)="onSearchServer()" [hover]="'fillBackground'" [icon]="'search'" [fillHoverColor]="'color-green'" [bgColor]="'#36373c'"></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
         (click)="onServerDetails(server.id)"
         [title]="server.title"
         [isActive]="server.isActive"
         [bgColor]="server.serverBgColor"
-        [squareOnHover]="true"
+        [hover]="'square'"
       ></app-avatar>
     </ng-container>
-    <div class="side-bar-action" (mouseenter)="onHoverCreateServer()" (mouseleave)="onEndHoverCreateServer()" (click)="openModalServer()">
-      <app-icon [class.color-white]="isHoveredCreateServer" name="plus" class="small color-green"></app-icon>
-    </div>
+    <app-avatar (click)="openModalServer()" [iconDimension]="'small'" [hover]="'fillBackground'" [icon]="'plus'" [fillHoverColor]="'color-green'" [bgColor]="'#36373c'"></app-avatar>
   </div>
-  <div class="side-bar-action exit" (mouseenter)="onHoverExit()" (mouseleave)="onEndHoverExit()" (click)="logout()">
-    <app-icon [class.color-white]="isHoveredExit" name="exit" class="small color-error"></app-icon>
-  </div>
+  <app-avatar (click)="logout()" [iconDimension]="'small'"  [hover]="'fillBackground'" [icon]="'exit'" [fillHoverColor]="'color-error'" [bgColor]="'#36373c'"></app-avatar>
 </div>

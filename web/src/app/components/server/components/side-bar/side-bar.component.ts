@@ -63,30 +63,6 @@ export class SideBarComponent implements OnInit, ModalBase {
     this._router.navigate(['auth/login']).then();
   }
 
-  public onHoverExit() {
-    this.isHoveredExit = true;
-  }
-
-  public onEndHoverExit() {
-    this.isHoveredExit = false;
-  }
-
-  public onHoverCreateServer() {
-    this.isHoveredCreateServer = true;
-  }
-
-  public onEndHoverCreateServer() {
-    this.isHoveredCreateServer = false;
-  }
-
-  public onHoverSearchServer() {
-    this.isHoveredSearchServer = true;
-  }
-
-  public onEndHoverSearchServer() {
-    this.isHoveredSearchServer = false;
-  }
-
   public onSearchServer() {
     this._router.navigate(['search']).then();
   }

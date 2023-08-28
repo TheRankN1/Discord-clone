@@ -9,10 +9,10 @@
     <ng-container *ngFor="let server of servers$ | async">
       <div class="server" *ngIf="server.title | includesServerName: serverName">
         <div class="avatar-name">
-          <app-avatar [squareOnHover]="true" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
+          <app-avatar [hover]="'square'" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
           <div class="name">{{ server.title }}</div>
         </div>
-        <div *ngIf="!(loggedUserServers$ | includesServer: server)" (click)="joinServer(server)" class="join">join</div>
+        <div (click)="joinServer(server)" *ngIf="!((loggedUserServers$ | async) | includesServer: server)"  class="join">join</div>
       </div>
     </ng-container>
   </div>

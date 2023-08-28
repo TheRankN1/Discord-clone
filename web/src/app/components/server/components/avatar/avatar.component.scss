@@ -31,6 +31,25 @@
       }
     }
 
+    &.fill-bg {
+      &:hover {
+        cursor: pointer;
+        border-radius: 20px;
+      }
+    }
+
+    &.fill-green {
+      &:hover {
+        background: $color-green !important;
+      }
+    }
+
+    &.fill-red {
+      &:hover {
+        background: $color-error !important;;
+      }
+    }
+
     &.active {
       position: relative;
 
@@ -86,6 +105,7 @@
         background: $color-error;
       }
     }
+
     img {
       width: 36px;
       height: 36px;

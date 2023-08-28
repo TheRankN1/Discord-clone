@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   name: 'includesServer'
 })
 export class IncludesServerPipe implements PipeTransform {
-  transform(loggedUserServers$: BehaviorSubject<Array<ServerInterface>>, server: ServerInterface): boolean {
-    return loggedUserServers$.value.includes(server);
+  transform(loggedUserServers$: Array<ServerInterface> | null, server: ServerInterface): boolean {
+    return loggedUserServers$ ? loggedUserServers$.includes(server) : false;
   }
 }
