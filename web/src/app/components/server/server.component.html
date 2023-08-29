@@ -2,4 +2,5 @@
 <router-outlet></router-outlet>
 <app-chat></app-chat>
 <app-users-list></app-users-list>
-<app-logged-user-settings [clickOutside]="isOpen"></app-logged-user-settings>
+
+<app-logged-user-settings *ngIf="isOpen"></app-logged-user-settings>

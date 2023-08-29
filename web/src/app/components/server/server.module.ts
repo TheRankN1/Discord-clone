@@ -13,17 +13,24 @@ import { IsNotEmptyPipe } from '../../pipes/is-not-empty.pipe';
 import { AvatarInitialsPipe } from '../../pipes/avatar-initials.pipe';
 import { ServerRoutesModule } from './server.routes';
 import { CommonModule } from '@angular/common';
-import {LoggedUserSettingsComponent} from "./components/logged-user-settings/logged-user-settings.component";
-import {ConvertDateTypePipe} from "../../pipes/convert-date.pipe";
-import {ClickOutsideModule} from "../../directives/click-outside/click-outside.module";
+import { LoggedUserSettingsComponent } from './components/logged-user-settings/logged-user-settings.component';
+import { ConvertDateTypePipe } from '../../pipes/convert-date.pipe';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe , ConvertDateTypePipe];
-const COMPONENTS = [ChatComponent, ServerDetailsComponent, UsersListComponent, AvatarComponent, SideBarComponent, IconComponent , LoggedUserSettingsComponent];
-const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule , ClickOutsideModule];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, ConvertDateTypePipe];
+const COMPONENTS = [
+  ChatComponent,
+  ServerDetailsComponent,
+  UsersListComponent,
+  AvatarComponent,
+  SideBarComponent,
+  IconComponent,
+  LoggedUserSettingsComponent
+];
+const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule];
 
 @NgModule({
   declarations: [PIPES, COMPONENTS],
-  imports: [MODULES , ClickOutsideModule],
+  imports: [MODULES],
   exports: [COMPONENTS]
 })
 export class ServerModule {}

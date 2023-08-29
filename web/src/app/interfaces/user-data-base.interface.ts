@@ -4,6 +4,6 @@ export interface UserDataBaseInterface {
   password: string;
   bgColor: string;
   fullName?: string;
-  joinedOn:Date;
+  joinedOn: Date;
   servers: Array<string>;
 }

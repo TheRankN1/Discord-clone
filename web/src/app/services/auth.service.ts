@@ -24,7 +24,15 @@ export class AuthService {
     });
 
     if (!foundUsername) {
-      users.push({ id: GeneratorHelpers.uuid(), username, password, bgColor: GeneratorHelpers.color(), fullName: fullName, servers: [] , joinedOn:new Date() });
+      users.push({
+        id: GeneratorHelpers.uuid(),
+        username,
+        password,
+        bgColor: GeneratorHelpers.color(),
+        fullName: fullName,
+        servers: [],
+        joinedOn: new Date()
+      });
       this.users$.next(users);
     }
 
