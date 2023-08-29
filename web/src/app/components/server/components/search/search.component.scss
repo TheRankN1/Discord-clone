@@ -61,8 +61,9 @@
   }
 
   .servers {
+    width: 600px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 20px;
     color: $color-white;
 
@@ -99,6 +100,9 @@
         gap: 20px;
       }
     }
+  }
+  .servers > * {
+    flex: 1 1 160px;
   }
 }
 
