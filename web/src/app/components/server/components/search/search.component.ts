@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
   public serverName: string = '';
   public loggedUserServers$!: BehaviorSubject<Array<ServerInterface>>;
-  public includeTheServer : boolean = false;
+  public includeTheServer: boolean = false;
 
   constructor(private _serversService: ServersService) {}
 

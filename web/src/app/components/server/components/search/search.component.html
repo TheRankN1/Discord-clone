@@ -12,7 +12,7 @@
           <app-avatar [hover]="'square'" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
           <div class="name">{{ server.title }}</div>
         </div>
-        <div (click)="joinServer(server)" *ngIf="!((loggedUserServers$ | async) | includesServer: server)"  class="join">join</div>
+        <div (click)="joinServer(server)" *ngIf="!(loggedUserServers$ | async | includesServer: server)" class="join">join</div>
       </div>
     </ng-container>
   </div>

@@ -1,6 +1,12 @@
 <div class="scrolling-container">
   <div>
-    <app-avatar (click)="onSearchServer()" [hover]="'fillBackground'" [icon]="'search'" [fillHoverColor]="'color-green'" [bgColor]="'#36373c'"></app-avatar>
+    <app-avatar
+      (click)="onSearchServer()"
+      [hover]="'fillBackground'"
+      [icon]="'search'"
+      [fillHoverColor]="'color-green'"
+      [bgColor]="'#36373c'"
+    ></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
         (click)="onServerDetails(server.id)"
@@ -10,7 +16,21 @@
         [hover]="'square'"
       ></app-avatar>
     </ng-container>
-    <app-avatar (click)="openModalServer()" [iconDimension]="'small'" [hover]="'fillBackground'" [icon]="'plus'" [fillHoverColor]="'color-green'" [bgColor]="'#36373c'"></app-avatar>
+    <app-avatar
+      (click)="openModalServer()"
+      [iconDimension]="'small'"
+      [hover]="'fillBackground'"
+      [icon]="'plus'"
+      [fillHoverColor]="'color-green'"
+      [bgColor]="'#36373c'"
+    ></app-avatar>
   </div>
-  <app-avatar (click)="logout()" [iconDimension]="'small'"  [hover]="'fillBackground'" [icon]="'exit'" [fillHoverColor]="'color-error'" [bgColor]="'#36373c'"></app-avatar>
+  <app-avatar
+    (click)="logout()"
+    [iconDimension]="'small'"
+    [hover]="'fillBackground'"
+    [icon]="'exit'"
+    [fillHoverColor]="'color-error'"
+    [bgColor]="'#36373c'"
+  ></app-avatar>
 </div>
