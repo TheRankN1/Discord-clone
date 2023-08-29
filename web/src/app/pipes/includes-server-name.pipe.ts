@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'includesServerName'
 })
 export class IncludesServerNamePipe implements PipeTransform {
-  transform(currentServerName: string, searchServerName: string): boolean {
+  public transform(currentServerName: string, searchServerName: string): boolean {
     return currentServerName.includes(searchServerName);
   }
 }

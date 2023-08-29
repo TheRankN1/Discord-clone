@@ -1,19 +1,22 @@
-<app-side-bar></app-side-bar>
 <app-server-details></app-server-details>
 <div class="search-servers">
-  <strong>Search servers ! </strong>
-  <div class="search">
-    <input [(ngModel)]="serverName" type="text" placeholder="Search server" />
+  <div class="top">
+    <strong>Search servers ! </strong>
+    <div class="search">
+      <input [(ngModel)]="serverName" (input)="includesServerName()" type="text" placeholder="Search server" />
+      <app-icon (click)="clearInput()" name="close-solid" class="big"></app-icon>
+    </div>
   </div>
   <div class="servers">
-    <ng-container *ngFor="let server of servers$ | async">
+    <ng-container *ngFor="let server of servers">
       <div class="server" *ngIf="server.title | includesServerName: serverName">
         <div class="avatar-name">
           <app-avatar [hover]="'square'" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
           <div class="name">{{ server.title }}</div>
         </div>
-        <div (click)="joinServer(server)" *ngIf="!(loggedUserServers$ | async | includesServer: server)" class="join">join</div>
+        <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | includesServer: server)" class="join">join</div>
       </div>
     </ng-container>
+    <h1 *ngIf="serverFound === false">No results</h1>
   </div>
 </div>

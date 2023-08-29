@@ -19,22 +19,43 @@
     margin-top: 20px;
   }
 
-  .search {
+  .top {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 128px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-1600.png);
 
-    input {
-      border: none;
+    .search {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: $discord-blue-color-050;
-      width: 700px;
+      width: 900px;
       border-radius: 4px;
       padding: 8px 0 8px 8px;
       color: #fff;
 
-      &::placeholder {
-        color: grey;
-        font-size: 14px;
+      input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 16px;
+        color: #fff;
+
+        &::placeholder {
+          color: grey;
+          font-size: 14px;
+        }
+      }
+
+      app-icon {
+        margin-right: 10px;
+        cursor: pointer;
       }
     }
   }
@@ -43,6 +64,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    color: $color-white;
 
     .server {
       display: flex;

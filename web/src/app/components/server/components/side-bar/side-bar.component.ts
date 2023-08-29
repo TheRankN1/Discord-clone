@@ -16,7 +16,6 @@ export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
   public isHoveredExit = false;
   public isHoveredCreateServer = false;
-  public isHoveredSearchServer = false;
 
   constructor(
     private _serversService: ServersService,

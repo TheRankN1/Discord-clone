@@ -16,12 +16,12 @@ const routes: Routes = [
       {
         path: 'details/:serverId',
         component: ServerDetailsComponent
+      },
+      {
+        path: 'search',
+        component: SearchComponent
       }
     ]
-  },
-  {
-    path: 'search',
-    component: SearchComponent
   }
 ];
 

@@ -43,7 +43,7 @@ export class ServersService {
 
     if (loggedUser) {
       loggedUser.servers.push(servers[servers.length - 1]?.id);
-      users.forEach((user, index) => {
+      users.forEach((user: UserDataBaseInterface, index: number) => {
         if (user.id === loggedUser.id) {
           users[index].servers = loggedUser.servers;
         }
@@ -57,11 +57,21 @@ export class ServersService {
   }
 
   public filterTheLoggedUserServers(): void {
-    const loggedUserServers: Array<ServerInterface> = this.servers$.value.filter(
-      (server: ServerInterface) =>
-        server.createdBy === this._authService.loggedUser$.value?.id || this._authService.loggedUser$.value?.servers.includes(server.id)
-    );
-    this.loggedUserServers$.next(loggedUserServers);
+    const loggedUserServerIds: Array<string> = this._authService.loggedUser$.value?.servers || [];
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const result: Array<ServerInterface> = [];
+
+    if (loggedUserServerIds.length) {
+      loggedUserServerIds.forEach((serverId: string) => {
+        const serverFound: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+        if (serverFound) {
+          result.push(serverFound);
+        }
+      });
+    }
+
+    this.loggedUserServers$.next(result);
   }
 
   public joinServer(server: ServerInterface): void {
@@ -69,7 +79,6 @@ export class ServersService {
     const loggedUser = this._authService.loggedUser$.value;
 
     if (loggedUser) {
-      server.createdBy = loggedUser.id;
       loggedUser.servers.push(server.id);
     }
 
@@ -126,15 +135,15 @@ export class ServersService {
   }
 
   public deleteServer(serverId: string): void {
-    const servers: Array<ServerInterface> = this.loggedUserServers$.value;
+    const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
 
     if (!foundServer) {
       return;
     }
-
     servers.splice(servers.indexOf(foundServer), 1);
     this.servers$.next(servers);
+    this.filterTheLoggedUserServers();
   }
 
   public editCategory(title: string, serverId: string, categoryId: string): void {

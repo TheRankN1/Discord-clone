@@ -18,19 +18,11 @@
     </ng-container>
     <app-avatar
       (click)="openModalServer()"
-      [iconDimension]="'small'"
+      class="fill-green"
       [hover]="'fillBackground'"
       [icon]="'plus'"
-      [fillHoverColor]="'color-green'"
       [bgColor]="'#36373c'"
     ></app-avatar>
   </div>
-  <app-avatar
-    (click)="logout()"
-    [iconDimension]="'small'"
-    [hover]="'fillBackground'"
-    [icon]="'exit'"
-    [fillHoverColor]="'color-error'"
-    [bgColor]="'#36373c'"
-  ></app-avatar>
+  <app-avatar (click)="logout()" class="fill-red" [hover]="'fillBackground'" [icon]="'exit'" [bgColor]="'#36373c'"></app-avatar>
 </div>

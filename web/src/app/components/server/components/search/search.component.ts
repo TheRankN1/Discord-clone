@@ -9,19 +9,42 @@ import { ServersService } from '../../../../services/servers.service';
   styleUrls: ['search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public servers$!: BehaviorSubject<Array<ServerInterface>>;
+  public servers!: Array<ServerInterface>;
   public serverName: string = '';
-  public loggedUserServers$!: BehaviorSubject<Array<ServerInterface>>;
-  public includeTheServer: boolean = false;
+  public loggedUserServers!: Array<ServerInterface>;
+  public serverFound!: boolean;
 
   constructor(private _serversService: ServersService) {}
 
   public ngOnInit(): void {
-    this.servers$ = this._serversService.servers$;
-    this.loggedUserServers$ = this._serversService.loggedUserServers$;
+    this._serversService.servers$.subscribe({
+      next: (servers: Array<ServerInterface>) => {
+        this.servers = servers;
+      }
+    });
+
+    this._serversService.loggedUserServers$.subscribe({
+      next: (servers: Array<ServerInterface>) => {
+        this.loggedUserServers = [...servers];
+      }
+    });
   }
 
-  public joinServer(server: ServerInterface) {
+  public joinServer(server: ServerInterface): void {
     this._serversService.joinServer(server);
+  }
+
+  public includesServerName(): void {
+    this.serverFound = false;
+    this.servers.forEach(server => {
+      if (server.title.includes(this.serverName)) {
+        this.serverFound = true;
+      }
+    });
+  }
+
+  public clearInput(): void {
+    this.serverName = '';
+    this.serverFound = true;
   }
 }
