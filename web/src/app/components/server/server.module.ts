@@ -23,7 +23,7 @@ const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, 
 
 @NgModule({
   declarations: [PIPES, COMPONENTS],
-  imports: [MODULES],
+  imports: [MODULES , ClickOutsideModule],
   exports: [COMPONENTS]
 })
 export class ServerModule {}

@@ -9,12 +9,10 @@ import {AuthService} from "../../../../services/auth.service";
 })
 export class LoggedUserSettingsComponent implements OnInit{
   public loggedUser !: UserDataBaseInterface | null;
-
   constructor(private _authService : AuthService) {
   }
 
   public ngOnInit(): void{
     this.loggedUser = this._authService.loggedUser$.value
   }
-
 }
