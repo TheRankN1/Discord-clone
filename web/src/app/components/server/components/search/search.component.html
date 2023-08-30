@@ -3,11 +3,11 @@
   <div class="top">
     <strong>Search servers ! </strong>
     <div class="search">
-      <input [(ngModel)]="serverName" (input)="includesServerName()" type="text" placeholder="Search server"/>
+      <input [(ngModel)]="serverName" (input)="includesServerName()" type="text" placeholder="Search server" />
       <app-icon *ngIf="serverName" (click)="clearInput()" name="close-solid" class="big"></app-icon>
     </div>
   </div>
-  <div class="servers ">
+  <div class="servers">
     <ng-container *ngFor="let server of servers">
       <div class="server" *ngIf="server.title | includesServerName: serverName">
         <div class="avatar-name">

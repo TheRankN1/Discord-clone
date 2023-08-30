@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './components/search/search.component';
 import { IncludesServerPipe } from '../../pipes/Includes-server.pipe';
 import { IncludesServerNamePipe } from '../../pipes/includes-server-name.pipe';
+import { LoggedUserSettingsComponent } from './components/logged-user-settings/logged-user-settings.component';
 
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, IncludesServerPipe, IncludesServerNamePipe];
 const COMPONENTS = [
@@ -25,7 +26,8 @@ const COMPONENTS = [
   AvatarComponent,
   SideBarComponent,
   IconComponent,
-  SearchComponent
+  SearchComponent,
+  LoggedUserSettingsComponent
 ];
 const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule];
 
