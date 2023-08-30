@@ -10,8 +10,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class ServerComponent implements OnInit, OnDestroy {
   public isOpen: boolean = false;
   public destroy$: Subject<void> = new Subject<void>();
-  public path = '';
-  public displayChat = false;
+  public path: string = '';
+  public displayChat: boolean = false;
 
   constructor(private _serverService: ServersService) {}
 

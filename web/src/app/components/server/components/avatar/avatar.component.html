@@ -4,6 +4,8 @@
   [class.square-on-hover]="hover === 'square'"
   [style.background-color]="bgColor"
   [class.fill-bg]="hover === 'fillBackground'"
+  [class.fill-green]="fillHoverColor === 'color-green'"
+  [class.fill-red]="fillHoverColor === 'color-error'"
 >
   <span *ngIf="hover === 'square'"> {{ title | avatarInitials }} </span>
   <ng-container *ngIf="bgImage; else logo">

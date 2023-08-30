@@ -84,8 +84,8 @@ export class ServersService {
   }
 
   public joinServer(server: ServerInterface): void {
-    const loggedUserServers = this.loggedUserServers$.value;
-    const loggedUser = this._authService.loggedUser$.value;
+    const loggedUserServers: Array<ServerInterface> = this.loggedUserServers$.value;
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
 
     if (loggedUser) {
       loggedUser.servers.push(server.id);

@@ -2,10 +2,10 @@
   <div>
     <app-avatar
       (click)="onSearchServer()"
-      [hover]="'fillBackground'"
-      [icon]="'search'"
-      [fillHoverColor]="'color-green'"
-      [bgColor]="'#36373c'"
+      [hover]="sideBarActions['search'].hoverClass"
+      [icon]="sideBarActions['search'].icon"
+      [fillHoverColor]="sideBarActions['search'].fillHoverClass"
+      [bgColor]="sideBarActions['search'].bgColor"
     ></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
@@ -13,16 +13,25 @@
         [title]="server.title"
         [isActive]="server.isActive"
         [bgColor]="server.serverBgColor"
-        [hover]="'square'"
+        hover="square"
       ></app-avatar>
     </ng-container>
     <app-avatar
       (click)="openModalServer()"
       class="fill-green"
-      [hover]="'fillBackground'"
-      [icon]="'plus'"
-      [bgColor]="'#36373c'"
+      [hover]="sideBarActions['addServer'].hoverClass"
+      [icon]="sideBarActions['addServer'].icon"
+      [bgColor]="sideBarActions['addServer'].bgColor"
+      [fillHoverColor]="sideBarActions['addServer'].fillHoverClass"
     ></app-avatar>
   </div>
-  <app-avatar (click)="logout()" class="fill-red" [hover]="'fillBackground'" [icon]="'exit'" [bgColor]="'#36373c'"></app-avatar>
+  <app-avatar
+    (click)="logout()"
+    class="fill-red"
+    [hover]="sideBarActions['logout'].hoverClass"
+    [icon]="sideBarActions['logout'].icon"
+    [bgColor]="sideBarActions['logout'].bgColor"
+    [fillHoverColor]="sideBarActions['logout'].fillHoverClass"
+  >
+  </app-avatar>
 </div>

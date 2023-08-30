@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { ModalService } from '../../../../services/modal.service';
 import { ModalBase } from '../../../../modals/modal.base';
 import { AuthService } from '../../../../services/auth.service';
+import { sidebarActions } from '../../../../data/actions.data';
+import { SidebarActionInterface } from '../../../../interfaces/sidebar-action.interface';
 
 @Component({
   selector: 'app-side-bar',
@@ -16,6 +18,7 @@ export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
   public isHoveredExit = false;
   public isHoveredCreateServer = false;
+  public sideBarActions: { [key: string]: SidebarActionInterface } = {};
 
   constructor(
     private _serversService: ServersService,
@@ -27,6 +30,7 @@ export class SideBarComponent implements OnInit, ModalBase {
   public ngOnInit(): void {
     this._serversService.filterTheLoggedUserServers();
     this.servers$ = this._serversService.loggedUserServers$;
+    this.sideBarActions = sidebarActions;
   }
 
   public trackByFn(index: number): number {

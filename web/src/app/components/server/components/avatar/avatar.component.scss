@@ -15,6 +15,17 @@
     color: $color-white;
     position: relative;
 
+    &.fill-green {
+      &:hover {
+        background: $color-green !important;
+      }
+    }
+
+    &.fill-red {
+      &:hover {
+        background: $color-error !important;
+      }
+    }
     &.small {
       width: 32px;
       height: 32px;
@@ -49,18 +60,6 @@
       &:hover {
         cursor: pointer;
         border-radius: 20px;
-      }
-    }
-
-    &.fill-green {
-      &:hover {
-        background: $color-green !important;
-      }
-    }
-
-    &.fill-red {
-      &:hover {
-        background: $color-error !important;
       }
     }
 

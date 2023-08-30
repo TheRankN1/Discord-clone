@@ -14,11 +14,11 @@ import { AvatarInitialsPipe } from '../../pipes/avatar-initials.pipe';
 import { ServerRoutesModule } from './server.routes';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './components/search/search.component';
-import { IncludesServerPipe } from '../../pipes/Includes-server.pipe';
+import { AlreadyJoinedPipe } from '../../pipes/Includes-server.pipe';
 import { IncludesServerNamePipe } from '../../pipes/includes-server-name.pipe';
 import { LoggedUserSettingsComponent } from './components/logged-user-settings/logged-user-settings.component';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, IncludesServerPipe, IncludesServerNamePipe];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe];
 const COMPONENTS = [
   ChatComponent,
   ServerDetailsComponent,

@@ -3,20 +3,18 @@
   <div class="top">
     <strong>Search servers ! </strong>
     <div class="search">
-      <input [(ngModel)]="serverName" (input)="includesServerName()" type="text" placeholder="Search server" />
-      <app-icon *ngIf="serverName" (click)="clearInput()" name="close-solid" class="big"></app-icon>
+      <input [(ngModel)]="inputServerName" (input)="onSearchInputChanged()" type="text" placeholder="Search server" />
+      <app-icon *ngIf="inputServerName" (click)="onSearchInputClear()" name="close-solid" class="big"></app-icon>
     </div>
   </div>
   <div class="servers">
-    <ng-container *ngFor="let server of servers">
-      <div class="server" *ngIf="server.title | includesServerName: serverName">
-        <div class="avatar-name">
-          <app-avatar [hover]="'square'" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
-          <div class="name ellipsis">{{ server.title }}</div>
-        </div>
-        <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | includesServer: server)" class="join">join</div>
+    <div class="server" *ngFor="let server of servers | includesServerName: inputServerName; trackBy: trackByFn">
+      <div class="avatar-name">
+        <app-avatar hover="square" [bgColor]="server.serverBgColor" [title]="server.title"></app-avatar>
+        <div class="name ellipsis">{{ server.title }}</div>
       </div>
-    </ng-container>
+      <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+    </div>
     <h1 *ngIf="serverFound === false">No results</h1>
   </div>
 </div>

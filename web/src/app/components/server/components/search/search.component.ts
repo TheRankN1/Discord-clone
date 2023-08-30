@@ -9,7 +9,7 @@ import { ServersService } from '../../../../services/servers.service';
 })
 export class SearchComponent implements OnInit {
   public servers!: Array<ServerInterface>;
-  public serverName: string = '';
+  public inputServerName: string = '';
   public loggedUserServers!: Array<ServerInterface>;
   public serverFound!: boolean;
 
@@ -33,17 +33,21 @@ export class SearchComponent implements OnInit {
     this._serversService.joinServer(server);
   }
 
-  public includesServerName(): void {
+  public onSearchInputChanged(): void {
     this.serverFound = false;
     this.servers.forEach(server => {
-      if (server.title.includes(this.serverName)) {
+      if (server.title.includes(this.inputServerName)) {
         this.serverFound = true;
       }
     });
   }
 
-  public clearInput(): void {
-    this.serverName = '';
+  public trackByFn(index: number): number {
+    return index;
+  }
+
+  public onSearchInputClear(): void {
+    this.inputServerName = '';
     this.serverFound = true;
   }
 }
