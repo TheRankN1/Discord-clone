@@ -9,13 +9,14 @@ import { AppRoutes } from './app.routes';
 import { ServerComponent } from './components/server/server.component';
 import { AuthModule } from './components/auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { TooltipModule } from './directives/tooltip/tooltip.module';
 
 const COMPONENTS = [AppComponent, ModalGenericComponent, ServerComponent];
 const MODULES = [CommonModule, FormsModule, AuthModule, BrowserModule, ServerModule, AppRoutes];
 
 @NgModule({
   declarations: [COMPONENTS],
-  imports: [MODULES],
+  imports: [MODULES, TooltipModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

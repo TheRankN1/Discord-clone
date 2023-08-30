@@ -100,4 +100,11 @@ app-icon {
       }
     }
   }
+  &.color-black {
+    svg {
+      path {
+        fill: #000;
+      }
+    }
+  }
 }

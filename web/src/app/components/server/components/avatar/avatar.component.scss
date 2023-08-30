@@ -20,6 +20,20 @@
       height: 32px;
     }
 
+    &.xxl {
+      width: 80px;
+      height: 80px;
+      border: 4px solid $discord-blue-color-030;
+      &.online {
+        &:before {
+          border: 6px solid $discord-blue-color-010;
+          background: $color-green;
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+
     &.bg-image {
       background-color: transparent !important;
     }
