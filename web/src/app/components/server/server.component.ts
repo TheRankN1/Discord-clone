@@ -10,6 +10,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class ServerComponent implements OnInit, OnDestroy {
   public isOpen: boolean = false;
   public destroy$: Subject<void> = new Subject<void>();
+  public path: string = '';
+  public displayChat: boolean = false;
 
   constructor(private _serverService: ServersService) {}
 
@@ -19,6 +21,10 @@ export class ServerComponent implements OnInit, OnDestroy {
         this.isOpen = isOpen;
       }
     });
+    this.path = window.location.pathname;
+    if (this.path.includes('servers')) {
+      this.displayChat = true;
+    }
   }
 
   public ngOnDestroy(): void {

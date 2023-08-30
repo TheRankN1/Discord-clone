@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { ModalService } from '../../../../services/modal.service';
 import { ModalBase } from '../../../../modals/modal.base';
 import { AuthService } from '../../../../services/auth.service';
+import { sidebarActions } from '../../../../data/actions.data';
+import { SidebarActionInterface } from '../../../../interfaces/sidebar-action.interface';
 
 @Component({
   selector: 'app-side-bar',
@@ -14,8 +16,7 @@ import { AuthService } from '../../../../services/auth.service';
 })
 export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
-  public isHoveredExit = false;
-  public isHoveredCreateServer = false;
+  public sideBarActions: { [key: string]: SidebarActionInterface } = {};
 
   constructor(
     private _serversService: ServersService,
@@ -27,9 +28,10 @@ export class SideBarComponent implements OnInit, ModalBase {
   public ngOnInit(): void {
     this._serversService.filterTheLoggedUserServers();
     this.servers$ = this._serversService.loggedUserServers$;
+    this.sideBarActions = sidebarActions;
   }
 
-  public trackByFn(index: number) {
+  public trackByFn(index: number): number {
     return index;
   }
 
@@ -62,19 +64,7 @@ export class SideBarComponent implements OnInit, ModalBase {
     this._router.navigate(['auth/login']).then();
   }
 
-  public onHoverExit() {
-    this.isHoveredExit = true;
-  }
-
-  public onEndHoverExit() {
-    this.isHoveredExit = false;
-  }
-
-  public onHoverCreateServer() {
-    this.isHoveredCreateServer = true;
-  }
-
-  public onEndHoverCreateServer() {
-    this.isHoveredCreateServer = false;
+  public onSearchServer() {
+    this._router.navigate(['search']).then();
   }
 }

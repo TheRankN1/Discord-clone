@@ -182,4 +182,8 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public onDeleteChannelModal(): void {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
   }
+
+  public trackByFn(index: number): number {
+    return index;
+  }
 }

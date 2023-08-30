@@ -44,8 +44,11 @@ export class ServersService {
 
     if (loggedUser) {
       loggedUser.servers.push(servers[servers.length - 1]?.id);
-      let index = users.indexOf(loggedUser);
-      users[index].servers = loggedUser.servers;
+      users.forEach((user: UserDataBaseInterface, index: number) => {
+        if (user.id === loggedUser.id) {
+          users[index].servers = loggedUser.servers;
+        }
+      });
     }
 
     this.filterTheLoggedUserServers();
@@ -63,9 +66,33 @@ export class ServersService {
   }
 
   public filterTheLoggedUserServers(): void {
-    const loggedUserServers: Array<ServerInterface> = this.servers$.value.filter(
-      (server: ServerInterface) => server.createdBy === this._authService.loggedUser$.value?.id
-    );
+    const loggedUserServerIds: Array<string> = this._authService.loggedUser$.value?.servers || [];
+    const servers: Array<ServerInterface> = this.servers$.value;
+    const result: Array<ServerInterface> = [];
+
+    if (loggedUserServerIds.length) {
+      loggedUserServerIds.forEach((serverId: string) => {
+        const serverFound: ServerInterface | undefined = servers.find(server => server.id === serverId);
+
+        if (serverFound) {
+          result.push(serverFound);
+        }
+      });
+    }
+
+    this.loggedUserServers$.next(result);
+  }
+
+  public joinServer(server: ServerInterface): void {
+    const loggedUserServers: Array<ServerInterface> = this.loggedUserServers$.value;
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+
+    if (loggedUser) {
+      loggedUser.servers.push(server.id);
+    }
+
+    loggedUserServers.push(server);
+    this._authService.loggedUser$.next(loggedUser);
     this.loggedUserServers$.next(loggedUserServers);
   }
 
@@ -123,9 +150,9 @@ export class ServersService {
     if (!foundServer) {
       return;
     }
-
     servers.splice(servers.indexOf(foundServer), 1);
     this.servers$.next(servers);
+    this.filterTheLoggedUserServers();
   }
 
   public editCategory(title: string, serverId: string, categoryId: string): void {

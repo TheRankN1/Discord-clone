@@ -1,6 +1,6 @@
 <app-side-bar></app-side-bar>
 <router-outlet></router-outlet>
-<app-chat></app-chat>
+<app-chat *ngIf="displayChat"></app-chat>
 <app-users-list></app-users-list>
 
 <app-logged-user-settings *ngIf="isOpen"></app-logged-user-settings>

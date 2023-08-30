@@ -1,0 +1,118 @@
+@import 'colors';
+
+:host {
+  display: flex;
+  background: $discord-blue-color-020;
+}
+
+.search-servers {
+  height: 100vh;
+  width: calc(100vw - 600px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-x: hidden;
+
+  strong {
+    color: $color-white;
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  .top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 128px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-1600.png);
+
+    .search {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: $discord-blue-color-050;
+      width: 900px;
+      border-radius: 4px;
+      padding: 8px 0 8px 8px;
+      color: #fff;
+
+      input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 16px;
+        color: #fff;
+
+        &::placeholder {
+          color: grey;
+          font-size: 14px;
+        }
+      }
+
+      app-icon {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .servers {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: $color-white;
+
+    .server {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: $color-white;
+      justify-content: space-between;
+      width: calc(33% - 34px);
+      background: $discord-blue-color-030;
+      padding: 12px;
+      border-radius: 10px;
+
+      .join {
+        display: flex;
+        padding: 5px 15px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        background: $color-blue;
+        color: $color-white;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 70%;
+        }
+      }
+
+      .avatar-name {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .name {
+          width: 150px;
+        }
+      }
+    }
+  }
+}
+
+.search-servers::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-servers::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
+}
