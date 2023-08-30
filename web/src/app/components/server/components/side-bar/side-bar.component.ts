@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ServersService } from '../../../../services/servers.service';
-import { ServerInterface } from '../../../../interfaces/server.interface';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { ModalService } from '../../../../services/modal.service';
-import { ModalBase } from '../../../../modals/modal.base';
-import { AuthService } from '../../../../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {ServersService} from '../../../../services/servers.service';
+import {ServerInterface} from '../../../../interfaces/server.interface';
+import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
+import {ModalService} from '../../../../services/modal.service';
+import {ModalBase} from '../../../../modals/modal.base';
+import {AuthService} from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -22,14 +22,15 @@ export class SideBarComponent implements OnInit, ModalBase {
     private _modalService: ModalService,
     private _router: Router,
     private _authService: AuthService
-  ) {}
+  ) {
+  }
 
   public ngOnInit(): void {
     this._serversService.filterTheLoggedUserServers();
     this.servers$ = this._serversService.loggedUserServers$;
   }
 
-  public trackByFn(index: number) {
+  public trackByFn(index: number): number {
     return index;
   }
 
