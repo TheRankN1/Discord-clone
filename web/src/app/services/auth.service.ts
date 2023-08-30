@@ -26,8 +26,8 @@ export class AuthService {
     if (!foundUsername) {
       users.push({
         id: GeneratorHelpers.uuid(),
-        username,
-        password,
+        username : username,
+        password : password,
         bgColor: GeneratorHelpers.color(),
         fullName: fullName,
         servers: [],

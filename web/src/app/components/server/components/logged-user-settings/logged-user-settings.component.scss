@@ -1,5 +1,11 @@
 @import 'colors';
 
+:host {
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
 .container {
   width: 400px;
   height: 500px;
@@ -71,9 +77,11 @@
         padding-bottom: 20px;
         border-bottom: 1px solid $discord-blue-color-light;
       }
+
       .member-since {
         margin-top: 20px;
         gap: 5px;
+
         span {
           font-size: 16px;
           color: $color-grey;
@@ -113,14 +121,17 @@
           align-items: center;
         }
       }
+
       .switch-account-container {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
+
         .switch-account {
           display: flex;
           align-items: center;
           gap: 20px;
+
           app-icon {
             transform: rotate(90deg);
           }

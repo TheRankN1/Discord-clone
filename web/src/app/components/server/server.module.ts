@@ -14,9 +14,8 @@ import { AvatarInitialsPipe } from '../../pipes/avatar-initials.pipe';
 import { ServerRoutesModule } from './server.routes';
 import { CommonModule } from '@angular/common';
 import { LoggedUserSettingsComponent } from './components/logged-user-settings/logged-user-settings.component';
-import { ConvertDateTypePipe } from '../../pipes/convert-date.pipe';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, ConvertDateTypePipe];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe];
 const COMPONENTS = [
   ChatComponent,
   ServerDetailsComponent,
