@@ -16,8 +16,6 @@ import { SidebarActionInterface } from '../../../../interfaces/sidebar-action.in
 })
 export class SideBarComponent implements OnInit, ModalBase {
   public servers$!: BehaviorSubject<Array<ServerInterface>>;
-  public isHoveredExit = false;
-  public isHoveredCreateServer = false;
   public sideBarActions: { [key: string]: SidebarActionInterface } = {};
 
   constructor(
