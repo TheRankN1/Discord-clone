@@ -7,7 +7,7 @@
         <app-icon name="pen" (click)="openEditServerModal(server)"></app-icon>
       </div>
     </div>
-    <ng-container *ngFor="let category of server.categories ; trackBy: trackByFn">
+    <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
       <div class="server-category">
         <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
         <div>
@@ -15,7 +15,7 @@
           <app-icon name="pen" (click)="openEditCategoryModal(category)"></app-icon>
         </div>
       </div>
-      <div class="server-channel" *ngFor="let channel of category.channels ; trackBy: trackByFn">
+      <div class="server-channel" *ngFor="let channel of category.channels; trackBy: trackByFn">
         <div class="channel-container ellipsis">
           <app-icon *ngIf="channel.type === ChannelTypeEnum.audio" name="audio-channel"></app-icon>
           <app-icon *ngIf="channel.type === ChannelTypeEnum.text" name="text-channel"></app-icon>
