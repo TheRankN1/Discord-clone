@@ -72,7 +72,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   // ##### SERVER #####
 
   public openLoggedUserSettingsModal() {
-    this._serversService.openLoggedUserSettingsModal();
+    this._serversService.toggleLoggedUserSettingsModal();
   }
 
   public openEditServerModal(server: ServerInterface): void {

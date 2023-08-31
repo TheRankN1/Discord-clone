@@ -160,3 +160,22 @@ $logged-user-container: 66px;
     background: rgb(255 255 255 / 20%);
   }
 }
+.action{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color:$color-white;
+  border-bottom: 1px solid rgba(220, 216, 216, 0.5);
+  padding: 6px;
+  &:hover{
+    cursor: pointer;
+    opacity: 80%;
+  }
+  &:nth-last-child(1){
+    border: none;
+  }
+  }
+
+.drop-down-trigger{
+  cursor: pointer;
+}

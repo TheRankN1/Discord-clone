@@ -2,19 +2,36 @@
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title !== ''">
       <strong class="ellipsis">{{ server.title }}</strong>
-      <div>
-        <app-icon name="add-message" (click)="openCategoryModal()"></app-icon>
-        <app-icon name="pen" (click)="openEditServerModal(server)"></app-icon>
-        <app-icon name="exit" (click)="leaveServer(server)"></app-icon>
-      </div>
+      <div class="drop-down-trigger" [dropdownTrigger]="dropDownServer">. . .</div>
+      <app-drop-down #dropDownServer>
+        <div class="action" (click)="openCategoryModal()">
+          <app-icon name="add-message"></app-icon>
+          <span>Create</span>
+        </div>
+        <div class="action" (click)="openEditServerModal(server)">
+          <app-icon name="pen"></app-icon>
+          <span>Edit</span>
+        </div>
+        <div class="action" (click)="leaveServer(server)">
+          <app-icon name="exit"></app-icon>
+          <span>Exit</span>
+        </div>
+      </app-drop-down>
     </div>
     <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
       <div class="server-category">
         <strong class="ellipsis">{{ category.title }}</strong>
-        <div>
-          <app-icon name="add-message" (click)="openCreateChannelModal(category)"></app-icon>
-          <app-icon name="pen" (click)="openEditCategoryModal(category)"></app-icon>
-        </div>
+        <div class="drop-down-trigger" [dropdownTrigger]="dropDownCategory">. . .</div>
+        <app-drop-down #dropDownCategory>
+          <div class="action" (click)="openCreateChannelModal(category)">
+            <app-icon name="add-message"></app-icon>
+            <span>Create</span>
+          </div>
+          <div class="action" (click)="openEditCategoryModal(category)">
+            <app-icon name="pen"></app-icon>
+            <span>Edit</span>
+          </div>
+        </app-drop-down>
       </div>
       <div class="server-channel" *ngFor="let channel of category.channels; trackBy: trackByFn">
         <div class="channel-container ellipsis">
