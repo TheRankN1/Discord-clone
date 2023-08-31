@@ -60,6 +60,7 @@ export class ServersService {
   public leaveServer(server: ServerInterface): void {
     const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
     loggedUser?.servers.splice(loggedUser?.servers.indexOf(server.id), 1);
+    this._authService.loggedUser$.next(loggedUser);
     this.filterTheLoggedUserServers();
   }
 
