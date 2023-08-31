@@ -1,12 +1,12 @@
 <div class="scrolling-container">
   <div>
     <app-avatar
-      *ngIf="sideBarActions['logout'] as logoutAction"
+      *ngIf="sideBarActions['search'] as searchAction"
       (click)="onSearchServer()"
-      [hover]="logoutAction.hoverClass"
-      [icon]="logoutAction.icon"
-      [fillHoverColor]="logoutAction.fillHoverClass"
-      [bgColor]="logoutAction.bgColor"
+      [hover]="searchAction.hoverClass"
+      [icon]="searchAction.icon"
+      [fillHoverColor]="searchAction.fillHoverClass"
+      [bgColor]="searchAction.bgColor"
     ></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
