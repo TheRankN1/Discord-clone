@@ -1,8 +1,8 @@
 @import 'colors';
 
 :host {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
   position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
 }

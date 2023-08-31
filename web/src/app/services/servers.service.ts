@@ -57,9 +57,9 @@ export class ServersService {
     this.servers$.next(servers);
   }
 
-  public leaveServer(server:ServerInterface): void{
+  public leaveServer(server: ServerInterface): void {
     const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
-    loggedUser?.servers.splice(loggedUser?.servers.indexOf(server.id) , 1);
+    loggedUser?.servers.splice(loggedUser?.servers.indexOf(server.id), 1);
     this.filterTheLoggedUserServers();
   }
 

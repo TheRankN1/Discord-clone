@@ -12,7 +12,7 @@
   <app-avatar status="online" [bgColor]="loggedUser.bgColor" icon="logo" dimension="xxl"></app-avatar>
   <div class="logged-user-data-container">
     <div class="logged-user-data">
-      <div class="fullName-name">
+      <div class="full-name">
         <strong>{{ loggedUser.fullName }}</strong>
         <strong *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</strong>
         <span>{{ loggedUser.username }}</span>

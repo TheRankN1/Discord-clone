@@ -1,7 +1,7 @@
 <div class="scrolling-container server">
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title !== ''">
-      <strong [tooltip]="server.title" position="bottom" class="ellipsis">{{ server.title }}</strong>
+      <strong class="ellipsis">{{ server.title }}</strong>
       <div>
         <app-icon name="add-message" (click)="openCategoryModal()"></app-icon>
         <app-icon name="pen" (click)="openEditServerModal(server)"></app-icon>
@@ -10,7 +10,7 @@
     </div>
     <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
       <div class="server-category">
-        <strong [tooltip]="category.title" position="top" class="ellipsis">{{ category.title }}</strong>
+        <strong class="ellipsis">{{ category.title }}</strong>
         <div>
           <app-icon name="add-message" (click)="openCreateChannelModal(category)"></app-icon>
           <app-icon name="pen" (click)="openEditCategoryModal(category)"></app-icon>
@@ -20,7 +20,7 @@
         <div class="channel-container ellipsis">
           <app-icon *ngIf="channel.type === ChannelTypeEnum.audio" name="audio-channel"></app-icon>
           <app-icon *ngIf="channel.type === ChannelTypeEnum.text" name="text-channel"></app-icon>
-          <span [tooltip]="channel.title" position="top" class="ellipsis">
+          <span class="ellipsis">
             {{ channel.title }}
           </span>
         </div>

@@ -5,15 +5,15 @@
   gap: 10px;
 
   .avatar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 48px;
     height: 48px;
-    border-radius: 50%;
     font-size: 16px;
     color: $color-white;
-    position: relative;
+    border-radius: 50%;
 
     &.fill-green {
       &:hover {
@@ -26,6 +26,7 @@
         background: $color-error !important;
       }
     }
+
     &.small {
       width: 32px;
       height: 32px;
@@ -35,12 +36,13 @@
       width: 80px;
       height: 80px;
       border: 4px solid $discord-blue-color-030;
+
       &.online {
-        &:before {
-          border: 6px solid $discord-blue-color-010;
-          background: $color-green;
+        &::before {
           width: 15px;
           height: 15px;
+          background: $color-green;
+          border: 6px solid $discord-blue-color-010;
         }
       }
     }
@@ -66,56 +68,56 @@
     &.active {
       position: relative;
 
-      &:before {
-        content: '';
+      &::before {
         position: absolute;
+        bottom: 2px;
         left: -8px;
         display: flex;
         width: 4px;
         height: 40px;
+        content: '';
         background: $color-white;
-        border-radius: 0 2px 2px 0;
         border: none;
-        bottom: 2px;
+        border-radius: 0 2px 2px 0;
       }
     }
 
-    &:before {
-      content: '';
+    &::before {
       position: absolute;
+      right: 0;
+      bottom: 0;
       width: 8px;
       height: 8px;
-      border-radius: 50%;
+      content: '';
       background: transparent;
-      bottom: 0;
-      right: 0;
+      border-radius: 50%;
     }
 
     &.online {
-      &:before {
-        border: 3px solid $discord-blue-color-010;
+      &::before {
         background: $color-green;
+        border: 3px solid $discord-blue-color-010;
       }
     }
 
     &.offline {
-      &:before {
-        border: 3px solid $discord-blue-color-010;
+      &::before {
         background: $color-grey;
+        border: 3px solid $discord-blue-color-010;
       }
     }
 
     &.idle {
-      &:before {
-        border: 3px solid $discord-blue-color-010;
+      &::before {
         background: $color-idle;
+        border: 3px solid $discord-blue-color-010;
       }
     }
 
     &.do-not-disturb {
-      &:before {
-        border: 3px solid $discord-blue-color-010;
+      &::before {
         background: $color-error;
+        border: 3px solid $discord-blue-color-010;
       }
     }
 

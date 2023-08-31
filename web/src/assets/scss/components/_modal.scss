@@ -4,24 +4,24 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
   width: 100vw;
   height: calc(100vh - 24px);
+  overflow-x: hidden;
+  background: rgb(0 0 0 / 30%);
+  transform: translate(-50%, -50%);
 
   .modal-content {
-    width: 410px;
-    padding: 20px;
-    background: $discord-blue-color-040;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border-radius: 20px;
+    width: 410px;
+    padding: 20px;
     color: $color-white;
+    background: $discord-blue-color-040;
+    border-radius: 20px;
 
     strong {
       font-size: 14px;
@@ -39,8 +39,8 @@
       }
 
       .delete-button {
-        background: $color-error-010;
         cursor: pointer;
+        background: $color-error-010;
 
         &:hover {
           color: $color-white;
@@ -50,18 +50,18 @@
 
       .edit-cancel-buttons {
         display: flex;
-        align-items: center;
         gap: 10px;
+        align-items: center;
       }
 
       button {
-        padding: 12px;
         display: flex;
         align-items: center;
+        padding: 12px;
         color: #fff;
+        cursor: pointer;
         background: transparent;
         border: none;
-        cursor: pointer;
         border-radius: 5px;
 
         &:hover {
@@ -80,29 +80,29 @@
         }
 
         &:disabled {
-          opacity: 20%;
           cursor: not-allowed;
+          opacity: 0.2;
         }
       }
     }
 
     .input {
-      background: $discord-blue-color-050;
-      border-radius: 4px;
       display: flex;
       align-items: center;
+      background: $discord-blue-color-050;
+      border-radius: 4px;
 
       input {
-        border: none;
-        background: transparent;
-        outline: none;
+        width: 100%;
         padding: 8px 0 8px 8px;
         color: $color-white;
-        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
 
         &::placeholder {
-          color: grey;
           font-size: 14px;
+          color: grey;
         }
       }
     }
@@ -110,22 +110,22 @@
     .channel-types {
       .title {
         font-size: 12px;
-        color: $color-grey;
         font-weight: bold;
+        color: $color-grey;
       }
 
       .types {
         display: flex;
         flex-direction: column;
-        margin-top: 24px;
         gap: 8px;
+        margin-top: 24px;
 
         .type {
           display: flex;
           align-items: center;
+          justify-content: space-between;
           padding: 8px 16px;
           border-radius: 5px;
-          justify-content: space-between;
 
           .type-details-container {
             display: flex;
@@ -138,9 +138,9 @@
               gap: 8px;
 
               span {
+                flex: 1;
                 font-size: 14px;
                 color: $color-grey;
-                flex: 1;
               }
             }
           }
@@ -154,34 +154,34 @@
           .radio {
             width: 16px;
             height: 16px;
+            cursor: pointer;
             border: 1px solid $color-grey;
             border-radius: 50%;
-            cursor: pointer;
           }
 
           &.active {
-            background: rgba(250, 250, 250, 0.2) !important;
+            background: rgb(250 250 250 / 20%) !important;
 
             .radio {
               position: relative;
 
-              &:before {
-                content: '';
-                width: 10px;
-                height: 10px;
+              &::before {
+                position: absolute;
                 top: 50%;
                 left: 50%;
-                transform: translate(-50%, -50%);
+                width: 10px;
+                height: 10px;
+                content: '';
                 background: $color-grey;
                 border-radius: 50%;
-                position: absolute;
+                transform: translate(-50%, -50%);
               }
             }
           }
 
           &:hover {
-            background: rgba(250, 250, 250, 0.1);
             cursor: pointer;
+            background: rgb(250 250 250 / 10%);
           }
         }
       }
@@ -190,10 +190,10 @@
 }
 
 label {
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .modal-container::-webkit-scrollbar {
@@ -204,6 +204,7 @@ label {
   background-color: $color-black;
   border-radius: 4px;
 }
+
 @media (max-height: 400px) {
   .modal-content {
     height: 100vh;
