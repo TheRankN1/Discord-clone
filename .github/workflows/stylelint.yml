@@ -13,7 +13,7 @@ jobs:
         name: Configure npm caching
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/prettier.yml') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/stylelint.yml') }}
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Run stylelint
