@@ -1,21 +1,12 @@
 name: Check stylelint
-
-on:
-  pull_request:
-
+on: [pull_request]
 jobs:
-  prettier:
+  stylelint:
+    name: runner / stylelint
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        name: Configure npm caching
+      - uses: actions/checkout@v3
+      - name: stylelint
+        uses: reviewdog/action-stylelint@v1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/stylelint.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-      - name: Run stylelint
-        run: |-
-          stylelint 'src/**/*.scss'
+          stylelint_input: 'src/**/*.scss'
