@@ -7,15 +7,15 @@ $logged-user-container: 66px;
 }
 
 .scrolling-container {
-  height: calc(100vh - #{$logged-user-container});
-  width: 240px;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 240px;
+  height: calc(100vh - #{$logged-user-container});
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -33,20 +33,26 @@ $logged-user-container: 66px;
     visibility: hidden;
   }
 
+  &-name,
+  &-category,
+  &-channel {
+    padding: 12px;
+  }
+
   &-name {
     display: flex;
     gap: 16px;
+    align-items: center;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    align-items: center;
     letter-spacing: -0.735px;
 
     strong {
-      flex: 1;
-      font-size: 24px;
       display: block;
+      flex: 1;
       padding-top: 14px;
+      font-size: 24px;
     }
 
     app-icon {
@@ -58,31 +64,31 @@ $logged-user-container: 66px;
       background: $discord-blue-color-light;
 
       app-icon {
-        visibility: visible;
         cursor: pointer;
+        visibility: visible;
       }
     }
   }
 
   &-category {
     display: flex;
-    align-items: center;
     gap: 16px;
+    align-items: center;
     color: $color-grey-010;
 
     strong {
+      display: block;
       flex: 1;
       font-size: 14px;
-      display: block;
     }
 
     &:hover {
-      color: $color-white;
       font-weight: bold;
+      color: $color-white;
 
       app-icon {
-        visibility: visible;
         cursor: pointer;
+        visibility: visible;
       }
     }
   }
@@ -91,27 +97,15 @@ $logged-user-container: 66px;
     display: flex;
     justify-content: space-between;
     margin-left: 12px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 115.9%;
-    letter-spacing: -0.085px;
     color: $color-grey-010;
-    font-size: 18px;
+    letter-spacing: -0.085px;
 
     span {
-      flex: 1;
-
       display: block;
-    }
-
-    &:hover {
-      background: $discord-blue-color-light;
-
-      .edit {
-        app-icon {
-          visibility: visible;
-          cursor: pointer;
-        }
-      }
+      flex: 1;
     }
 
     .channel-container {
@@ -119,14 +113,17 @@ $logged-user-container: 66px;
         visibility: visible;
       }
     }
-  }
-}
 
-.server {
-  &-name,
-  &-category,
-  &-channel {
-    padding: 12px;
+    &:hover {
+      background: $discord-blue-color-light;
+
+      .edit {
+        app-icon {
+          cursor: pointer;
+          visibility: visible;
+        }
+      }
+    }
   }
 
   div {
@@ -137,11 +134,11 @@ $logged-user-container: 66px;
 }
 
 .logged-user {
-  color: $color-white;
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
   padding: 16px;
+  color: $color-white;
   background: $discord-blue-color-060;
 
   .names {
@@ -157,17 +154,10 @@ $logged-user-container: 66px;
       color: $color-grey;
     }
   }
+
   &:hover {
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 20%);
   }
 }
 
-.scrolling-container::-webkit-scrollbar {
-  width: 4px;
-}
-
-.scrolling-container::-webkit-scrollbar-thumb {
-  background-color: $color-black;
-  border-radius: 4px;
-}

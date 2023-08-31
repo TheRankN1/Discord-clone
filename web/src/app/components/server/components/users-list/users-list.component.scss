@@ -1,15 +1,16 @@
 @import 'colors';
 
 .scrolling-container {
-  background: $discord-blue-color-010;
-  width: 254px;
-  color: $color-white;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  overflow-x: hidden;
+  width: 254px;
   height: calc(100vh - 32px);
+  padding: 16px;
+  overflow-x: hidden;
+  color: $color-white;
+  background: $discord-blue-color-010;
+
   .users {
     display: flex;
     flex-direction: column;
@@ -17,9 +18,9 @@
 
     .category {
       display: flex;
+      gap: 4px;
       align-items: center;
       color: $color-grey-010;
-      gap: 4px;
 
       &-name {
         font-size: 14px;
@@ -29,10 +30,11 @@
         font-size: 12px;
       }
     }
+
     .user {
       display: flex;
-      align-items: center;
       gap: 10px;
+      align-items: center;
 
       &-details {
         display: flex;
@@ -46,6 +48,7 @@
     }
   }
 }
+
 .scrolling-container::-webkit-scrollbar {
   width: 4px;
 }

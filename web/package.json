@@ -8,7 +8,8 @@
     "prettier:check": "prettier --check src/**",
     "prettier:write": "prettier --write **",
     "build:ts-strictify": "cd projects/ts-strictify && npm run build",
-    "lint:scss": "stylelint 'src/**/*.scss'"
+    "lint:scss": "stylelint 'src/**/*.scss'",
+    "lint:scss:write": "stylelint --fix 'src/**/*.scss'"
   },
   "private": true,
   "dependencies": {

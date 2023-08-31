@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap';
 @import 'src/app/scss/layout';
 // Components
 @import './src/app/directives/tooltip/tooltip';
 @import './src/assets/scss/components/modal';
+
 body {
   width: 100vw;
   height: 100vh;
-  margin: 0;
   padding: 0;
-  background: $discord-blue-color-030;
+  margin: 0;
   overflow-x: hidden;
-  font-family: 'Cabin', sans-serif;
+  font-family: Cabin, sans-serif;
+  background: $discord-blue-color-030;
 }
 
 input {
