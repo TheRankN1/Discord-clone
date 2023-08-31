@@ -1,0 +1,11 @@
+**/dist/
+**/*.min.css
+*.js
+*.ts
+*.jpg
+*.png
+*.svg
+*.ico
+*.html
+*.xlf
+*.mdx
