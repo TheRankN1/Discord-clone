@@ -1,14 +1,21 @@
 name: Check stylelint
-on: pull_request
+
+on:
+  pull_request:
 
 jobs:
-  linters:
-    name: stylelint
+  prettier:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions-hub/stylelint@master
-        env:
-          PATTERN: "*.scss"
-          INDENT_SPACES: 2
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: Configure npm caching
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/prettier.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Run stylelint
+        run: |-
+          stylelint 'src/**/*.scss'
