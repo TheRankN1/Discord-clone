@@ -1,21 +1,16 @@
 name: Check stylelint
 
-on:
-  pull_request:
+on: pull_request
 
 jobs:
-  prettier:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        name: Configure npm caching
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/workflows/stylelint.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-      - name: Run stylelint
-        run: |-
-          stylelint 'src/**/*.scss'
+      - uses: actions/checkout@v2
+      - run: npm install stylelint stylelint-config-standard
+      - run: |
+          echo '{"extends": "stylelint-config-standard"}' >> .stylelintrc.json
+      - run: |
+          npx stylelint --formatter unix '**/*.{css,scss}' \
+            | ruby -pe 'sub(/^(.+):(\d+):(\d+): (.+) \[(.+)\]$/, %q{::\5 file=\1,line=\2,col=\3::\4})'
+        shell: bash
