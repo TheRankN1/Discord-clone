@@ -88,6 +88,11 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public leaveServer(server: ServerInterface): void {
+    this._serversService.leaveServer(server);
+    this._router.navigate(['/servers']).then();
+  }
+
   public onDeleteServerModal(): void {
     this._serversService.deleteServer(this.currentServer.id);
     this._router.navigate(['/servers']).then();
