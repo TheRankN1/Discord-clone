@@ -1,0 +1,6 @@
+{
+  "*.html": "htmlhint",
+  "*.{js,ts}": "eslint --fix",
+  "*.{css,scss}": "stylelint --fix",
+  "*.{js,ts,html,scss,css}": "prettier --write"
+}
