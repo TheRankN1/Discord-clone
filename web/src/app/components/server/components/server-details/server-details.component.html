@@ -5,6 +5,7 @@
       <div>
         <app-icon name="add-message" (click)="openCategoryModal()"></app-icon>
         <app-icon name="pen" (click)="openEditServerModal(server)"></app-icon>
+        <app-icon name="exit" (click)="leaveServer()"></app-icon>
       </div>
     </div>
     <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
