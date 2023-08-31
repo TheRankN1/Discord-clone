@@ -4,7 +4,6 @@ import { ServerDetailsComponent } from './components/server-details/server-detai
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TooltipModule } from '../../directives/tooltip/tooltip.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AvatarComponent } from './components/avatar/avatar.component';
@@ -29,7 +28,7 @@ const COMPONENTS = [
   SearchComponent,
   LoggedUserSettingsComponent
 ];
-const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, TooltipModule, HttpClientModule, RouterModule, ServerRoutesModule];
+const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, ServerRoutesModule];
 
 @NgModule({
   declarations: [PIPES, COMPONENTS],
