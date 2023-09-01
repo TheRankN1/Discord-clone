@@ -65,8 +65,8 @@ export class ServersService {
   }
 
   public toggleLoggedUserSettingsModal(): void {
-   const isLoggedSettingsModalOpen = this.isLoggedSettingsModalOpen$.value;
-   isLoggedSettingsModalOpen ? this.isLoggedSettingsModalOpen$.next(false) : this.isLoggedSettingsModalOpen$.next(true);
+   const isLoggedSettingsModalOpen: boolean = this.isLoggedSettingsModalOpen$.value;
+   this.isLoggedSettingsModalOpen$.next(!isLoggedSettingsModalOpen);
   }
 
   public closeLoggedUserSettingsModal(): void {

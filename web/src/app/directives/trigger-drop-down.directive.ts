@@ -1,24 +1,21 @@
 import {
   Directive,
-  ElementRef,
+  ElementRef, EmbeddedViewRef, EventEmitter, HostListener,
   Input,
   OnDestroy,
   ViewContainerRef
 } from '@angular/core';
 
-import { TemplatePortal } from '@angular/cdk/portal';
-import { merge, Observable, Subscription } from 'rxjs';
+import {TemplatePortal} from '@angular/cdk/portal';
+import {merge, Observable, Subscription} from 'rxjs';
 import {DropdownPanel} from "../components/server/components/drop-down/dropdown-panel";
 import {Overlay, OverlayRef} from "@angular/cdk/overlay";
 
 @Directive({
   selector: '[dropdownTrigger]',
-  host: {
-    '(click)': 'toggleDropdown()'
-  }
 })
 export class TriggerDropDownDirective {
-  private isDropdownOpen = false;
+  private isDropdownOpen:boolean = false;
   private overlayRef!: OverlayRef;
   private dropdownClosingActionsSub = Subscription.EMPTY;
 
@@ -28,13 +25,15 @@ export class TriggerDropDownDirective {
     private overlay: Overlay,
     private elementRef: ElementRef<HTMLElement>,
     private viewContainerRef: ViewContainerRef
-  ) {}
+  ) {
+  }
 
-  toggleDropdown(): void {
+  @HostListener('click')
+  public toggleDropdown(): void {
     this.isDropdownOpen ? this.destroyDropdown() : this.openDropdown();
   }
 
-  openDropdown(): void {
+  public openDropdown(): void {
     this.isDropdownOpen = true;
     this.overlayRef = this.overlay.create({
       hasBackdrop: true,
@@ -54,21 +53,21 @@ export class TriggerDropDownDirective {
         ])
     });
 
-    const templatePortal = new TemplatePortal(
+    const templatePortal: TemplatePortal = new TemplatePortal(
       this.dropdownPanel.templateRef,
       this.viewContainerRef
     );
     this.overlayRef.attach(templatePortal);
 
-    this.dropdownClosingActionsSub = this.dropdownClosingActions().subscribe(
-      () => this.destroyDropdown()
-    );
+    this.dropdownClosingActionsSub = this.dropdownClosingActions().subscribe({
+      next: () => this.destroyDropdown()
+    });
   }
 
   private dropdownClosingActions(): Observable<MouseEvent | void> {
-    const backdropClick$ = this.overlayRef.backdropClick();
-    const detachment$ = this.overlayRef.detachments();
-    const dropdownClosed = this.dropdownPanel.closed;
+    const backdropClick$: Observable<MouseEvent> = this.overlayRef.backdropClick();
+    const detachment$: Observable<void> = this.overlayRef.detachments();
+    const dropdownClosed:EventEmitter<void> = this.dropdownPanel.closed;
 
     return merge(backdropClick$, detachment$, dropdownClosed);
   }
@@ -87,5 +86,6 @@ export class TriggerDropDownDirective {
     if (this.overlayRef) {
       this.overlayRef.dispose();
     }
+    this.dropdownClosingActionsSub.unsubscribe();
   }
 }

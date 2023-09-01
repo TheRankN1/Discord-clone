@@ -2,17 +2,19 @@
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title !== ''">
       <strong class="ellipsis">{{ server.title }}</strong>
-      <div class="drop-down-trigger" [dropdownTrigger]="dropDownServer">. . .</div>
+      <div class="drop-down-trigger" [dropdownTrigger]="dropDownServer">
+        <app-icon name="three-dots" class="color-white"></app-icon>
+      </div>
       <app-drop-down #dropDownServer>
-        <div class="action" (click)="openCategoryModal()">
+        <div class="drop-down-option" (click)="openCategoryModal()">
           <app-icon name="add-message"></app-icon>
           <span>Create</span>
         </div>
-        <div class="action" (click)="openEditServerModal(server)">
+        <div class="drop-down-option" (click)="openEditServerModal(server)">
           <app-icon name="pen"></app-icon>
           <span>Edit</span>
         </div>
-        <div class="action" (click)="leaveServer(server)">
+        <div class="drop-down-option" (click)="leaveServer(server)">
           <app-icon name="exit"></app-icon>
           <span>Exit</span>
         </div>
@@ -21,13 +23,15 @@
     <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
       <div class="server-category">
         <strong class="ellipsis">{{ category.title }}</strong>
-        <div class="drop-down-trigger" [dropdownTrigger]="dropDownCategory">. . .</div>
+        <div class="drop-down-trigger" [dropdownTrigger]="dropDownCategory">
+          <app-icon name="three-dots" class="color-white"></app-icon>
+        </div>
         <app-drop-down #dropDownCategory>
-          <div class="action" (click)="openCreateChannelModal(category)">
+          <div class="drop-down-option" (click)="openCreateChannelModal(category)">
             <app-icon name="add-message"></app-icon>
             <span>Create</span>
           </div>
-          <div class="action" (click)="openEditCategoryModal(category)">
+          <div class="drop-down-option" (click)="openEditCategoryModal(category)">
             <app-icon name="pen"></app-icon>
             <span>Edit</span>
           </div>

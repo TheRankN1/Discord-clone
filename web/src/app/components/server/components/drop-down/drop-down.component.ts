@@ -7,7 +7,6 @@ import {DropdownPanel} from "./dropdown-panel";
   styleUrls:['drop-down.component.scss']
 })
 export class DropDownComponent implements DropdownPanel{
-  @ViewChild(TemplateRef) templateRef!: TemplateRef<any>;
-  @Output() closed = new EventEmitter<void>();
-
+  @ViewChild(TemplateRef) public templateRef!: TemplateRef<any>;
+  @Output() public closed = new EventEmitter<void>();
 }
