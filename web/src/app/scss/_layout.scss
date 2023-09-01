@@ -13,6 +13,10 @@ app-icon {
   }
 
   /* SIZES */
+  &.very-small {
+    width: 14px;
+    height: 14px;
+  }
 
   &.small {
     svg {

@@ -62,10 +62,10 @@
   }
 
   .servers {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
     max-width: 1000px;
     color: $color-white;
 

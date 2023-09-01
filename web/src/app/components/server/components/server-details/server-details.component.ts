@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../../../interfaces/server.interface';
 import { ServersService } from '../../../../services/servers.service';
 import { CategoryInterface } from '../../../../interfaces/category.interface';
@@ -186,6 +186,14 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public onDeleteChannelModal(): void {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
+  }
+
+  public joinChannel(channel: ChannelInterface, category: CategoryInterface): void {
+    if (channel.type === ChannelTypeEnum.text) {
+      this._serversService.joinTextChannel(channel);
+    } else {
+      this._serversService.joinAudioChannel(channel, category);
+    }
   }
 
   public trackByFn(index: number): number {

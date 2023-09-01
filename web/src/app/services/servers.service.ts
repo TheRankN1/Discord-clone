@@ -103,6 +103,19 @@ export class ServersService {
     this.loggedUserServers$.next(loggedUserServers);
   }
 
+  public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface): void {
+    category.channels.forEach(channel => {
+      channel.hasJoinedUser = false;
+    });
+    this.currentCategory$.next(category);
+    channel.hasJoinedUser = true;
+    this.currentChannel$.next(channel);
+  }
+
+  public joinTextChannel(channel: ChannelInterface): void {
+    this.currentChannel$.next(channel);
+  }
+
   public addCategory(category: string, serverId: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
 
@@ -134,7 +147,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type });
+    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type, hasJoinedUser: false });
     this.servers$.next(servers);
   }
 
@@ -246,6 +259,11 @@ export class ServersService {
     if (foundServer) {
       servers.forEach((server: ServerInterface) => {
         server.isActive = server.id === id;
+        server.categories.forEach(category => {
+          category.channels.forEach(channel => {
+            channel.hasJoinedUser = false;
+          });
+        });
       });
       this.currentServer$.next({ ...foundServer });
       this.servers$.next(servers);

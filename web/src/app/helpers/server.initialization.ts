@@ -29,7 +29,8 @@ export class ServerInitialization {
     return {
       id: '',
       title: '',
-      type: ChannelTypeEnum.text
+      type: ChannelTypeEnum.text,
+      hasJoinedUser: false
     };
   }
 }

@@ -4,4 +4,5 @@ export interface ChannelInterface {
   id: string;
   title: string;
   type: ChannelTypeEnum;
+  hasJoinedUser: boolean;
 }
