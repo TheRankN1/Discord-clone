@@ -227,6 +227,7 @@ export class ServersService {
 
     foundChannel.title = name;
     foundChannel.type = type;
+    this.currentChannel$.next(foundChannel);
     this.servers$.next(servers);
   }
 
