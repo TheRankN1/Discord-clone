@@ -44,9 +44,13 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         }
 
         this._serversService.setCurrentServer(serverId);
-        this._serversService.currentServer$.subscribe(server => (this.currentServer = server));
-        this._serversService.currentCategory$.subscribe(category => (this.currentCategory = category));
-        this._serversService.currentChannel$.subscribe(channel => (this.currentChannel = channel));
+        this._serversService.currentServer$.pipe(takeUntil(this._destroy$)).subscribe({ next: server => (this.currentServer = server) });
+        this._serversService.currentCategory$
+          .pipe(takeUntil(this._destroy$))
+          .subscribe({ next: category => (this.currentCategory = category) });
+        this._serversService.currentChannel$
+          .pipe(takeUntil(this._destroy$))
+          .subscribe({ next: channel => (this.currentChannel = channel) });
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();
@@ -189,11 +193,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   }
 
   public joinChannel(channel: ChannelInterface, category: CategoryInterface): void {
-    if (channel.type === ChannelTypeEnum.text) {
-      this._serversService.joinTextChannel(channel);
-    } else {
-      this._serversService.joinAudioChannel(channel, category);
-    }
+    channel.type === ChannelTypeEnum.text
+      ? this._serversService.joinTextChannel(channel)
+      : this._serversService.joinAudioChannel(channel, category);
   }
 
   public trackByFn(index: number): number {
