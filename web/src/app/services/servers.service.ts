@@ -64,8 +64,9 @@ export class ServersService {
     this.filterTheLoggedUserServers();
   }
 
-  public openLoggedUserSettingsModal(): void {
-    this.isLoggedSettingsModalOpen$.next(true);
+  public toggleLoggedUserSettingsModal(): void {
+    const isLoggedSettingsModalOpen: boolean = this.isLoggedSettingsModalOpen$.value;
+    this.isLoggedSettingsModalOpen$.next(!isLoggedSettingsModalOpen);
   }
 
   public closeLoggedUserSettingsModal(): void {

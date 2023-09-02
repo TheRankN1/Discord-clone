@@ -1,0 +1,14 @@
+@import 'colors';
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+  width: 100px;
+  padding: 12px;
+  margin-top: 5px;
+  background: $discord-blue-color-020;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgb(64 64 64 / 15%);
+}
