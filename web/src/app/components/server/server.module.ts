@@ -16,9 +16,9 @@ import { SearchComponent } from './components/search/search.component';
 import { AlreadyJoinedPipe } from '../../pipes/Includes-server.pipe';
 import { IncludesServerNamePipe } from '../../pipes/includes-server-name.pipe';
 import { LoggedUserSettingsComponent } from './components/logged-user-settings/logged-user-settings.component';
-import {DropDownComponent} from "./components/drop-down/drop-down.component";
-import {TriggerDropDownDirective} from "../../directives/trigger-drop-down.directive";
-import {OverlayModule} from "@angular/cdk/overlay";
+import { DropDownComponent } from './components/drop-down/drop-down.component';
+import { TriggerDropDownDirective } from '../../directives/trigger-drop-down.directive';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe];
 const COMPONENTS = [
@@ -33,7 +33,7 @@ const COMPONENTS = [
   DropDownComponent,
   TriggerDropDownDirective
 ];
-const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, ServerRoutesModule , OverlayModule];
+const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, ServerRoutesModule, OverlayModule];
 
 @NgModule({
   declarations: [PIPES, COMPONENTS],

@@ -1,4 +1,4 @@
-@import "colors";
+@import 'colors';
 
 .drop-down-option {
   display: flex;
@@ -18,7 +18,8 @@
   }
 }
 
-.cdk-overlay-container,.cdk-global-overlay-wrapper {
+.cdk-overlay-container,
+.cdk-global-overlay-wrapper {
   top: 0;
   left: 0;
   width: 100%;
@@ -69,14 +70,15 @@
 }
 
 .cdk-high-contrast-active .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .cdk-overlay-dark-backdrop {
   background: rgb(0 0 0 / 32%);
 }
 
-.cdk-overlay-transparent-backdrop,.cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
+.cdk-overlay-transparent-backdrop,
+.cdk-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
   opacity: 0;
 }
 

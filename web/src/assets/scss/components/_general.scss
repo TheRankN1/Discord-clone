@@ -1,4 +1,5 @@
-@import "colors";
+@import 'colors';
+
 body {
   padding: 0;
   margin: 0;
@@ -6,6 +7,7 @@ body {
   font-family: Cabin, sans-serif;
   background: $discord-blue-color-030;
 }
+
 input {
   outline: none;
 }
