@@ -15,7 +15,7 @@ export class ChatComponent {
   ngOnInit() {
     this._serversService.currentChannel$.subscribe({
       next: channel => {
-        if (channel.type === ChannelTypeEnum.text) {
+        if (channel.type === ChannelTypeEnum.text && channel) {
           this.channelTextTitle = channel.title;
         }
       }

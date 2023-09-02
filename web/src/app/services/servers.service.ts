@@ -248,9 +248,10 @@ export class ServersService {
     if (!foundChannel) {
       return;
     }
-
+    foundChannel.title='';
     foundCategory.channels.splice(foundCategory.channels.indexOf(foundChannel), 1);
     this.servers$.next(servers);
+    this.currentChannel$.next(foundChannel)
   }
 
   public setCurrentServer(id: string): void {
