@@ -25,7 +25,7 @@
                 {{ channel.title }}
               </span>
             </div>
-            <div class="joined-user" *ngIf="loggedUser && channel.hasJoinedUser === true">
+            <div class="joined-user" *ngIf="loggedUser && channel.joinedChannelId">
               <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" dimension="very-small"></app-avatar>
               <span>{{ loggedUser.username }}</span>
             </div>

@@ -28,9 +28,9 @@ export class ServerInitialization {
   public static defaultChannel(): ChannelInterface {
     return {
       id: '',
+      joinedChannelId: '',
       title: '',
-      type: ChannelTypeEnum.text,
-      hasJoinedUser: false
+      type: ChannelTypeEnum.text
     };
   }
 }
