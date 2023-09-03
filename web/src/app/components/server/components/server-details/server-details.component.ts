@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { combineLatest, Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../../../interfaces/server.interface';
 import { ServersService } from '../../../../services/servers.service';
 import { CategoryInterface } from '../../../../interfaces/category.interface';
@@ -44,13 +44,20 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         }
 
         this._serversService.setCurrentServer(serverId);
-        this._serversService.currentServer$.subscribe(server => (this.currentServer = server));
-        this._serversService.currentCategory$.subscribe(category => (this.currentCategory = category));
-        this._serversService.currentChannel$.subscribe(channel => (this.currentChannel = channel));
+        combineLatest([this._serversService.currentServer$, this._serversService.currentCategory$, this._serversService.currentChannel$])
+          .pipe(takeUntil(this._destroy$))
+          .subscribe({
+            next: ([server, category, channel]) => {
+              this.currentServer = server;
+              this.currentCategory = category;
+              this.currentChannel = channel;
+            }
+          });
         if (serverId != this.currentServer.id) {
           this._serversService.makeAllServerInactive();
           this._router.navigate(['']).then();
         }
+        this._serversService.resetJoinedUsers();
       }
     });
     this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe({
@@ -186,6 +193,16 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public onDeleteChannelModal(): void {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
+  }
+
+  public joinChannel(channel: ChannelInterface, category: CategoryInterface): void {
+    if (channel.type === ChannelTypeEnum.text) {
+      this._serversService.joinTextChannel(channel);
+    }
+
+    if (channel.type === ChannelTypeEnum.audio) {
+      this._serversService.joinAudioChannel(channel, category);
+    }
   }
 
   public trackByFn(index: number): number {

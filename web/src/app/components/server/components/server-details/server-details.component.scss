@@ -94,6 +94,7 @@ $logged-user-container: 66px;
   }
 
   &-channel {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-left: 12px;
@@ -102,6 +103,7 @@ $logged-user-container: 66px;
     line-height: 115.9%;
     color: $color-grey-010;
     letter-spacing: -0.085px;
+    cursor: pointer;
 
     span {
       display: block;
@@ -111,6 +113,26 @@ $logged-user-container: 66px;
     .channel-container {
       app-icon {
         visibility: visible;
+      }
+
+      .channel {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .joined-user {
+          position: absolute;
+          top: 36px;
+          left: 42px;
+          z-index: 100;
+          margin-top: 8px;
+          font-size: 14px;
+          color: $color-grey;
+        }
+      }
+
+      .text-channel {
+        display: flex;
       }
     }
 

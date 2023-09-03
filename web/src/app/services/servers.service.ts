@@ -104,6 +104,25 @@ export class ServersService {
     this.loggedUserServers$.next(loggedUserServers);
   }
 
+  public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface): void {
+    category.channels.forEach(channel => {
+      channel.joinedChannelId = '';
+    });
+    this.currentCategory$.next(category);
+    channel.joinedChannelId = channel.id;
+    this.currentChannel$.next(channel);
+  }
+
+  public resetJoinedUsers() {
+    const currentChannel = this.currentChannel$.value;
+    currentChannel.joinedChannelId = '';
+    this.currentChannel$.next(currentChannel);
+  }
+
+  public joinTextChannel(channel: ChannelInterface): void {
+    this.currentChannel$.next(channel);
+  }
+
   public addCategory(category: string, serverId: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
 
@@ -135,7 +154,7 @@ export class ServersService {
       return;
     }
 
-    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type });
+    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type, joinedChannelId: '' });
     this.servers$.next(servers);
   }
 
@@ -215,6 +234,7 @@ export class ServersService {
 
     foundChannel.title = name;
     foundChannel.type = type;
+    this.currentChannel$.next(foundChannel);
     this.servers$.next(servers);
   }
 
@@ -235,9 +255,10 @@ export class ServersService {
     if (!foundChannel) {
       return;
     }
-
+    foundChannel.title = '';
     foundCategory.channels.splice(foundCategory.channels.indexOf(foundChannel), 1);
     this.servers$.next(servers);
+    this.currentChannel$.next(foundChannel);
   }
 
   public setCurrentServer(id: string): void {
