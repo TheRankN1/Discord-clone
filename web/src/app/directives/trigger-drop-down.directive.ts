@@ -1,15 +1,8 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  ViewContainerRef
-} from '@angular/core';
-import {TemplatePortal} from '@angular/cdk/portal';
-import {merge, Observable, Subscription} from 'rxjs';
-import {DropdownPanel} from '../components/server/components/drop-down/dropdown-panel';
-import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, ViewContainerRef } from '@angular/core';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { merge, Observable, Subscription } from 'rxjs';
+import { DropdownPanel } from '../components/server/components/drop-down/dropdown-panel';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 
 @Directive({
   selector: '[dropdownTrigger]'
@@ -25,8 +18,7 @@ export class TriggerDropDownDirective {
     private overlay: Overlay,
     private elementRef: ElementRef<HTMLElement>,
     private viewContainerRef: ViewContainerRef
-  ) {
-  }
+  ) {}
 
   @HostListener('click')
   public toggleDropdown(): void {
