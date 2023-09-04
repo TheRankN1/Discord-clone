@@ -133,6 +133,11 @@ $logged-user-container: 66px;
 
       .text-channel {
         display: flex;
+        overflow: hidden;
+      }
+
+      .audio-channel{
+        width: calc(100% - 68px);
       }
     }
 

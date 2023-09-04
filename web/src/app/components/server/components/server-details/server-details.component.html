@@ -43,8 +43,8 @@
         *ngFor="let channel of category.channels; trackBy: trackByFn"
       >
         <div class="channel-container ellipsis">
-          <div class="channel" *ngIf="channel.type === ChannelTypeEnum.audio">
-            <div class="audio-channel">
+          <div class="channel " *ngIf="channel.type === ChannelTypeEnum.audio">
+            <div class="audio-channel ">
               <app-icon name="audio-channel"></app-icon>
               <span class="ellipsis">
                 {{ channel.title }}
@@ -65,7 +65,7 @@
               </div>
             </ng-container>
           </div>
-          <div class="text-channel" *ngIf="channel.type === ChannelTypeEnum.text">
+          <div class="text-channel ellipsis" *ngIf="channel.type === ChannelTypeEnum.text">
             <app-icon name="text-channel"></app-icon>
             <span class="ellipsis">
               {{ channel.title }}
