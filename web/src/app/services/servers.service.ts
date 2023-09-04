@@ -104,19 +104,27 @@ export class ServersService {
     this.loggedUserServers$.next(loggedUserServers);
   }
 
-  public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface): void {
-    category.channels.forEach(channel => {
-      channel.joinedChannelId = '';
-    });
-    this.currentCategory$.next(category);
-    channel.joinedChannelId = channel.id;
-    this.currentChannel$.next(channel);
+  public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface, server: ServerInterface): void {
+    const loggedUser = this._authService.loggedUser$.value;
+    if (loggedUser) {
+      loggedUser.connectedToServer.serverId = '';
+      loggedUser.connectedToServer.categoryId = '';
+      loggedUser.connectedToServer.channelId = '';
+      loggedUser.connectedToServer.serverId = server.id;
+      loggedUser.connectedToServer.categoryId = category.id;
+      loggedUser.connectedToServer.channelId = channel.id;
+    }
+    this._authService.loggedUser$.next(loggedUser);
   }
 
   public resetJoinedUsers() {
-    const currentChannel = this.currentChannel$.value;
-    currentChannel.joinedChannelId = '';
-    this.currentChannel$.next(currentChannel);
+    const loggedUser = this._authService.loggedUser$.value;
+    if (loggedUser) {
+      loggedUser.connectedToServer.channelId = '';
+      loggedUser.connectedToServer.categoryId = '';
+    }
+    console.log(loggedUser);
+    this._authService.loggedUser$.next(loggedUser);
   }
 
   public joinTextChannel(channel: ChannelInterface): void {
@@ -153,8 +161,8 @@ export class ServersService {
     if (!foundCategory) {
       return;
     }
-
-    foundCategory.channels.push({ title: name, id: GeneratorHelpers.uuid(), type: type, joinedChannelId: '' });
+    const channelId = GeneratorHelpers.uuid();
+    foundCategory.channels.push({ title: name, id: channelId, type: type });
     this.servers$.next(servers);
   }
 
