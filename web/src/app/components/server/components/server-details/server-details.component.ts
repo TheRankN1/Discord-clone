@@ -195,13 +195,13 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
   }
 
-  public joinChannel(channel: ChannelInterface, category: CategoryInterface): void {
+  public joinChannel(channel: ChannelInterface, category: CategoryInterface, server: ServerInterface): void {
     if (channel.type === ChannelTypeEnum.text) {
       this._serversService.joinTextChannel(channel);
     }
 
     if (channel.type === ChannelTypeEnum.audio) {
-      this._serversService.joinAudioChannel(channel, category);
+      this._serversService.joinAudioChannel(channel, category, server);
     }
   }
 

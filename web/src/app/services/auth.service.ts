@@ -31,7 +31,12 @@ export class AuthService {
         bgColor: GeneratorHelpers.color(),
         fullName: fullName,
         servers: [],
-        joinedOn: new Date()
+        joinedOn: new Date(),
+        connectedToServer: {
+          serverId: '',
+          categoryId: '',
+          channelId: ''
+        }
       });
       this.users$.next(users);
     }

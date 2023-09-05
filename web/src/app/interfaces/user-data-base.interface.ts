@@ -6,4 +6,9 @@ export interface UserDataBaseInterface {
   fullName?: string;
   joinedOn: Date;
   servers: Array<string>;
+  connectedToServer: {
+    serverId: string;
+    categoryId: string;
+    channelId: string;
+  };
 }

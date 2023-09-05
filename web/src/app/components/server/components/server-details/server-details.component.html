@@ -37,21 +37,35 @@
           </div>
         </app-drop-down>
       </div>
-      <div class="server-channel" (click)="joinChannel(channel, category)" *ngFor="let channel of category.channels; trackBy: trackByFn">
+      <div
+        class="server-channel"
+        (click)="joinChannel(channel, category, server)"
+        *ngFor="let channel of category.channels; trackBy: trackByFn"
+      >
         <div class="channel-container ellipsis">
-          <div class="channel" *ngIf="channel.type === ChannelTypeEnum.audio">
-            <div class="audio-channel">
+          <div class="channel ellipsis" *ngIf="channel.type === ChannelTypeEnum.audio">
+            <div class="audio-channel ellipsis">
               <app-icon name="audio-channel"></app-icon>
               <span class="ellipsis">
                 {{ channel.title }}
               </span>
             </div>
-            <div class="joined-user" *ngIf="loggedUser && channel.joinedChannelId">
-              <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" dimension="very-small"></app-avatar>
-              <span>{{ loggedUser.username }}</span>
-            </div>
+            <ng-container *ngIf="loggedUser?.connectedToServer as serverConnection">
+              <div
+                class="joined-user"
+                *ngIf="
+                  loggedUser &&
+                  serverConnection.serverId === server.id &&
+                  serverConnection.channelId === channel.id &&
+                  serverConnection.categoryId === category.id
+                "
+              >
+                <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" dimension="very-small"></app-avatar>
+                <span>{{ loggedUser.username }}</span>
+              </div>
+            </ng-container>
           </div>
-          <div class="text-channel" *ngIf="channel.type === ChannelTypeEnum.text">
+          <div class="text-channel ellipsis" *ngIf="channel.type === ChannelTypeEnum.text">
             <app-icon name="text-channel"></app-icon>
             <span class="ellipsis">
               {{ channel.title }}

@@ -9,7 +9,7 @@ $logged-user-container: 66px;
 .scrolling-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 36px;
   width: 240px;
   height: calc(100vh - #{$logged-user-container});
   overflow-x: hidden;
@@ -122,10 +122,9 @@ $logged-user-container: 66px;
 
         .joined-user {
           position: absolute;
-          top: 36px;
+          top: 54px;
           left: 42px;
           z-index: 100;
-          margin-top: 8px;
           font-size: 14px;
           color: $color-grey;
         }
@@ -133,6 +132,11 @@ $logged-user-container: 66px;
 
       .text-channel {
         display: flex;
+        overflow: hidden;
+      }
+
+      .audio-channel {
+        width: calc(100% - 48px);
       }
     }
 
