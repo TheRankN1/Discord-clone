@@ -1,1 +1,4 @@
-<h1>{{ channelTextTitle }}</h1>
+<div *ngIf="channelTextTitle" class="channel-title">
+  <app-icon class="big color-grey" name="text-channel"></app-icon>
+  <span>{{ channelTextTitle }}</span>
+</div>

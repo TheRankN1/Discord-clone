@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { combineLatest, Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../../../interfaces/server.interface';
@@ -22,6 +22,8 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public ChannelTypeEnum: typeof ChannelTypeEnum = ChannelTypeEnum;
   public servers: Array<ServerInterface> = [];
   public loggedUser: UserDataBaseInterface | null = null;
+  public isExitHovered: Boolean = false;
+  public isDropDownOpen = false;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -71,6 +73,16 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  @HostListener('mouseenter')
+  mouseenter() {
+    this.isExitHovered = true;
+  }
+
+  @HostListener('mouseleave')
+  mouseover() {
+    this.isExitHovered = false;
+  }
+
   public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
@@ -80,6 +92,10 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public openLoggedUserSettingsModal() {
     this._serversService.toggleLoggedUserSettingsModal();
+  }
+
+  public dropDownStateChanged(isOpen: boolean): void {
+    this.isDropDownOpen = isOpen;
   }
 
   public openEditServerModal(server: ServerInterface): void {
