@@ -2,8 +2,8 @@
   <ng-container *ngIf="currentServer as server">
     <div class="server-name" *ngIf="server.title !== ''">
       <strong class="ellipsis">{{ server.title }}</strong>
-      <div class="drop-down-trigger" [dropdownTrigger]="dropDownServer" (isOpen)="dropDownStateChanged($event)">
-        <app-icon name="three-dots" class="color-white" [class.visible]="isDropDownOpen"></app-icon>
+      <div class="drop-down-trigger" [dropdownTrigger]="dropDownServer" (isOpen)="serverDropDownStateChanged($event)">
+        <app-icon name="three-dots" class="color-white" [class.visible]="isDropServerDownOpen"></app-icon>
       </div>
       <app-drop-down #dropDownServer>
         <div class="drop-down-option" (click)="openCategoryModal()">
@@ -23,8 +23,12 @@
     <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
       <div class="server-category">
         <strong class="ellipsis">{{ category.title }}</strong>
-        <div class="drop-down-trigger" [dropdownTrigger]="dropDownCategory" (isOpen)="dropDownStateChanged($event)">
-          <app-icon name="three-dots" class="color-white" [class.visible]="isDropDownOpen"></app-icon>
+        <div class="drop-down-trigger" [dropdownTrigger]="dropDownCategory" (isOpen)="categoryDropDownStateChanged($event, category)">
+          <app-icon
+            name="three-dots"
+            class="color-white"
+            [class.visible]="isDropCategoryDownOpen && category.id === currentCategoryId"
+          ></app-icon>
         </div>
         <app-drop-down #dropDownCategory>
           <div class="drop-down-option" (click)="openCreateChannelModal(category)">

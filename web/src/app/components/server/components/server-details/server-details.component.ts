@@ -23,7 +23,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public servers: Array<ServerInterface> = [];
   public loggedUser: UserDataBaseInterface | null = null;
   public isExitHovered: Boolean = false;
-  public isDropDownOpen = false;
+  public isDropServerDownOpen = false;
+  public isDropCategoryDownOpen = false;
+  public currentCategoryId!: string;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -94,8 +96,14 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     this._serversService.toggleLoggedUserSettingsModal();
   }
 
-  public dropDownStateChanged(isOpen: boolean): void {
-    this.isDropDownOpen = isOpen;
+  public serverDropDownStateChanged(isOpen: boolean): void {
+    this.isDropServerDownOpen = isOpen;
+  }
+
+  public categoryDropDownStateChanged(isOpen: boolean, category: CategoryInterface): void {
+    this._serversService.currentCategory$.next(category);
+    this.currentCategoryId = category.id;
+    this.isDropCategoryDownOpen = isOpen;
   }
 
   public openEditServerModal(server: ServerInterface): void {
