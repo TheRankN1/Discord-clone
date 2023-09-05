@@ -105,25 +105,25 @@ export class ServersService {
   }
 
   public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface, server: ServerInterface): void {
-    const loggedUser = this._authService.loggedUser$.value;
-    if (loggedUser) {
-      loggedUser.connectedToServer.serverId = '';
-      loggedUser.connectedToServer.categoryId = '';
-      loggedUser.connectedToServer.channelId = '';
-      loggedUser.connectedToServer.serverId = server.id;
-      loggedUser.connectedToServer.categoryId = category.id;
-      loggedUser.connectedToServer.channelId = channel.id;
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+
+    if (!loggedUser) {
+      return;
     }
+
+    loggedUser.connectedToServer.serverId = server.id;
+    loggedUser.connectedToServer.categoryId = category.id;
+    loggedUser.connectedToServer.channelId = channel.id;
     this._authService.loggedUser$.next(loggedUser);
   }
 
   public resetJoinedUsers() {
     const loggedUser = this._authService.loggedUser$.value;
     if (loggedUser) {
+      loggedUser.connectedToServer.serverId = '';
       loggedUser.connectedToServer.channelId = '';
       loggedUser.connectedToServer.categoryId = '';
     }
-    console.log(loggedUser);
     this._authService.loggedUser$.next(loggedUser);
   }
 
@@ -161,7 +161,7 @@ export class ServersService {
     if (!foundCategory) {
       return;
     }
-    const channelId = GeneratorHelpers.uuid();
+    const channelId: string = GeneratorHelpers.uuid();
     foundCategory.channels.push({ title: name, id: channelId, type: type });
     this.servers$.next(servers);
   }
