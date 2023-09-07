@@ -97,18 +97,26 @@ app-icon {
     }
   }
 
+  &.color-black {
+    svg {
+      path {
+        fill: #000;
+      }
+    }
+  }
+
   &.color-grey {
     svg {
       path {
         fill: $color-grey;
       }
     }
-  }
 
-  &.color-black {
-    svg {
-      path {
-        fill: #000;
+    &:hover {
+      svg {
+        path {
+          fill: $color-white !important;
+        }
       }
     }
   }
