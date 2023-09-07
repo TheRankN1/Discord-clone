@@ -239,7 +239,6 @@ export class ServersService {
     if (!foundChannel) {
       return;
     }
-
     foundChannel.title = name;
     foundChannel.type = type;
     this.currentChannel$.next(foundChannel);
