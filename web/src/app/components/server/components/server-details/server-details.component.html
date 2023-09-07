@@ -14,8 +14,8 @@
           <app-icon name="pen"></app-icon>
           <span>Edit</span>
         </div>
-        <div class="drop-down-option exit" (mouseleave)="mouseover()" (mouseenter)="mouseenter()" (click)="leaveServer(server)">
-          <app-icon name="exit" [class.color-white]="isExitHovered" class="color-error"></app-icon>
+        <div class="drop-down-option exit" (click)="leaveServer(server)">
+          <app-icon name="exit" class="color-error"></app-icon>
           <span>Exit</span>
         </div>
       </app-drop-down>

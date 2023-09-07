@@ -22,10 +22,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public ChannelTypeEnum: typeof ChannelTypeEnum = ChannelTypeEnum;
   public servers: Array<ServerInterface> = [];
   public loggedUser: UserDataBaseInterface | null = null;
-  public isExitHovered: Boolean = false;
   public isDropServerDownOpen = false;
   public isDropCategoryDownOpen = false;
-  public currentCategoryId!: string;
+  public currentCategoryId: string = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -73,16 +72,6 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  @HostListener('mouseenter')
-  mouseenter() {
-    this.isExitHovered = true;
-  }
-
-  @HostListener('mouseleave')
-  mouseover() {
-    this.isExitHovered = false;
   }
 
   public ngOnDestroy(): void {
