@@ -97,14 +97,6 @@ app-icon {
     }
   }
 
-  &.color-grey {
-    svg {
-      path {
-        fill: $color-grey;
-      }
-    }
-  }
-
   &.color-black {
     svg {
       path {
@@ -112,4 +104,24 @@ app-icon {
       }
     }
   }
+
+  &.color-grey {
+    svg {
+      path {
+        fill: $color-grey;
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: $color-white !important;
+        }
+      }
+    }
+  }
+}
+
+.visible {
+  visibility: visible !important;
 }

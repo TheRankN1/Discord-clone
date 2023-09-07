@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { combineLatest, Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../../../interfaces/server.interface';
@@ -22,6 +22,9 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   public ChannelTypeEnum: typeof ChannelTypeEnum = ChannelTypeEnum;
   public servers: Array<ServerInterface> = [];
   public loggedUser: UserDataBaseInterface | null = null;
+  public isDropServerDownOpen = false;
+  public isDropCategoryDownOpen = false;
+  public currentCategoryId: string = '';
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -80,6 +83,16 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public openLoggedUserSettingsModal() {
     this._serversService.toggleLoggedUserSettingsModal();
+  }
+
+  public serverDropDownStateChanged(isOpen: boolean): void {
+    this.isDropServerDownOpen = isOpen;
+  }
+
+  public categoryDropDownStateChanged(isOpen: boolean, category: CategoryInterface): void {
+    this._serversService.currentCategory$.next(category);
+    this.currentCategoryId = category.id;
+    this.isDropCategoryDownOpen = isOpen;
   }
 
   public openEditServerModal(server: ServerInterface): void {

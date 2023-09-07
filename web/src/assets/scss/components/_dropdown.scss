@@ -6,15 +6,27 @@
   align-items: center;
   padding: 6px;
   color: $color-white;
-  border-bottom: 1px solid rgb(220 216 216 / 50%);
 
   &:hover {
     cursor: pointer;
-    opacity: 0.8;
+    background: $color-blue-030;
   }
 
-  &:nth-last-child(1) {
-    border: none;
+  &.exit {
+    color: $color-error;
+
+    &:hover {
+      color: $color-white;
+      background: $color-error;
+
+      app-icon {
+        svg {
+          path {
+            fill: $color-white !important;
+          }
+        }
+      }
+    }
   }
 }
 
