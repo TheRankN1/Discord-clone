@@ -18,6 +18,14 @@
     &:hover {
       color: $color-white;
       background: $color-error;
+
+      app-icon {
+        svg {
+          path {
+            fill: $color-white !important;
+          }
+        }
+      }
     }
   }
 }
