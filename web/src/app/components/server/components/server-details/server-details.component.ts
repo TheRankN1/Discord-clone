@@ -196,6 +196,10 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public disconnectFromTheChannel(): void {
+    this._serversService.disconnectFromChannel();
+  }
+
   public onCreateChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
     this._serversService.addChannel(channelTitle, this.currentServer.id, this.currentCategory.id, type);
   }

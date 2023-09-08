@@ -117,6 +117,18 @@ export class ServersService {
     this._authService.loggedUser$.next(loggedUser);
   }
 
+  public disconnectFromChannel(): void {
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+
+    if (!loggedUser) {
+      return;
+    }
+
+    loggedUser.connectedToServer.serverId = '';
+    loggedUser.connectedToServer.categoryId = '';
+    loggedUser.connectedToServer.channelId = '';
+  }
+
   public resetJoinedUsers() {
     const loggedUser = this._authService.loggedUser$.value;
     if (loggedUser) {
