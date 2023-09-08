@@ -8,15 +8,15 @@
       <app-drop-down #dropDownServer>
         <div class="drop-down-option" (click)="openCategoryModal()">
           <app-icon name="add-message"></app-icon>
-          <span>Create</span>
+          <span>Create server</span>
         </div>
         <div class="drop-down-option" (click)="openEditServerModal(server)">
           <app-icon name="pen"></app-icon>
-          <span>Edit</span>
+          <span>Edit server</span>
         </div>
         <div class="drop-down-option exit" (click)="leaveServer(server)">
           <app-icon name="exit" class="color-error"></app-icon>
-          <span>Exit</span>
+          <span>Leave server</span>
         </div>
       </app-drop-down>
     </div>
@@ -33,11 +33,11 @@
         <app-drop-down #dropDownCategory>
           <div class="drop-down-option" (click)="openCreateChannelModal(category)">
             <app-icon name="add-message"></app-icon>
-            <span>Create</span>
+            <span>Create category</span>
           </div>
           <div class="drop-down-option" (click)="openEditCategoryModal(category)">
             <app-icon name="pen"></app-icon>
-            <span>Edit</span>
+            <span>Edit category</span>
           </div>
         </app-drop-down>
       </div>
