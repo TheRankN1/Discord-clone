@@ -9,6 +9,7 @@ export interface UserDataBaseInterface {
   connectedToServer: {
     serverId: string;
     categoryId: string;
-    channelId: string;
+    audioChannelId: string;
+    textChannelId: string;
   };
 }

@@ -35,7 +35,8 @@ export class AuthService {
         connectedToServer: {
           serverId: '',
           categoryId: '',
-          channelId: ''
+          audioChannelId: '',
+          textChannelId: ''
         }
       });
       this.users$.next(users);
