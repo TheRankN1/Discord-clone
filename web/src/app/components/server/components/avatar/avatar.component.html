@@ -1,16 +1,14 @@
 <div
-  class="avatar , {{ status }} , {{ dimension }}"
-  [class.active]="isActive === true"
-  [class.square-on-hover]="hover === 'square'"
+  class="avatar {{ status }} {{ dimension }} {{ fillHoverColor }}"
+  [ngClass]="{
+    active: isActive,
+    'square-on-hover': hover === 'square',
+    'fill-bg': hover === 'fillBackground'
+  }"
   [style.background-color]="bgColor"
-  [class.fill-bg]="hover === 'fillBackground'"
-  [class.fill-green]="fillHoverColor === 'color-green'"
-  [class.fill-red]="fillHoverColor === 'color-error'"
 >
   <span *ngIf="hover === 'square'"> {{ title | avatarInitials }} </span>
-  <ng-container *ngIf="bgImage; else logo">
-    <img src="{{ bgImage }}" alt="" />
-  </ng-container>
+  <img *ngIf="bgImage; else logo" src="{{ bgImage }}" />
   <ng-template #logo>
     <app-icon *ngIf="hover === 'fillBackground' || !hover" class="color-white {{ dimension }}" [name]="icon"></app-icon>
   </ng-template>

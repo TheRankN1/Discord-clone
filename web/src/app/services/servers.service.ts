@@ -104,16 +104,14 @@ export class ServersService {
     this.loggedUserServers$.next(loggedUserServers);
   }
 
-  public joinAudioChannel(channel: ChannelInterface, category: CategoryInterface, server: ServerInterface): void {
+  public joinAudioChannel(channel: ChannelInterface): void {
     const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
 
     if (!loggedUser) {
       return;
     }
 
-    loggedUser.connectedToServer.serverId = server.id;
-    loggedUser.connectedToServer.categoryId = category.id;
-    loggedUser.connectedToServer.audioChannelId = channel.id;
+    loggedUser.joinedChannelId = channel.id;
     this._authService.loggedUser$.next(loggedUser);
   }
 
@@ -124,18 +122,24 @@ export class ServersService {
       return;
     }
 
-    loggedUser.connectedToServer.textChannelId = channel.id;
+    loggedUser.joinedChannelId = channel.id;
     this._authService.loggedUser$.next(loggedUser);
     this.currentChannel$.next(channel);
+  }
+
+  public disconnectFromChannel(): void {
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+
+    if (!loggedUser) {
+      return;
+    }
+    loggedUser.joinedChannelId = '';
   }
 
   public resetJoinedUsers() {
     const loggedUser = this._authService.loggedUser$.value;
     if (loggedUser) {
-      loggedUser.connectedToServer.serverId = '';
-      loggedUser.connectedToServer.categoryId = '';
-      loggedUser.connectedToServer.audioChannelId = '';
-      loggedUser.connectedToServer.textChannelId = '';
+      loggedUser.joinedChannelId = '';
     }
     this._authService.loggedUser$.next(loggedUser);
   }

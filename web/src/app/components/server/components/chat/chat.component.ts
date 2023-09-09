@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this._serversService.currentChannel$.pipe(takeUntil(this._destroy$)).subscribe({
       next: channel => {
-        if (channel.type === ChannelTypeEnum.text && channel) {
+        if (channel.type === ChannelTypeEnum.text) {
           this.channelTextTitle = channel.title;
         } else {
           this.channelTextTitle = '';
