@@ -132,9 +132,11 @@ export class ServersService {
   public resetJoinedUsers() {
     const loggedUser = this._authService.loggedUser$.value;
     if (loggedUser) {
-      loggedUser.connectedToServer.serverId = '';
-      loggedUser.connectedToServer.channelId = '';
-      loggedUser.connectedToServer.categoryId = '';
+      loggedUser.connectedToServer = {
+        serverId: '',
+        channelId: '',
+        categoryId: ''
+      };
     }
     this._authService.loggedUser$.next(loggedUser);
   }
