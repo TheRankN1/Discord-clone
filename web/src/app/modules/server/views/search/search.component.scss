@@ -1,0 +1,119 @@
+@import '../../../../shared/scss/colors';
+
+:host {
+  display: flex;
+  background: $discord-blue-color-020;
+}
+
+.search-servers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: calc(100vw - 600px);
+  height: 100vh;
+  overflow-x: hidden;
+
+  strong {
+    margin-top: 20px;
+    font-size: 24px;
+    color: $color-white;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 128px;
+    background-image: url('https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-1600.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 900px;
+      padding: 8px 0 8px 8px;
+      color: #fff;
+      background: $discord-blue-color-050;
+      border-radius: 4px;
+
+      input {
+        width: 100%;
+        padding: 16px;
+        color: #fff;
+        background: transparent;
+        border: none;
+
+        &::placeholder {
+          font-size: 14px;
+          color: grey;
+        }
+      }
+
+      app-icon {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .servers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: $color-white;
+
+    .server {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(33% - 34px);
+      padding: 12px;
+      font-size: 16px;
+      color: $color-white;
+      background: $discord-blue-color-030;
+      border-radius: 10px;
+
+      .join {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px 15px;
+        color: $color-white;
+        cursor: pointer;
+        background: $color-blue;
+        border: none;
+        border-radius: 5px;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .avatar-name {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .name {
+          width: 150px;
+        }
+      }
+    }
+  }
+}
+
+.search-servers::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-servers::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
+}

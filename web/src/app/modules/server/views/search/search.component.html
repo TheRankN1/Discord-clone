@@ -1,0 +1,20 @@
+<app-server-details></app-server-details>
+<div class="search-servers">
+  <div class="top">
+    <strong>Search servers ! </strong>
+    <div class="search">
+      <input [(ngModel)]="inputServerName" (input)="onSearchInputChanged()" type="text" placeholder="Search server" />
+      <app-icon *ngIf="inputServerName" (click)="onSearchInputClear()" name="close-solid" class="big"></app-icon>
+    </div>
+  </div>
+  <div class="servers">
+    <div class="server" *ngFor="let server of servers | includesServerName: inputServerName; trackBy: trackByFn">
+      <div class="avatar-name">
+        <app-avatar hover="square" [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
+        <div class="name ellipsis">{{ server.title }}</div>
+      </div>
+      <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+    </div>
+    <h1 *ngIf="serverFound === false">No results</h1>
+  </div>
+</div>

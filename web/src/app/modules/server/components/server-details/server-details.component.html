@@ -1,0 +1,105 @@
+<div class="scrolling-container server">
+  <ng-container *ngIf="currentServer as server">
+    <div class="server-name" *ngIf="server.title !== ''">
+      <strong class="server-name--text ellipsis" [tooltip]="server.title" tooltipPosition="right">{{ server.title }}</strong>
+      <div>
+        <app-icon
+          [dropdownTrigger]="dropDownServer"
+          (isOpen)="serverDropDownStateChanged($event)"
+          name="three-dots"
+          class="color-white"
+          [class.visible]="isDropServerDownOpen"
+        ></app-icon>
+        <app-drop-down #dropDownServer>
+          <div class="drop-down-option" (click)="openCategoryModal()">
+            <app-icon name="add-message"></app-icon>
+            <span>Create server</span>
+          </div>
+          <div class="drop-down-option" (click)="openEditServerModal(server)">
+            <app-icon name="pen"></app-icon>
+            <span>Edit server</span>
+          </div>
+          <div class="drop-down-option exit" (click)="leaveServer(server)">
+            <app-icon name="exit" class="color-error"></app-icon>
+            <span>Leave server</span>
+          </div>
+        </app-drop-down>
+      </div>
+    </div>
+    <ng-container *ngFor="let category of server.categories; trackBy: trackByFn">
+      <div class="server-category">
+        <strong class="server-category--text ellipsis" [tooltip]="category.title" tooltipPosition="right">{{ category.title }}</strong>
+        <div>
+          <app-icon
+            name="three-dots"
+            class="color-white"
+            [class.visible]="isDropCategoryDownOpen && category.id === currentCategoryId"
+            [dropdownTrigger]="dropDownCategory"
+            (isOpen)="categoryDropDownStateChanged($event, category)"
+          ></app-icon>
+          <app-drop-down #dropDownCategory>
+            <div class="drop-down-option" (click)="openCreateChannelModal(category)">
+              <app-icon name="add-message"></app-icon>
+              <span>Create category</span>
+            </div>
+            <div class="drop-down-option" (click)="openEditCategoryModal(category)">
+              <app-icon name="pen"></app-icon>
+              <span>Edit category</span>
+            </div>
+          </app-drop-down>
+        </div>
+      </div>
+      <div
+        class="server-channel"
+        (click)="joinChannel(channel, category, server)"
+        *ngFor="let channel of category.channels; trackBy: trackByFn"
+      >
+        <div class="channel-container ellipsis">
+          <div class="channel" *ngIf="channel.type === ChannelTypeEnum.audio">
+            <div class="audio-channel">
+              <app-icon name="audio-channel"></app-icon>
+              <span class="audio-channel--text ellipsis" [tooltip]="channel.title" tooltipPosition="right">
+                {{ channel.title }}
+              </span>
+            </div>
+            <ng-container *ngIf="loggedUser?.connectedToServer as serverConnection">
+              <div
+                class="joined-user"
+                *ngIf="
+                  loggedUser &&
+                  serverConnection.serverId === server.id &&
+                  serverConnection.channelId === channel.id &&
+                  serverConnection.categoryId === category.id
+                "
+              >
+                <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" dimension="very-small"></app-avatar>
+                <span>{{ loggedUser.username }}</span>
+              </div>
+            </ng-container>
+          </div>
+          <div class="text-channel" *ngIf="channel.type === ChannelTypeEnum.text">
+            <app-icon name="text-channel"></app-icon>
+            <span class="text-channel--text ellipsis" [tooltip]="channel.title" tooltipPosition="right">
+              {{ channel.title }}
+            </span>
+          </div>
+        </div>
+        <div class="edit">
+          <app-icon name="pen" (click)="openEditChannelModal(category, channel)"></app-icon>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div *ngIf="loggedUser" class="logged-user">
+  <div class="logged-user-name" (click)="openLoggedUserSettingsModal()">
+    <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" status="online" dimension="small"></app-avatar>
+    <div class="names">
+      <strong>{{ loggedUser.username }}</strong>
+      <span *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</span>
+      <span>{{ loggedUser.fullName }}</span>
+    </div>
+  </div>
+  <app-icon (click)="disconnectFromTheChannel()" name="phone-missed"></app-icon>
+</div>
