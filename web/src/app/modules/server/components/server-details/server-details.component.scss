@@ -9,7 +9,6 @@ $logged-user-container: 66px;
 .scrolling-container {
   display: flex;
   flex-direction: column;
-  gap: 36px;
   width: 240px;
   height: calc(100vh - #{$logged-user-container});
   overflow-x: hidden;
@@ -27,6 +26,8 @@ $logged-user-container: 66px;
 .server {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   color: $color-white;
 
   app-icon {
@@ -34,8 +35,7 @@ $logged-user-container: 66px;
   }
 
   &-name,
-  &-category,
-  &-channel {
+  &-category {
     padding: 12px;
   }
 
@@ -94,15 +94,13 @@ $logged-user-container: 66px;
   }
 
   &-channel {
-    position: relative;
     display: flex;
-    justify-content: space-between;
+    padding: 0 8px;
     margin-left: 12px;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 115.9%;
-    color: $color-grey-010;
-    letter-spacing: -0.085px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 116%;
+    color: $color-grey-020;
     cursor: pointer;
 
     span {
@@ -111,56 +109,90 @@ $logged-user-container: 66px;
     }
 
     .channel-container {
-      app-icon {
-        visibility: visible;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      border-radius: 4px;
+
+      &.active {
+        font-weight: 600;
+        color: $color-white;
+        background: rgb(255 255 255 / 10%);
       }
 
-      .channel {
+      .joined-user {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        gap: 6px;
+        align-items: center;
+        padding: 4px 8px;
+        margin-left: 28px;
 
-        .joined-user {
-          position: absolute;
-          top: 54px;
-          left: 42px;
-          font-size: 14px;
-          color: $color-grey;
+        &:hover {
+          background: rgb(255 255 255 / 10%);
+          border-radius: 4px;
         }
       }
 
-      .text-channel {
+      .channel-details {
         display: flex;
-        overflow: hidden;
-      }
+        gap: 6px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px 8px;
 
-      .audio-channel {
-        width: calc(100% - 48px);
-      }
-    }
-
-    &:hover {
-      background: $discord-blue-color-light;
-
-      .edit {
         app-icon {
-          cursor: pointer;
           visibility: visible;
         }
+
+        .edit {
+          app-icon {
+            visibility: hidden;
+          }
+        }
+
+        .channel {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .text-channel,
+        .audio-channel {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+          width: 100%;
+        }
+
+        .text-channel {
+          display: flex;
+          overflow: hidden;
+        }
+
+        .audio-channel {
+          &.active {
+            font-weight: 600;
+            color: $color-white;
+          }
+        }
+
+        &:hover {
+          background: $discord-blue-color-light;
+
+          .edit {
+            app-icon {
+              cursor: pointer;
+              visibility: visible;
+            }
+          }
+        }
       }
     }
-  }
-
-  div {
-    display: flex;
-    gap: 10px;
-    align-items: center;
   }
 }
 
 .logged-user {
   display: flex;
-  gap: 8px;
   align-items: center;
   padding: 16px;
   color: $color-white;
@@ -168,7 +200,7 @@ $logged-user-container: 66px;
 
   .logged-user-name {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
     width: 100%;
 
