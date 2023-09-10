@@ -16,5 +16,6 @@
       <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
     </div>
     <h1 *ngIf="serverFound === false">No results</h1>
+    <h1 *ngIf="servers.length === 0">No servers yet, create one</h1>
   </div>
 </div>
