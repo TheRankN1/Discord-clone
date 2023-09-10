@@ -9,9 +9,9 @@
   [tooltip]="hideTooltip ? '' : title"
   tooltipPosition="right"
 >
-  <span *ngIf="hover === 'square'"> {{ title | avatarInitials }} </span>
+  <span *ngIf="hover === 'square'" class="avatar-initials"> {{ title | avatarInitials }} </span>
   <img *ngIf="bgImage; else logo" src="{{ bgImage }}" [attr.alt]="title" />
   <ng-template #logo>
-    <app-icon *ngIf="hover === 'fillBackground' || !hover" class="color-white {{ dimension }}" [name]="icon"></app-icon>
+    <app-icon *ngIf="hover === 'fillBackground' || !hover" class="avatar-icon color-white {{ dimension }}" [name]="icon"></app-icon>
   </ng-template>
 </div>
