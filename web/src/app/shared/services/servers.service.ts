@@ -241,7 +241,6 @@ export class ServersService {
   public editChannel(name: string, serverId: string, categoryId: string, channelId: string, type: ChannelTypeEnum): void {
     const servers: Array<ServerInterface> = this.servers$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
-
     if (!foundServer) {
       return;
     }
@@ -255,6 +254,9 @@ export class ServersService {
     if (!foundChannel) {
       return;
     }
+
+    if (type === ChannelTypeEnum.text) this.resetJoinedUsers();
+
     foundChannel.title = name;
     foundChannel.type = type;
     this.currentChannel$.next(foundChannel);
