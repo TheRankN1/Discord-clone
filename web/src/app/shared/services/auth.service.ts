@@ -51,9 +51,11 @@ export class AuthService {
       return user.username === username && user.password === password;
     });
 
-    if (foundUser) {
-      this.loggedUser$.next(foundUser);
+    if (!foundUser) {
+      return false;
     }
+    foundUser.lastLogin = new Date();
+    this.loggedUser$.next(foundUser);
 
     return !!foundUser;
   }
