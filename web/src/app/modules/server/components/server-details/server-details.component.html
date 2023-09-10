@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<div *ngIf="loggedUser" class="logged-user" [dropdownTrigger]="loggedUserDropDown">
+<div *ngIf="loggedUser" class="logged-user" [dropdownTrigger]="loggedUserDropDown" [customPosition]="loggedUserDropdownPosition">
   <div class="logged-user-name" (click)="openLoggedUserSettingsModal()">
     <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" status="online" dimension="small"></app-avatar>
     <div class="names">
