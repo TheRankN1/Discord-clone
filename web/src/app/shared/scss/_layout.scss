@@ -14,8 +14,8 @@ app-icon {
 
   /* SIZES */
   &.very-small {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
 
   &.small {
@@ -97,18 +97,26 @@ app-icon {
     }
   }
 
-  &.color-black {
-    svg {
-      path {
-        fill: #000 !important;
-      }
-    }
-  }
-
   &.channel-color {
     svg {
       path {
         fill: $color-grey-020 !important;
+      }
+    }
+  }
+
+  &.color-dark-grey {
+    svg {
+      path {
+        fill: $color-grey-020 !important;
+      }
+    }
+  }
+
+  &.color-black {
+    svg {
+      path {
+        fill: #000 !important;
       }
     }
   }

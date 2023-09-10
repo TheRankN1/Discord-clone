@@ -9,6 +9,7 @@ $logged-user-container: 66px;
 .scrolling-container {
   display: flex;
   flex-direction: column;
+  gap: 4px;
   width: 240px;
   height: calc(100vh - #{$logged-user-container});
   overflow-x: hidden;
@@ -21,6 +22,12 @@ $logged-user-container: 66px;
     background-color: $color-grey;
     border-radius: 4px;
   }
+}
+
+.server-without-logged-user {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .server {
