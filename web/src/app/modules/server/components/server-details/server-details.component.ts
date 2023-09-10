@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { combineLatest, Subject, takeUntil } from 'rxjs';
 import { ServerInterface } from '../../../../shared/interfaces/server.interface';
@@ -9,6 +9,16 @@ import { ModalService } from '../../../../shared/services/modal.service';
 import { ChannelTypeEnum } from '../../../../shared/enums/channel-type.enum';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { ConnectedPosition } from '@angular/cdk/overlay/position/flexible-connected-position-strategy';
+
+const loggedUserDropdownPosition: ConnectedPosition = {
+  originX: 'center',
+  originY: 'top',
+  overlayX: 'center',
+  overlayY: 'bottom',
+  offsetX: -220,
+  offsetY: 80
+};
 
 @Component({
   selector: 'app-server-details',
@@ -16,6 +26,9 @@ import { AuthService } from '../../../../shared/services/auth.service';
   styleUrls: ['./server-details.component.scss']
 })
 export class ServerDetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('loggedUserPanelRef', { static: true }) public loggedUserPanelRef!: TemplateRef<any>;
+  public loggedUserDropdownPosition: ConnectedPosition = loggedUserDropdownPosition;
+
   public currentServer!: ServerInterface;
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;

@@ -85,8 +85,9 @@
     </ng-container>
   </div>
 </div>
+
 <div *ngIf="loggedUser" class="logged-user">
-  <div class="logged-user-name" (click)="openLoggedUserSettingsModal()">
+  <div class="logged-user-name" [dropdownTrigger]="dropdownLoggedUserPanel" [customPosition]="loggedUserDropdownPosition">
     <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" status="online" dimension="small"></app-avatar>
     <div class="names">
       <strong>{{ loggedUser.username }}</strong>
@@ -96,3 +97,7 @@
   </div>
   <app-icon (click)="disconnectFromTheChannel()" name="phone-missed"></app-icon>
 </div>
+
+<app-drop-down #dropdownLoggedUserPanel>
+  <app-logged-user-settings></app-logged-user-settings>
+</app-drop-down>
