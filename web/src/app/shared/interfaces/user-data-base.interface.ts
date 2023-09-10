@@ -5,6 +5,7 @@ export interface UserDataBaseInterface {
   bgColor: string;
   fullName?: string;
   joinedOn: Date;
+  lastLogin?: Date;
   servers: Array<string>;
   audioChannelId: string;
   textChannelId: string;
