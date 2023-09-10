@@ -1,0 +1,17 @@
+<div
+  class="avatar {{ status }} {{ dimension }} {{ fillHoverColor }}"
+  [ngClass]="{
+    active: isActive,
+    'square-on-hover': hover === 'square',
+    'fill-bg': hover === 'fillBackground'
+  }"
+  [style.background-color]="bgColor"
+  [tooltip]="hideTooltip ? '' : title"
+  tooltipPosition="right"
+>
+  <span *ngIf="hover === 'square'"> {{ title | avatarInitials }} </span>
+  <img *ngIf="bgImage; else logo" src="{{ bgImage }}" [attr.alt]="title" />
+  <ng-template #logo>
+    <app-icon *ngIf="hover === 'fillBackground' || !hover" class="color-white {{ dimension }}" [name]="icon"></app-icon>
+  </ng-template>
+</div>

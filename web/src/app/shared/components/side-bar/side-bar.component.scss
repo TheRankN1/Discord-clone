@@ -1,0 +1,63 @@
+@import '../../scss/colors';
+
+.scrolling-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 24px);
+  padding: 12px;
+  overflow-x: hidden;
+  background: $discord-blue-color-020;
+
+  app-avatar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    &::before {
+      border: none;
+    }
+  }
+
+  .side-bar-action {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    background: $discord-blue-color-light;
+    border-radius: 24px;
+
+    &:hover {
+      cursor: pointer;
+      background: $color-green;
+      border-radius: 30%;
+    }
+
+    &.exit {
+      &:hover {
+        background: $color-error;
+      }
+
+      app-icon {
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.scrolling-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
+}

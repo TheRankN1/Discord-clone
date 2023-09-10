@@ -5,11 +5,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   {
     path: 'auth',
-    loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'servers',
-    loadChildren: () => import('./components/server/server.module').then(m => m.ServerModule)
+    loadChildren: () => import('./modules/server/server.module').then(m => m.ServerModule)
   },
   {
     path: '**',
