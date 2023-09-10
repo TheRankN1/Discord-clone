@@ -240,6 +240,7 @@ export class ServersService {
 
   public editChannel(name: string, serverId: string, categoryId: string, channelId: string, type: ChannelTypeEnum): void {
     const servers: Array<ServerInterface> = this.servers$.value;
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
     const foundServer: ServerInterface | undefined = servers.find(server => server.id === serverId);
     if (!foundServer) {
       return;
@@ -255,10 +256,19 @@ export class ServersService {
       return;
     }
 
-    if (type === ChannelTypeEnum.text) this.resetJoinedUsers();
+    if (!loggedUser) {
+      return;
+    }
+    this.resetJoinedUsers();
+    if (type === ChannelTypeEnum.text) {
+      loggedUser.textChannelId = foundChannel.id;
+    } else {
+      loggedUser.audioChannelId = foundChannel.id;
+    }
 
     foundChannel.title = name;
     foundChannel.type = type;
+
     this.currentChannel$.next(foundChannel);
     this.servers$.next(servers);
   }
