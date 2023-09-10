@@ -105,6 +105,14 @@ app-icon {
     }
   }
 
+  &.channel-color {
+    svg {
+      path {
+        fill: $color-grey-020 !important;
+      }
+    }
+  }
+
   &.color-grey {
     svg {
       path {

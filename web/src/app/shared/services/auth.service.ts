@@ -32,11 +32,8 @@ export class AuthService {
         fullName: fullName,
         servers: [],
         joinedOn: new Date(),
-        connectedToServer: {
-          serverId: '',
-          categoryId: '',
-          channelId: ''
-        }
+        audioChannelId: '',
+        textChannelId: ''
       });
       this.users$.next(users);
     }
