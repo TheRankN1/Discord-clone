@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   public ngOnInit(): void {
     this._serversService.servers$.subscribe({
       next: (servers: Array<ServerInterface>) => {
-        this.servers = servers;
+        this.servers = [...servers];
       }
     });
 
