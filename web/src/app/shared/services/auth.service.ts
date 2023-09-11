@@ -33,7 +33,9 @@ export class AuthService {
         servers: [],
         joinedOn: new Date(),
         audioChannelId: '',
-        textChannelId: ''
+        textChannelId: '',
+        status:'online',
+        lastLogin: new Date()
       });
       this.users$.next(users);
     }

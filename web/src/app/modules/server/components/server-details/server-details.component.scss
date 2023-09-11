@@ -213,6 +213,7 @@ $logged-user-container: 66px;
     .names {
       display: flex;
       flex-direction: column;
+      max-width: 100px;
 
       strong {
         font-size: 14px;
