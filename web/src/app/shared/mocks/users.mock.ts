@@ -24,11 +24,11 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     ]
   },
   {
-    categoryName: 'Matei',
+    categoryName: 'Bakery',
     users: [
       {
         id: '1',
-        name: 'Costel',
+        name: 'Matei',
         status: 'doNotDisturb',
         activity: '',
         userBgColor: GeneratorHelpers.color(),
@@ -37,11 +37,11 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     ]
   },
   {
-    categoryName: 'Rapan',
+    categoryName: 'Man of the server',
     users: [
       {
         id: '1',
-        name: 'Costel',
+        name: 'Teodor',
         status: 'online',
         activity: '',
         userBgColor: GeneratorHelpers.color(),
@@ -50,11 +50,11 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     ]
   },
   {
-    categoryName: 'Chelbos',
+    categoryName: 'Most active users',
     users: [
       {
         id: '1',
-        name: 'Costel',
+        name: 'Ianis',
         status: 'online',
         activity: '',
         userBgColor: GeneratorHelpers.color(),
@@ -62,7 +62,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
       },
       {
         id: '1',
-        name: 'Costel',
+        name: 'Gabriel',
         status: 'online',
         activity: '',
         userBgColor: GeneratorHelpers.color(),
@@ -81,7 +81,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     ]
   },
   {
-    categoryName: 'Rapan',
+    categoryName: 'Striker',
     users: [
       {
         id: '1',
@@ -94,7 +94,7 @@ export const USERS_MOCK: Array<UserCategoryInterface> = [
     ]
   },
   {
-    categoryName: 'Rapan',
+    categoryName: 'Player',
     users: [
       {
         id: '1',
