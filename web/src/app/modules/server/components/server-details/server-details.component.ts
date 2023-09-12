@@ -16,7 +16,7 @@ const loggedUserDropdownPosition: ConnectedPosition = {
   originY: 'top',
   overlayX: 'center',
   overlayY: 'bottom',
-  offsetX: -220,
+  offsetX: -170,
   offsetY: 80
 };
 
