@@ -200,15 +200,17 @@ $logged-user-container: 66px;
 .logged-user {
   display: flex;
   align-items: center;
-  padding: 16px;
+  justify-content: space-between;
+  padding: 8px;
   color: $color-white;
   background: $discord-blue-color-060;
 
   .logged-user-name {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     align-items: center;
-    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
 
     .names {
       display: flex;
@@ -224,10 +226,20 @@ $logged-user-container: 66px;
         color: $color-grey;
       }
     }
+
+    &:hover {
+      cursor: pointer;
+      background: rgb(255 255 255 / 20%);
+    }
   }
 
-  &:hover {
+  .disconnect {
+    padding: 8px;
     cursor: pointer;
-    background: rgb(255 255 255 / 20%);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgb(255 255 255 / 20%);
+    }
   }
 }

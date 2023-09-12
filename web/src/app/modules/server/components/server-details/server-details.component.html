@@ -86,8 +86,13 @@
   </div>
 </div>
 
-<div *ngIf="loggedUser" class="logged-user" [dropdownTrigger]="loggedUserDropDown" [customPosition]="loggedUserDropdownPosition">
-  <div class="logged-user-name" (click)="openLoggedUserSettingsModal()">
+<div *ngIf="loggedUser" class="logged-user">
+  <div
+    class="logged-user-name"
+    (click)="openLoggedUserSettingsModal()"
+    [dropdownTrigger]="loggedUserDropDown"
+    [customPosition]="loggedUserDropdownPosition"
+  >
     <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" status="online" dimension="small"></app-avatar>
     <div class="names">
       <strong class="ellipsis">{{ loggedUser.username }}</strong>
@@ -95,7 +100,7 @@
       <span class="ellipsis">{{ loggedUser.fullName }}</span>
     </div>
   </div>
-  <app-icon (click)="disconnectFromTheChannel()" name="phone-missed"></app-icon>
+  <app-icon (click)="disconnectFromTheChannel()" name="phone-missed" class="disconnect"></app-icon>
 </div>
 
 <app-drop-down #loggedUserDropDown>
