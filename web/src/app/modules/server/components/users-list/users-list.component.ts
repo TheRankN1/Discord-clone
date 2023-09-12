@@ -21,7 +21,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this._initLoggedUserListener();
     const users: Array<UserDataBaseInterface> = this._authService.users$.value;
-    this._updateUsersStatuses(users);
 
     interval(INTERVAL_CHECK_ONLINE_STATUS)
       .pipe(startWith(0), takeUntil(this._destroy$))
