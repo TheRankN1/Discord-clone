@@ -33,7 +33,35 @@
     overflow-x: hidden;
 
     .welcome {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       padding: 0 24px;
+
+      app-icon {
+        &.xxl {
+          width: 64px;
+          height: 64px;
+          padding: 16px;
+          background: $discord-blue-color-light;
+          border-radius: 50%;
+        }
+      }
+
+      span {
+        color: $color-grey-020;
+      }
+
+      .edit-channel {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        cursor: pointer;
+
+        span {
+          color: $color-light-blue;
+        }
+      }
     }
 
     .messages {

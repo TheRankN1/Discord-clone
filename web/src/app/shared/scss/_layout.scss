@@ -27,6 +27,13 @@ app-icon {
     gap: 12px;
   }
 
+  &.medium {
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   &.big {
     svg {
       width: 32px;
@@ -47,8 +54,8 @@ app-icon {
 
   &.xxl {
     svg {
-      width: 64px;
-      height: 64px;
+      width: 64px !important;
+      height: 64px !important;
     }
 
     gap: 48px;
@@ -60,6 +67,14 @@ app-icon {
     svg {
       path {
         fill: $color-warning;
+      }
+    }
+  }
+
+  &.color-light-blue {
+    svg {
+      path {
+        fill: $color-light-blue !important;
       }
     }
   }

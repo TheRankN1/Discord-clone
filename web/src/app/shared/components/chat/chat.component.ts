@@ -1,10 +1,14 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ServersService } from '../../services/servers.service';
 import { ChannelTypeEnum } from '../../enums/channel-type.enum';
-import { Subject, takeUntil } from 'rxjs';
+import { combineLatest, Subject, takeUntil } from 'rxjs';
 import { ChatMessage } from '../../interfaces/chat.interface';
 import { UserDataBaseInterface } from '../../interfaces/user-data-base.interface';
 import { AuthService } from '../../services/auth.service';
+import { CategoryInterface } from '../../interfaces/category.interface';
+import { ChannelInterface } from '../../interfaces/channel.interface';
+import { ModalService } from '../../services/modal.service';
+import { ServerInterface } from '../../interfaces/server.interface';
 
 @Component({
   selector: 'app-chat',
@@ -17,11 +21,15 @@ export class ChatComponent implements OnInit, OnDestroy {
   public messages: Array<ChatMessage> = [];
   public userWhoSentTheMessage!: UserDataBaseInterface;
   public users: Array<UserDataBaseInterface> = [];
+  public currentServer!: ServerInterface;
+  public currentCategory!: CategoryInterface;
+  public currentChannel!: ChannelInterface;
   private _destroy$: Subject<void> = new Subject();
 
   constructor(
     private _serversService: ServersService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _modalService: ModalService
   ) {}
 
   public ngOnInit(): void {
@@ -46,6 +54,43 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.users = [...users];
       }
     });
+    combineLatest([this._serversService.currentServer$, this._serversService.currentCategory$, this._serversService.currentChannel$])
+      .pipe(takeUntil(this._destroy$))
+      .subscribe({
+        next: ([server, category, channel]) => {
+          this.currentServer = server;
+          this.currentCategory = category;
+          this.currentChannel = channel;
+        }
+      });
+  }
+
+  public openEditChannelModal(): void {
+    this._modalService.openModal({
+      onEditMode: true,
+      title: 'Edit channel',
+      textInput: this.currentChannel.title.trim(),
+      type: 'channel',
+      placeholder: 'Enter channel name',
+      delete: this.onDeleteChannelModal.bind(this),
+      save: this.onEditChannelModal.bind(this),
+      create: this.onCreateChannelModal.bind(this),
+      data: {
+        channelType: this.currentChannel.type
+      }
+    });
+  }
+
+  public onCreateChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
+    this._serversService.addChannel(channelTitle, this.currentServer.id, this.currentCategory.id, type);
+  }
+
+  public onEditChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
+    this._serversService.editChannel(channelTitle, this.currentServer.id, this.currentCategory.id, this.currentChannel.id, type);
+  }
+
+  public onDeleteChannelModal(): void {
+    this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
   }
 
   @HostListener('document:keydown', ['$event'])

@@ -1,11 +1,17 @@
 <div *ngIf="channelTextTitle" class="container">
   <div class="channel-title">
-    <app-icon class="big color-grey" name="text-channel"></app-icon>
+    <app-icon class="medium color-grey" name="text-channel"></app-icon>
     <span>{{ channelTextTitle }}</span>
   </div>
   <div class="chat">
     <div class="welcome">
-      <h1>Bine ati venit pe #{{ channelTextTitle }}</h1>
+      <app-icon name="text-channel" class="xxl"></app-icon>
+      <h1>Welcome to #{{ channelTextTitle }}</h1>
+      <span>This is the start of the #{{ channelTextTitle }} channel</span>
+      <div class="edit-channel" (click)="openEditChannelModal()">
+        <app-icon class="color-light-blue" name="pen"></app-icon>
+        <span>Edit channel</span>
+      </div>
     </div>
     <div class="messages">
       <div class="message" *ngFor="let message of messages; trackby: trackByFn">
