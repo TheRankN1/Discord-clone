@@ -77,13 +77,6 @@
       }
     }
 
-    &.offline {
-      &::after {
-        background: $color-grey;
-        border: 3px solid $discord-blue-color-010;
-      }
-    }
-
     &.idle {
       &::after {
         background: $color-idle;

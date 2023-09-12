@@ -90,9 +90,9 @@
   <div class="logged-user-name" (click)="openLoggedUserSettingsModal()">
     <app-avatar [bgColor]="loggedUser.bgColor" icon="logo" status="online" dimension="small"></app-avatar>
     <div class="names">
-      <strong>{{ loggedUser.username }}</strong>
-      <span *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</span>
-      <span>{{ loggedUser.fullName }}</span>
+      <strong class="ellipsis">{{ loggedUser.username }}</strong>
+      <span class="ellipsis" *ngIf="!loggedUser.fullName">{{ loggedUser.username }}</span>
+      <span class="ellipsis">{{ loggedUser.fullName }}</span>
     </div>
   </div>
   <app-icon (click)="disconnectFromTheChannel()" name="phone-missed"></app-icon>
