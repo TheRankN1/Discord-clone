@@ -2,12 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserCategoryInterface } from '../../../../shared/interfaces/user-category.interface';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
 import { AuthService } from '../../../../shared/services/auth.service';
-import { Subject, takeUntil } from 'rxjs';
-
-enum UsersCategoriesEnum {
-  online = 'Online',
-  offline = 'Offline'
-}
+import { interval, startWith, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -22,42 +17,45 @@ export class UsersListComponent implements OnInit, OnDestroy {
   constructor(private _authService: AuthService) {}
 
   public ngOnInit(): void {
-    this._initCategoriesAndUsers();
     this._initLoggedUserListener();
+    const users: Array<UserDataBaseInterface> = this._authService.users$.value;
+    this._updateUsersStatuses(users);
 
-    this._authService.users$.pipe(takeUntil(this._destroy$)).subscribe({
-      next: (users: Array<UserDataBaseInterface>) => {
-        setInterval(() => {
-          const now: Date = new Date();
-          this._initCategoriesAndUsers();
-          const onlineUsersCategory = this.categoriesAndUsers.find(
-            categoriesAndUsers => categoriesAndUsers.categoryName === UsersCategoriesEnum.online
-          );
-          const offlineUsersCategory = this.categoriesAndUsers.find(
-            categoriesAndUsers => categoriesAndUsers.categoryName === UsersCategoriesEnum.offline
-          );
-
-          users.forEach((user: UserDataBaseInterface) => {
-            let dateDifMilliseconds: number = Math.abs(now.getTime() - new Date(user.lastLogin).getTime());
-
-            if (user.id === this.loggedUser?.id || dateDifMilliseconds < 10000) {
-              user.status = 'online';
-              onlineUsersCategory?.users.push(user);
-            } else {
-              user.status = 'offline';
-              offlineUsersCategory?.users.push(user);
-            }
-          });
-
-          this.categoriesAndUsers = [...this.categoriesAndUsers];
-        }, 1000);
-      }
-    });
+    interval(5000)
+      .pipe(startWith(0), takeUntil(this._destroy$))
+      .subscribe({
+        next: () => {
+          this._updateUsersStatuses(users);
+        }
+      });
   }
 
   public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
+  }
+
+  public trackByFn(index: number): number {
+    return index;
+  }
+
+  private _updateUsersStatuses(users: Array<UserDataBaseInterface> = []): void {
+    this._initCategoriesAndUsers();
+
+    const onlineUsers: UserCategoryInterface | undefined = this.categoriesAndUsers.find(data => data.categoryName === 'online');
+    const offlineUsers: UserCategoryInterface | undefined = this.categoriesAndUsers.find(data => data.categoryName === 'offline');
+    const now: Date = new Date();
+
+    users.forEach((user: UserDataBaseInterface) => {
+      let dateDiffMilliseconds: number = Math.abs(now.getTime() - new Date(user.lastLogin).getTime());
+      if (user.id === this.loggedUser?.id || dateDiffMilliseconds < 10000) {
+        user.status = 'online';
+        onlineUsers?.users.push(user);
+      } else {
+        user.status = 'offline';
+        offlineUsers?.users.push(user);
+      }
+    });
   }
 
   private _initLoggedUserListener(): void {
@@ -71,17 +69,13 @@ export class UsersListComponent implements OnInit, OnDestroy {
   private _initCategoriesAndUsers(): void {
     this.categoriesAndUsers = [
       {
-        categoryName: UsersCategoriesEnum.online,
+        categoryName: 'online',
         users: []
       },
       {
-        categoryName: UsersCategoriesEnum.offline,
+        categoryName: 'offline',
         users: []
       }
     ];
-  }
-
-  public trackByFn(index: number): number {
-    return index;
   }
 }
