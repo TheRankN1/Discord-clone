@@ -8,6 +8,7 @@ import { ModalBase } from '../../modals/modal.base';
 import { AuthService } from '../../services/auth.service';
 import { sidebarActions } from '../../data/actions.data';
 import { SidebarActionInterface } from '../../interfaces/sidebar-action.interface';
+import { ServerInitialization } from '../../helpers/server.initialization';
 
 @Component({
   selector: 'app-side-bar',
@@ -61,6 +62,7 @@ export class SideBarComponent implements OnInit, ModalBase {
 
   public logout(): void {
     this._authService.logoutFromLocalStorage();
+    this._serversService.currentChannel$.next(ServerInitialization.defaultChannel());
     this._router.navigate(['auth/login']).then();
   }
 

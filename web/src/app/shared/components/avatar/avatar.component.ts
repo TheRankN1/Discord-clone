@@ -8,7 +8,7 @@ import { HoverType } from '../../types/hover.type';
 })
 export class AvatarComponent {
   @Input() public isActive = false;
-  @Input() public bgColor = '';
+  @Input() public bgColor: string | undefined = '';
   @Input() public title = '';
   @Input() public status = '';
   @Input() public dimension = '';
