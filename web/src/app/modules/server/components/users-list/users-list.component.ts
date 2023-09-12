@@ -4,6 +4,8 @@ import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-b
 import { AuthService } from '../../../../shared/services/auth.service';
 import { interval, startWith, Subject, takeUntil } from 'rxjs';
 
+const INTERVAL_CHECK_ONLINE_STATUS = 5000;
+
 @Component({
   selector: 'app-users-list',
   templateUrl: 'users-list.component.html',
@@ -21,7 +23,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     const users: Array<UserDataBaseInterface> = this._authService.users$.value;
     this._updateUsersStatuses(users);
 
-    interval(5000)
+    interval(INTERVAL_CHECK_ONLINE_STATUS)
       .pipe(startWith(0), takeUntil(this._destroy$))
       .subscribe({
         next: () => {
