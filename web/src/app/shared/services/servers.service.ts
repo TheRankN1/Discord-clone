@@ -8,6 +8,7 @@ import { ChannelInterface } from '../interfaces/channel.interface';
 import { ChannelTypeEnum } from '../enums/channel-type.enum';
 import { AuthService } from './auth.service';
 import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
+import { ChatMessage } from '../interfaces/chat.interface';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
@@ -55,6 +56,27 @@ export class ServersService {
     this._authService.loggedUser$.next(loggedUser);
     this._authService.users$.next(users);
     this.servers$.next(servers);
+  }
+
+  public addMessage(message: string): void {
+    const loggedUser: UserDataBaseInterface | null = this._authService.loggedUser$.value;
+    let currentChannel: ChannelInterface | null = this.currentChannel$.value;
+    if (!loggedUser) {
+      return;
+    }
+
+    if (!currentChannel.messages) {
+      return;
+    }
+
+    currentChannel.messages.push({
+      id: GeneratorHelpers.uuid(),
+      senderId: loggedUser.id,
+      sentOn: new Date(),
+      content: message
+    });
+
+    this.currentChannel$.next(currentChannel);
   }
 
   public leaveServer(server: ServerInterface): void {
@@ -178,7 +200,7 @@ export class ServersService {
       return;
     }
     const channelId: string = GeneratorHelpers.uuid();
-    foundCategory.channels.push({ title: name, id: channelId, type: type });
+    foundCategory.channels.push({ title: name, id: channelId, type: type, messages: [] });
     this.servers$.next(servers);
   }
 
@@ -305,6 +327,7 @@ export class ServersService {
         server.isActive = server.id === id;
       });
       this.currentServer$.next({ ...foundServer });
+      this.currentChannel$.next(ServerInitialization.defaultChannel());
       this.servers$.next(servers);
     }
   }
