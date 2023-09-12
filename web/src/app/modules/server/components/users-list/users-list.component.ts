@@ -1,65 +1,82 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserCategoryInterface } from '../../../../shared/interfaces/user-category.interface';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { Subject, takeUntil } from 'rxjs';
+
+enum UsersCategoriesEnum {
+  online = 'Online',
+  offline = 'Offline'
+}
 
 @Component({
   selector: 'app-users-list',
   templateUrl: 'users-list.component.html',
   styleUrls: ['users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
-  public dataBaseUsers!: Array<UserDataBaseInterface>;
+export class UsersListComponent implements OnInit, OnDestroy {
   public categoriesAndUsers: Array<UserCategoryInterface> = [];
-  public onlineUsers: Array<UserDataBaseInterface> = [];
-  public offlineUsers: Array<UserDataBaseInterface> = [];
   public loggedUser: UserDataBaseInterface | null = null;
+  private _destroy$ = new Subject<void>();
 
   constructor(private _authService: AuthService) {}
 
   public ngOnInit(): void {
-    this._authService.loggedUser$.subscribe(loggedUser => {
-      this.loggedUser = loggedUser;
-    });
-    this._authService.users$.subscribe(users => {
-      this.onlineUsers = [];
-      this.offlineUsers = [];
-      setInterval(() => {
-        const actualDate = new Date();
-        [...users].forEach(user => {
-          let dateDif = Math.abs(new Date(actualDate).getTime() - new Date(user.lastLogin).getTime());
+    this._initCategoriesAndUsers();
+    this._initLoggedUserListener();
 
-          if (this.onlineUsers.length + this.offlineUsers.length < users.length) {
-            user.status === 'online' ? this.onlineUsers.push(user) : this.offlineUsers.push(user);
-          }
-          if (user.id === this.loggedUser?.id && user.status === 'offline') {
-            user.status = 'online';
-            this.offlineUsers.splice(this.offlineUsers.indexOf(user), 1);
-            if (this.onlineUsers.length + this.offlineUsers.length < users.length) {
-              this.onlineUsers.push(user);
+    this._authService.users$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: (users: Array<UserDataBaseInterface>) => {
+        setInterval(() => {
+          const now: Date = new Date();
+          this._initCategoriesAndUsers();
+          const onlineUsersCategory = this.categoriesAndUsers.find(
+            categoriesAndUsers => categoriesAndUsers.categoryName === UsersCategoriesEnum.online
+          );
+          const offlineUsersCategory = this.categoriesAndUsers.find(
+            categoriesAndUsers => categoriesAndUsers.categoryName === UsersCategoriesEnum.offline
+          );
+
+          users.forEach((user: UserDataBaseInterface) => {
+            let dateDifMilliseconds: number = Math.abs(now.getTime() - new Date(user.lastLogin).getTime());
+
+            if (user.id === this.loggedUser?.id || dateDifMilliseconds < 10000) {
+              user.status = 'online';
+              onlineUsersCategory?.users.push(user);
+            } else {
+              user.status = 'offline';
+              offlineUsersCategory?.users.push(user);
             }
-          }
+          });
 
-          if (dateDif > 6000 && user.id !== this.loggedUser?.id) {
-            console.log(user.username);
-            user.status = 'offline';
-            this.onlineUsers.splice(this.onlineUsers.indexOf(user), 1);
-            if (this.offlineUsers.indexOf(user) === -1 && this.onlineUsers.length + this.offlineUsers.length < users.length) {
-              this.offlineUsers.push(user);
-            }
-          }
-        });
-      }, 1000);
+          this.categoriesAndUsers = [...this.categoriesAndUsers];
+        }, 1000);
+      }
     });
+  }
 
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
+  private _initLoggedUserListener(): void {
+    this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: loggedUser => {
+        this.loggedUser = loggedUser;
+      }
+    });
+  }
+
+  private _initCategoriesAndUsers(): void {
     this.categoriesAndUsers = [
       {
-        categoryName: 'Online',
-        users: this.onlineUsers
+        categoryName: UsersCategoriesEnum.online,
+        users: []
       },
       {
-        categoryName: 'Offline',
-        users: this.offlineUsers
+        categoryName: UsersCategoriesEnum.offline,
+        users: []
       }
     ];
   }
