@@ -1,4 +1,4 @@
-import {UserDataBaseInterface} from "./user-data-base.interface";
+import { UserDataBaseInterface } from './user-data-base.interface';
 
 export interface UserCategoryInterface {
   categoryName: string;

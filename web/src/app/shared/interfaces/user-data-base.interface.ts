@@ -1,4 +1,4 @@
-import {UserStatusType} from "../types/user.type";
+import { UserStatusType } from '../types/user.type';
 
 export interface UserDataBaseInterface {
   id: string;
@@ -9,7 +9,7 @@ export interface UserDataBaseInterface {
   servers: Array<string>;
   audioChannelId: string;
   textChannelId: string;
-  status:UserStatusType;
+  status: UserStatusType;
   lastLogin: Date;
   fullName?: string;
 }

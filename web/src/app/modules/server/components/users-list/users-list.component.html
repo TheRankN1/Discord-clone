@@ -1,11 +1,11 @@
 <div class="scrolling-container">
-  <div class="users"  *ngFor="let category of categoriesAndUsers">
+  <div class="users" *ngFor="let category of categoriesAndUsers">
     <div class="category">
       <span class="category-name">{{ category.categoryName }}</span>
       <span> - </span>
       <span class="number-of-users">{{ category.users.length }}</span>
     </div>
-    <div class="user" [class.offline]="user.status==='offline'" *ngFor="let user of category.users; trackBy: trackByFn">
+    <div class="user" [class.offline]="user.status === 'offline'" *ngFor="let user of category.users; trackBy: trackByFn">
       <app-avatar
         dimension="small"
         [title]="user.username"
@@ -16,7 +16,7 @@
       ></app-avatar>
       <div class="user-details">
         <span class="name">{{ user.username }}</span>
-<!--        <span class="activity">{{ user.activity }}</span>-->
+        <!--        <span class="activity">{{ user.activity }}</span>-->
       </div>
     </div>
   </div>
