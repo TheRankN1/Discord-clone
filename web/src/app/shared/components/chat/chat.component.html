@@ -14,14 +14,26 @@
       </div>
     </div>
     <div class="messages">
-      <div class="message" *ngFor="let message of messages; trackby: trackByFn">
-        <app-avatar [bgColor]="(users | whoSentTheMessage: message)?.bgColor" icon="logo" dimension="small"></app-avatar>
+      <div
+        class="message"
+        [class.has-stacked-messages]="messages | stackMessages: message"
+        *ngFor="let message of messages; trackBy: trackByFn"
+      >
+        <app-avatar
+          *ngIf="!(messages | stackMessages: message)"
+          [bgColor]="(users | whoSentTheMessage: message)?.bgColor"
+          icon="logo"
+          dimension="small"
+        ></app-avatar>
         <div class="content">
-          <div class="name-and-data">
+          <div class="name-and-data" *ngIf="!(messages | stackMessages: message)">
             <span class="name">{{ (users | whoSentTheMessage: message)?.username }}</span>
             <span class="data">{{ message.sentOn | date: 'short' }}</span>
           </div>
-          <span class="message-content">{{ message.content }}</span>
+          <div class="stacked-message-container">
+            <span *ngIf="messages | stackMessages: message" class="stacked-message-hour">{{ message.sentOn | date: 'shortTime' }}</span>
+            <span class="message-content" [class.stacked-message]="messages | stackMessages: message">{{ message.content }}</span>
+          </div>
         </div>
       </div>
     </div>

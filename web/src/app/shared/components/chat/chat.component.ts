@@ -43,12 +43,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
     });
 
-    this._serversService.currentChannel$.pipe(takeUntil(this._destroy$)).subscribe({
-      next: currentChannel => {
-        if (currentChannel.messages) this.messages = [...currentChannel.messages];
-      }
-    });
-
     this._authService.users$.pipe(takeUntil(this._destroy$)).subscribe({
       next: users => {
         this.users = [...users];
@@ -63,6 +57,12 @@ export class ChatComponent implements OnInit, OnDestroy {
           this.currentChannel = channel;
         }
       });
+
+    this._serversService.currentChannel$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: currentChannel => {
+        if (currentChannel.messages) this.messages = [...currentChannel.messages];
+      }
+    });
   }
 
   public openEditChannelModal(): void {

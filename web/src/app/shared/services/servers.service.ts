@@ -75,7 +75,7 @@ export class ServersService {
       sentOn: new Date(),
       content: message
     });
-
+    this.setCurrentServer(this.currentServer$.value.id);
     this.currentChannel$.next(currentChannel);
   }
 

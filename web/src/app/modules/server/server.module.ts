@@ -21,8 +21,9 @@ import { TriggerDropDownDirective } from '../../shared/directives/trigger-drop-d
 import { OverlayModule } from '@angular/cdk/overlay';
 import { TooltipModule } from '../../shared/components/tooltip/tooltip.module';
 import { whoSentMessagePipe } from '../../shared/pipes/who-sent-message.pipe';
+import { stackMessagesPipe } from '../../shared/pipes/stack-messages.pipe';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe, whoSentMessagePipe];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe, whoSentMessagePipe, stackMessagesPipe];
 const COMPONENTS = [
   ChatComponent,
   ServerDetailsComponent,
