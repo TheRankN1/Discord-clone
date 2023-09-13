@@ -20,10 +20,10 @@ import { DropDownComponent } from '../../shared/components/drop-down/drop-down.c
 import { TriggerDropDownDirective } from '../../shared/directives/trigger-drop-down.directive';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { TooltipModule } from '../../shared/components/tooltip/tooltip.module';
-import { whoSentMessagePipe } from '../../shared/pipes/who-sent-message.pipe';
-import { stackMessagesPipe } from '../../shared/pipes/stack-messages.pipe';
+import { WhoSentMessagePipe } from '../../shared/pipes/who-sent-message.pipe';
+import { StackMessagesPipe } from '../../shared/pipes/stack-messages.pipe';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe, whoSentMessagePipe, stackMessagesPipe];
+const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe, WhoSentMessagePipe, StackMessagesPipe];
 const COMPONENTS = [
   ChatComponent,
   ServerDetailsComponent,

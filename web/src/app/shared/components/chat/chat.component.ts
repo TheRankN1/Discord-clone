@@ -81,10 +81,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         channelType: this.currentChannel.type
       }
     });
-    console.log(this.currentChannel);
-    console.log(this.currentCategory);
-    console.log(this.currentServer);
-    console.log(this.currentChannel.type);
   }
 
   public onCreateChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
@@ -106,7 +102,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this._serversService.addMessage(this.message);
       }
       this.message = '';
-      const messages = this.allMessages.nativeElement;
+      const messages: HTMLDivElement = this.allMessages.nativeElement;
 
       messages.scrollTop = messages.scrollHeight;
       return;

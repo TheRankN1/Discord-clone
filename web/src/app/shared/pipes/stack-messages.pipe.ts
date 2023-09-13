@@ -1,26 +1,30 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { ChatMessage } from '../interfaces/chat.interface';
+import {Pipe, PipeTransform} from '@angular/core';
+import {ChatMessage} from '../interfaces/chat.interface';
 
 @Pipe({
   name: 'stackMessages'
 })
-export class stackMessagesPipe implements PipeTransform {
-  public hasSentInTheSameDay(messages: Array<ChatMessage>, message: ChatMessage): boolean {
-    const index = messages.indexOf(message);
+export class StackMessagesPipe implements PipeTransform {
+  private _hasSentInTheSameDay(messages: Array<ChatMessage>, message: ChatMessage): boolean {
+    const index: number = messages.indexOf(message);
+    if (index === 0) {
+      return false
+    }
 
-    const data1 = messages[index].sentOn;
-    const data2 = messages[index - 1].sentOn;
+    const lastMessageDate: Date = messages[index].sentOn;
+    const previousLastMessageDate: Date = messages[index - 1].sentOn;
 
     return (
-      new Date(data1).getFullYear() === new Date(data2).getFullYear() &&
-      new Date(data1).getMonth() === new Date(data2).getMonth() &&
-      new Date(data1).getDate() === new Date(data2).getDate()
+      new Date(previousLastMessageDate).toLocaleDateString() === new Date(lastMessageDate).toLocaleDateString()
     );
   }
 
-  transform(messages: Array<ChatMessage>, message: ChatMessage): boolean {
-    const index = messages.indexOf(message);
+  public transform(messages: Array<ChatMessage>, message: ChatMessage): boolean {
+    const index: number = messages.indexOf(message);
+    if (index === 0) {
+      return false
+    }
 
-    return messages[index].senderId === messages[index - 1].senderId && this.hasSentInTheSameDay(messages, message);
+    return messages[index].senderId === messages[index - 1].senderId && this._hasSentInTheSameDay(messages, message);
   }
 }
