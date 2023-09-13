@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ServersService } from '../../services/servers.service';
 import { ChannelTypeEnum } from '../../enums/channel-type.enum';
 import { combineLatest, Subject, takeUntil } from 'rxjs';
@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   public currentCategory!: CategoryInterface;
   public currentChannel!: ChannelInterface;
   private _destroy$: Subject<void> = new Subject();
+
+  @ViewChild('allMessages') public allMessages!: ElementRef;
 
   constructor(
     private _serversService: ServersService,
@@ -104,6 +106,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         this._serversService.addMessage(this.message);
       }
       this.message = '';
+      const messages = this.allMessages.nativeElement;
+
+      messages.scrollTop = messages.scrollHeight;
       return;
     }
   }

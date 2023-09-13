@@ -3,7 +3,7 @@
     <app-icon class="medium color-grey" name="text-channel"></app-icon>
     <span>{{ channelTextTitle }}</span>
   </div>
-  <div class="chat">
+  <div class="chat" #allMessages>
     <div class="welcome">
       <app-icon name="text-channel" class="xxl"></app-icon>
       <h1>Welcome to #{{ channelTextTitle }}</h1>
@@ -37,13 +37,13 @@
         </div>
       </div>
     </div>
-    <div class="input-wrapper">
-      <input
-        type="text"
-        [(ngModel)]="message"
-        (keydown)="setTheValueOnEnter($event)"
-        placeholder="Trimite un mesaj pe #{{ channelTextTitle }}"
-      />
-    </div>
+  </div>
+  <div class="input-wrapper">
+    <input
+      type="text"
+      [(ngModel)]="message"
+      (keydown)="setTheValueOnEnter($event)"
+      placeholder="Trimite un mesaj pe #{{ channelTextTitle }}"
+    />
   </div>
 </div>
