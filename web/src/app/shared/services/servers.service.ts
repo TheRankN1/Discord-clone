@@ -290,6 +290,7 @@ export class ServersService {
 
     foundChannel.title = name;
     foundChannel.type = type;
+    foundChannel.messages = [];
 
     this.currentChannel$.next(foundChannel);
     this.servers$.next(servers);

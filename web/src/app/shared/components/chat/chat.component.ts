@@ -79,6 +79,10 @@ export class ChatComponent implements OnInit, OnDestroy {
         channelType: this.currentChannel.type
       }
     });
+    console.log(this.currentChannel);
+    console.log(this.currentCategory);
+    console.log(this.currentServer);
+    console.log(this.currentChannel.type);
   }
 
   public onCreateChannelModal(channelTitle: string, type: ChannelTypeEnum): void {
