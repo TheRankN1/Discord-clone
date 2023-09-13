@@ -97,10 +97,12 @@
           align-items: center;
 
           .stacked-message-hour {
-            padding: 4px;
             font-size: 12px;
             color: $color-grey;
             visibility: hidden;
+            span {
+              padding: 4px 0;
+            }
           }
         }
 
