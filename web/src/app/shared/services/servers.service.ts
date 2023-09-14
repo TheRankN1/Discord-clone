@@ -286,11 +286,11 @@ export class ServersService {
       loggedUser.textChannelId = foundChannel.id;
     } else {
       loggedUser.audioChannelId = foundChannel.id;
+      foundChannel.messages = [];
     }
 
     foundChannel.title = name;
     foundChannel.type = type;
-    foundChannel.messages = [];
 
     this.currentChannel$.next(foundChannel);
     this.servers$.next(servers);
