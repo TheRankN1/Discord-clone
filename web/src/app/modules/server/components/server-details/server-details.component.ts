@@ -16,7 +16,7 @@ const loggedUserDropdownPosition: ConnectedPosition = {
   originY: 'top',
   overlayX: 'center',
   overlayY: 'bottom',
-  offsetX: -220,
+  offsetX: -170,
   offsetY: 80
 };
 
@@ -226,6 +226,7 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
   }
 
   public joinChannel(channel: ChannelInterface, category: CategoryInterface, server: ServerInterface): void {
+    this._serversService.currentCategory$.next(category);
     if (channel.type === ChannelTypeEnum.text) {
       this._serversService.joinTextChannel(channel);
     }

@@ -5,7 +5,7 @@ import { ChatMessage } from '../interfaces/chat.interface';
 @Pipe({
   name: 'whoSentTheMessage'
 })
-export class whoSentMessagePipe implements PipeTransform {
+export class WhoSentMessagePipe implements PipeTransform {
   transform(users: Array<UserDataBaseInterface>, message: ChatMessage): UserDataBaseInterface | undefined {
     const foundUser = users.find(user => {
       return user.id === message.senderId;

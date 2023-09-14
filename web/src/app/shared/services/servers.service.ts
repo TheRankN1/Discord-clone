@@ -75,7 +75,7 @@ export class ServersService {
       sentOn: new Date(),
       content: message
     });
-
+    this.setCurrentServer(this.currentServer$.value.id);
     this.currentChannel$.next(currentChannel);
   }
 
@@ -286,6 +286,7 @@ export class ServersService {
       loggedUser.textChannelId = foundChannel.id;
     } else {
       loggedUser.audioChannelId = foundChannel.id;
+      foundChannel.messages = [];
     }
 
     foundChannel.title = name;

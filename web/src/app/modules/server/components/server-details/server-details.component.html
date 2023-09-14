@@ -100,7 +100,7 @@
       <span class="ellipsis">{{ loggedUser.fullName }}</span>
     </div>
   </div>
-  <app-icon (click)="disconnectFromTheChannel()" name="phone-missed" class="disconnect"></app-icon>
+  <app-icon *ngIf="loggedUser.audioChannelId !== ''" (click)="disconnectFromTheChannel()" name="phone-missed" class="disconnect"></app-icon>
 </div>
 
 <app-drop-down #loggedUserDropDown>
