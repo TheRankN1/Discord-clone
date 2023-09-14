@@ -95,7 +95,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._serversService.deleteChannel(this.currentServer.id, this.currentCategory.id, this.currentChannel.id);
   }
 
-  @HostListener('document:keydown', ['$event'])
   public setTheValueOnEnter(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       if (this.message != '') {
