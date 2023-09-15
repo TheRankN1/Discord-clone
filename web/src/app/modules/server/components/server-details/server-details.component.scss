@@ -52,17 +52,14 @@ $logged-user-container: 66px;
     justify-content: space-between;
     padding-top: 14px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: normal;
     letter-spacing: -0.735px;
+    box-shadow: 0 1px 0 0 $discord-blue-color-020;
 
     &--text {
       display: block;
-      font-size: 24px;
-    }
-
-    app-icon {
-      padding-top: 14px;
+      font-size: 18px;
     }
 
     &:hover {
@@ -81,7 +78,7 @@ $logged-user-container: 66px;
     gap: 16px;
     align-items: center;
     justify-content: space-between;
-    color: $color-grey-010;
+    color: $color-grey-020;
 
     &--text {
       display: block;
@@ -102,7 +99,7 @@ $logged-user-container: 66px;
   &-channel {
     display: flex;
     padding: 0 8px;
-    margin-left: 12px;
+    padding-left: 0;
     font-size: 14px;
     font-weight: 600;
     line-height: 116%;
@@ -115,15 +112,34 @@ $logged-user-container: 66px;
     }
 
     .channel-container {
+      position: relative;
       display: flex;
       flex-direction: column;
       width: 100%;
       border-radius: 4px;
 
       &.active {
+        position: relative;
         font-weight: 600;
         color: $color-white;
         background: rgb(255 255 255 / 10%);
+
+        &::before {
+          height: 10px;
+        }
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        width: 5px;
+        height: 0;
+        content: '';
+        background: $color-white;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        transition: height 0.3s ease-in-out;
+        transform: translateY(-50%);
       }
 
       .joined-user {
@@ -172,6 +188,7 @@ $logged-user-container: 66px;
 
         .text-channel {
           display: flex;
+          padding-left: 8px;
           overflow: hidden;
         }
 
