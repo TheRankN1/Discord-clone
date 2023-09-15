@@ -22,8 +22,17 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { TooltipModule } from '../../shared/components/tooltip/tooltip.module';
 import { WhoSentMessagePipe } from '../../shared/pipes/who-sent-message.pipe';
 import { StackMessagesPipe } from '../../shared/pipes/stack-messages.pipe';
+import { CheckDifferentDaysPipe } from '../../shared/pipes/check-different-days.pipe';
 
-const PIPES = [IsNotEmptyPipe, AvatarInitialsPipe, AlreadyJoinedPipe, IncludesServerNamePipe, WhoSentMessagePipe, StackMessagesPipe];
+const PIPES = [
+  IsNotEmptyPipe,
+  AvatarInitialsPipe,
+  AlreadyJoinedPipe,
+  IncludesServerNamePipe,
+  WhoSentMessagePipe,
+  StackMessagesPipe,
+  CheckDifferentDaysPipe
+];
 const COMPONENTS = [
   ChatComponent,
   ServerDetailsComponent,
