@@ -9,6 +9,11 @@
   overflow-x: hidden;
   background: $discord-blue-color-020;
 
+  .first-action {
+    padding-bottom: 10px;
+    border-bottom: 3px solid rgb(255 255 255 / 10%);
+  }
+
   app-avatar {
     margin-top: 10px;
     margin-bottom: 10px;

@@ -7,6 +7,7 @@
       [icon]="searchAction.icon"
       [fillHoverColor]="searchAction.fillHoverClass"
       [bgColor]="searchAction.bgColor"
+      class="first-action"
       title="Search servers"
     ></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
