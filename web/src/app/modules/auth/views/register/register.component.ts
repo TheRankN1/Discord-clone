@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../../shared/services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: 'register.component.html',
   styleUrls: ['register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   public username: string = '';
   public password: string = '';
   public fullName: string = '';
+  public email: string = '';
+  public days: Array<number> = [];
+  public months: Array<string> = [];
+  public years: Array<number> = [];
   public usernameTakenError: boolean = false;
   public userCreated: boolean = false;
   public registerErrorUsername: boolean = false;
@@ -20,7 +24,22 @@ export class RegisterComponent {
   constructor(
     private _router: Router,
     private _authService: AuthService
-  ) {}
+  ) {
+  }
+
+  public ngOnInit(): void {
+    for (let day = 1; day <= 31; day++) {
+      this.days.push(day);
+    }
+    this.months= [
+      'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+      'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'
+    ];
+    const currentYear = new Date().getFullYear();
+    for (let year = 1871; year <= currentYear; year++) {
+      this.years.push(year);
+    }
+  }
 
   public navigateToLogin(): void {
     this._router.navigate(['/auth/login']).then();
@@ -58,4 +77,5 @@ export class RegisterComponent {
     this.registerErrorPassword = false;
     this.registerErrorNameAndPassword = false;
   }
+
 }

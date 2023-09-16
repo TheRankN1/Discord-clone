@@ -5,7 +5,9 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: Cabin, sans-serif;
-  background: $discord-blue-color-030;
+  background-image: url("../../../assets/images/discord-background-auth.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 input {
