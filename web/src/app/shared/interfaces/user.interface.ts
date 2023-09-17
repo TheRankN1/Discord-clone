@@ -1,4 +1,4 @@
-import {UserStatusType} from '../types/user.type';
+import { UserStatusType } from '../types/user.type';
 
 export interface UserInterface {
   id: string;
@@ -7,10 +7,4 @@ export interface UserInterface {
   activity: string;
   userBgColor: string;
   avatar: string;
-  email: string
-  birthDate: {
-    day: number;
-    month: number;
-    year: number;
-  }
 }

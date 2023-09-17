@@ -6,17 +6,20 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
-
 }
 
 .container {
-  background: $discord-blue-color-030;
-  color: $color-white;
   width: 416px;
   height: 666px;
   padding: 32px;
+  color: $color-white;
+  background: $discord-blue-color-030;
 
   h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -28,12 +31,12 @@
     flex-direction: column;
     gap: 5px;
     font-size: 12px;
+    font-weight: bold;
     color: $color-grey-020;
-    font-weight: 600;
 
     .mandatory-sign {
-      color: red;
       font-size: 10px;
+      color: red;
     }
   }
 
@@ -44,50 +47,49 @@
 
     span {
       font-size: 12px;
+      font-weight: bold;
       color: $color-grey-020;
-      font-weight: 600;
     }
 
     .mandatory-sign {
-      color: red;
       font-size: 10px;
+      color: red;
     }
 
     .selects {
-      width: 100%;
       display: flex;
-      margin-top: 10px;
-      align-items: center;
       gap: 20px;
+      align-items: center;
+      width: 100%;
+      margin-top: 10px;
       font-size: 14px;
-      select {
+
+      .month,
+      .day,
+      .year {
         width: 125px;
-        padding: 8px 16px;
-        background: $discord-blue-color-020;
+        padding: 12px 8px;
         color: $color-grey-020;
+        cursor: pointer;
+        background: $discord-blue-color-020;
         border: none;
         border-radius: 4px;
 
-        option {
-          color: $color-grey-020;
-          &:hover{
-            cursor: pointer;
-            background: red !important;
-          }
+        .trigger {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
 
-        }
-
-        &:hover {
-          option {
-            background: $discord-blue-color-020;
-            cursor: pointer;
+          span {
+            font-size: 16px;
           }
         }
       }
     }
   }
 
-  .username, .name {
+  .username,
+  .name {
     margin-top: 20px;
   }
 
@@ -105,25 +107,37 @@
     }
   }
 
-  button {
+  .actions {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 5px 15px;
-    color: $color-white;
-    cursor: pointer;
-    background: $color-blue;
-    border: none;
-    border-radius: 2px;
+    justify-content: space-between;
+    height: 180px;
 
-    &:hover {
-      opacity: 0.7;
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 14px;
+      margin-top: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      color: $color-grey;
+      cursor: pointer;
+      background: $color-blue;
+      border: none;
+      border-radius: 4px;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
-  }
 
-  .go-to {
-    text-decoration-line: underline;
-    cursor: pointer;
+    .already-have-account {
+      font-size: 14px;
+      color: $color-light-blue;
+      cursor: pointer;
+    }
   }
 
   .user-already-exist {

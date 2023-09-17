@@ -4,12 +4,22 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  padding: 6px;
+  padding: 12px;
   color: $color-white;
 
   &:hover {
     cursor: pointer;
     background: $color-blue-030;
+  }
+
+  &.birth-date-option {
+    width: 94px;
+    color: $color-grey-020;
+
+    &:hover {
+      color: $color-grey;
+      background: rgb(255 255 255 / 10%);
+    }
   }
 
   &.exit {
@@ -58,9 +68,9 @@
   position: absolute;
   z-index: 1000;
   box-sizing: border-box;
-  display: flex;
   max-width: 100%;
   max-height: 100%;
+  overflow: auto;
   pointer-events: auto;
 }
 
@@ -107,4 +117,13 @@
   position: fixed;
   width: 100%;
   overflow-y: scroll;
+}
+
+.cdk-overlay-pane::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cdk-overlay-pane::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
 }

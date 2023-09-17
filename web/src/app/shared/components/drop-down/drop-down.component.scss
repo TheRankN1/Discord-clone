@@ -4,9 +4,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: flex-end;
-  padding: 12px;
+  height: 200px;
+  padding-right: 4px;
   margin-top: 5px;
+  overflow: auto;
   background: $discord-blue-color-020;
   border-radius: 6px;
   box-shadow: 0 10px 20px rgb(64 64 64 / 15%);
@@ -14,4 +15,13 @@
   &:empty {
     display: none;
   }
+}
+
+.dropdown-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background-color: $color-black;
+  border-radius: 4px;
 }
