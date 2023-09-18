@@ -11,5 +11,11 @@ export interface UserDataBaseInterface {
   textChannelId: string;
   status: UserStatusType;
   lastLogin: Date;
+  email: string;
+  birthDate: {
+    day: number | string;
+    month: string;
+    year: number | string;
+  };
   fullName?: string;
 }

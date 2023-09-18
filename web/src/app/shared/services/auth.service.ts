@@ -13,7 +13,15 @@ export class AuthService {
   public users$: BehaviorSubject<Array<UserDataBaseInterface>> = new BehaviorSubject<Array<UserDataBaseInterface>>([]);
   public loggedUser$: BehaviorSubject<UserDataBaseInterface | null> = new BehaviorSubject<UserDataBaseInterface | null>(null);
 
-  public addUser(username: string, password: string, fullName: string): boolean {
+  public addUser(
+    username: string,
+    password: string,
+    fullName: string,
+    email: string,
+    day: string | number,
+    month: string,
+    year: number | string
+  ): boolean {
     if (username === '' || password === '') {
       return true;
     }
@@ -35,7 +43,13 @@ export class AuthService {
         audioChannelId: '',
         textChannelId: '',
         status: 'online',
-        lastLogin: new Date()
+        lastLogin: new Date(),
+        email: email,
+        birthDate: {
+          day: day,
+          month: month,
+          year: year
+        }
       });
       this.users$.next(users);
     }

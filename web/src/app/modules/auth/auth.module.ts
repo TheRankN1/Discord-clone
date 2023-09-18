@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutesModule } from './auth.routes';
+import { ServerModule } from '../server/server.module';
 
 const COMPONENTS = [LoginComponent, RegisterComponent];
-const MODULES = [CommonModule, RouterModule, HttpClientModule, FormsModule, ReactiveFormsModule, AuthRoutesModule];
+const MODULES = [CommonModule, RouterModule, HttpClientModule, FormsModule, ReactiveFormsModule, AuthRoutesModule, ServerModule];
 
 @NgModule({
   declarations: [COMPONENTS],
