@@ -11,15 +11,17 @@
     <span>DISPLAY NAME</span>
     <input [(ngModel)]="fullName" (input)="clearError()" type="text" />
   </div>
-  <div class="username">
+  <div class="username" [class.error-visible]="registerErrorUsername">
     <span>USERNAME <strong class="mandatory-sign">*</strong></span>
     <input [(ngModel)]="username" (input)="clearError()" type="text" />
   </div>
   <div [class.visible]="registerErrorUsername" class="error">Username is mandatory !</div>
-  <div class="password">
+  <div class="password" [class.error-visible]="registerErrorPassword">
     <span>PASSWORD <strong class="mandatory-sign">*</strong></span>
     <input [(ngModel)]="password" (input)="clearError()" type="password" />
   </div>
+  <div [class.visible]="registerErrorPassword" class="error">Password is mandatory !</div>
+
   <div class="date-of-birth">
     <span>BIRTH DATE<strong class="mandatory-sign">*</strong></span>
     <div class="selects">
@@ -52,7 +54,6 @@
       </div>
     </div>
   </div>
-  <div [class.visible]="registerErrorPassword" class="error">Password is mandatory !</div>
   <div class="actions">
     <button (click)="register()">Continue</button>
     <span class="already-have-account" (click)="navigateToLogin()">Already have an account?</span>

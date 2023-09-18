@@ -36,7 +36,11 @@
 
     .mandatory-sign {
       font-size: 10px;
-      color: red;
+      color: $color-error-010;
+    }
+
+    &.error-visible {
+      color: $color-error-010;
     }
   }
 
@@ -159,7 +163,7 @@
 
   .error {
     font-size: 12px;
-    color: $color-warning;
+    color: $color-error-010;
     visibility: hidden;
     border-radius: 15px;
 
