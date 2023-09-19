@@ -51,12 +51,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginErrorPassword = true;
     }
 
-    if (this.username === '' && this.password === '') {
-      this.loginErrorNameAndPassword = true;
-      this.loginErrorPassword = false;
-      this.loginErrorUsername = false;
-    }
-
     if (this._authService.login(this.username, this.password)) {
       this._router.navigate(['/servers']).then();
     } else {

@@ -64,7 +64,7 @@ export class AuthService {
 
     const users: Array<UserDataBaseInterface> = this.users$.value;
     const foundUser: UserDataBaseInterface | undefined = users.find((user: UserDataBaseInterface) => {
-      return user.username === username && user.password === password;
+      return (user.username === username && user.password === password) || (user.email === username && user.password === password);
     });
 
     if (!foundUser) {
