@@ -9,11 +9,18 @@
   </div>
   <div class="servers">
     <div class="server" *ngFor="let server of servers | includesServerName: inputServerName; trackBy: trackByFn">
-      <div class="avatar-name">
-        <app-avatar hover="square" [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
-        <div class="name ellipsis">{{ server.title }}</div>
+      <div class="img-avatar-wrapper">
+        <div class="server-image">
+          <img src="../../../../../assets/images/discord-background-server-placeholder.svg" alt="" />
+        </div>
+        <div class="server-content">
+          <div class="avatar-name">
+            <app-avatar [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
+            <div class="name ellipsis">{{ server.title }}</div>
+          </div>
+          <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+        </div>
       </div>
-      <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
     </div>
     <h1 *ngIf="serverFound === false">No results</h1>
     <h1 *ngIf="servers.length === 0">No servers yet, create one</h1>

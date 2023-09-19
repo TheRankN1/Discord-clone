@@ -9,8 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
-  width: calc(100vw - 600px);
+  width: 100vw;
   height: 100vh;
   overflow-x: hidden;
 
@@ -25,9 +24,8 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    width: 100%;
-    padding: 128px;
-    background-image: url('https://assets-global.website-files.com/5f9072399b2640f14d6a2bf4/6348685d7c7b4e693020de8c_macro%20hero-blog%20header%402x-p-1600.png');
+    padding: 128px 0;
+    background-image: url('../../../../../assets/images/discord-background-search.svg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -63,27 +61,25 @@
 
   .servers {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
+    flex-direction: column;
     max-width: 1000px;
+    padding-left: 24px;
     color: $color-white;
 
     .server {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: calc(33% - 34px);
-      padding: 12px;
+      height: 100%;
+      padding: 24px;
       font-size: 16px;
       color: $color-white;
-      background: $discord-blue-color-030;
-      border-radius: 10px;
+      border-bottom: 1px solid rgb(255 255 255 / 10%);
 
       .join {
         display: flex;
         flex-direction: column;
         align-items: center;
+        height: 20px;
         padding: 5px 15px;
         color: $color-white;
         cursor: pointer;
@@ -96,13 +92,48 @@
         }
       }
 
-      .avatar-name {
+      .img-avatar-wrapper {
         display: flex;
         gap: 20px;
-        align-items: center;
+        align-items: flex-start;
+        height: 100%;
+        overflow: hidden;
 
-        .name {
-          width: 150px;
+        .server-content {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: flex-start;
+          justify-content: space-between;
+          height: 100%;
+
+          .avatar-name {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .name {
+              width: 150px;
+            }
+          }
+        }
+
+        .server-image {
+          overflow: hidden;
+
+          img {
+            width: 240px;
+            border-radius: 15px;
+            transition: transform 0.4s ease;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          img {
+            transform: scale(1.1);
+          }
         }
       }
     }
