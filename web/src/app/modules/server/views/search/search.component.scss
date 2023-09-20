@@ -62,8 +62,8 @@
   .servers {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     align-items: center;
+    max-width: 500px;
     padding-left: 24px;
     color: $color-white;
 
@@ -140,38 +140,47 @@
     }
   }
 }
-.pagination{
+
+.pagination {
   display: flex;
-  align-items: center;
-  color:$color-white;
   gap: 20px;
+  align-items: center;
   margin-top: 20px;
-  .prev,.next{
-    font-size: 16px;
-    color:$color-grey;
+  color: $color-white;
+
+  .prev,
+  .next {
     padding: 8px;
+    font-size: 16px;
+    color: $color-grey;
     border-radius: 8px;
-    &:hover{
-      background: $discord-blue-color-030;
+
+    &:hover {
       cursor: pointer;
+      background: $discord-blue-color-030;
     }
+
     &.disabled {
-      opacity: 50%;
-      &:hover{
+      opacity: 0.5;
+
+      &:hover {
+        color: $color-grey-020;
         cursor: not-allowed;
-        color:$color-grey-020;
       }
     }
   }
-  .page{
-    cursor: pointer;
+
+  .page {
     padding: 4px 12px;
-    &.active{
-      border-radius: 50%;
+    cursor: pointer;
+
+    &.active {
       background: $color-blue-030;
+      border-radius: 50%;
     }
   }
 }
+
 .search-servers::-webkit-scrollbar {
   width: 4px;
 }
