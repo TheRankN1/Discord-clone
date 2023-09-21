@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServersService } from './shared/services/servers.service';
 import { AuthService } from './shared/services/auth.service';
+import { RolesService } from './shared/services/roles.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import { AuthService } from './shared/services/auth.service';
 export class AppComponent implements OnInit {
   constructor(
     private _serverService: ServersService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _rolesService: RolesService
   ) {}
 
   public ngOnInit(): void {
@@ -20,5 +22,7 @@ export class AppComponent implements OnInit {
     this._authService.getLoggedUserFromLocalStorage();
     this._authService.listenToUsersAndUpdateLocalStorage();
     this._authService.listenToDataBaseUserAndUpdateLocalStorage();
+    this._rolesService.getRolesFromLocalStorage();
+    this._rolesService.listenToRolesAndUpdateLocalStorage();
   }
 }

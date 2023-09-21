@@ -6,14 +6,7 @@
       <span class="number-of-users">{{ category.users.length }}</span>
     </div>
     <div class="user" [class.offline]="user.status === 'offline'" *ngFor="let user of category.users; trackBy: trackByFn">
-      <app-avatar
-        dimension="small"
-        [title]="user.username"
-        [bgColor]="user.bgColor"
-        [icon]="'logo'"
-        [status]="user.status"
-        [hideTooltip]="true"
-      ></app-avatar>
+      <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status" [hideTooltip]="true"></app-avatar>
       <div class="user-details">
         <span class="name">{{ user.username }}</span>
       </div>
