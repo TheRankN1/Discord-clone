@@ -22,13 +22,16 @@
         </div>
       </div>
     </div>
+
     <h1 *ngIf="serverFound === false && inputServerName != ''">No results</h1>
     <h1 *ngIf="servers.length === 0">No servers yet, create one</h1>
-    <div class="pagination">
+    <div class="pagination" *ngIf="!(serverFound === false && inputServerName != '')">
       <div class="prev" [class.disabled]="currentPage === 1" (click)="decreaseCurrentPage()">< Back</div>
-      <div class="page" [class.active]="currentPage === page" (click)="setCurrentPage(page)" *ngFor="let page of totalPages">
-        {{ page }}
-      </div>
+      <ng-container *ngFor="let page of totalPages; trackBy: trackByFn">
+        <div class="page" [class.active]="currentPage === page" (click)="setCurrentPage(page)">
+          {{ page }}
+        </div>
+      </ng-container>
       <div class="next" [class.disabled]="currentPage === totalPages.length" (click)="increaseCurrentPage()">Next ></div>
     </div>
   </div>
