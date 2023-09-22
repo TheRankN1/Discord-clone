@@ -39,7 +39,8 @@ export class ServersService {
       serverBgColor: GeneratorHelpers.color(),
       categories: [],
       createdBy: this._authService.loggedUser$.value?.id || '',
-      createdOn: new Date()
+      createdOn: new Date(),
+      roles: []
     });
 
     if (loggedUser) {

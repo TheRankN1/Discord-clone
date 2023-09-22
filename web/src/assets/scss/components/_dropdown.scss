@@ -38,6 +38,10 @@
       }
     }
   }
+
+  &.role {
+    justify-content: space-between;
+  }
 }
 
 .cdk-overlay-container,

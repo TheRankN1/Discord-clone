@@ -10,6 +10,8 @@ import { ChannelTypeEnum } from '../../../../shared/enums/channel-type.enum';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { ConnectedPosition } from '@angular/cdk/overlay/position/flexible-connected-position-strategy';
+import { RoleInterface } from '../../../../shared/interfaces/role.interface';
+import { RolesService } from '../../../../shared/services/roles.service';
 
 const loggedUserDropdownPosition: ConnectedPosition = {
   originX: 'center',
@@ -45,7 +47,8 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _serversService: ServersService,
     private _modalService: ModalService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _rolesService: RolesService
   ) {}
 
   public ngOnInit(): void {
@@ -164,6 +167,19 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public openRoleModal(server: ServerInterface): void {
+    this._serversService.currentServer$.next(server);
+    this._modalService.openModal({
+      onEditMode: false,
+      title: 'Create role',
+      textInput: '',
+      color: '',
+      type: 'role',
+      placeholder: 'Enter role name',
+      create: this.onCreateRoleModal.bind(this)
+    });
+  }
+
   public onCreateCategoryModal(categoryTitle: string): void {
     this._serversService.addCategory(categoryTitle, this.currentServer.id);
   }
@@ -174,6 +190,10 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
 
   public onDeleteCategoryModal(): void {
     this._serversService.deleteCategory(this.currentServer.id, this.currentCategory.id);
+  }
+
+  public onCreateRoleModal(roleName: string, type: ChannelTypeEnum, color: string): void {
+    this._rolesService.addRole(roleName, color, this.currentServer.id);
   }
 
   // ##### CHANNELS #####

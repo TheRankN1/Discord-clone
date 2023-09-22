@@ -12,7 +12,33 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   public isOpen$: Observable<boolean> = this._modalService.isOpen$;
   public state$: Observable<ModalState | undefined> = this._modalService.state$;
   public selectedChannelType = ChannelTypeEnum.text;
+  public colorPicked: string = '';
   public state: ModalState | undefined;
+  public colors: Array<string> = [
+    'rgb(0, 255, 191)',
+    'rgb(0, 255, 128)',
+    'rgb(0, 128, 255)',
+    'rgb(128, 0, 255)',
+    'rgb(255, 0, 128)',
+    'rgb(255, 255, 0)',
+    'rgb(255, 128, 0)',
+    'rgb(255, 64, 0)',
+    'rgb(134, 121, 121)',
+    'rgb(128, 128, 128)'
+  ];
+
+  public colorsWithSmallOpacity: Array<string> = [
+    'rgb(0, 255, 191, 0.5)',
+    'rgb(0, 255, 128, 0.5)',
+    'rgb(0, 128, 255, 0.5)',
+    'rgb(128, 0, 255, 0.5)',
+    'rgb(255, 0, 128, 0.5)',
+    'rgb(255, 255, 0, 0.5)',
+    'rgb(255, 128, 0, 0.5)',
+    'rgb(255, 64, 0, 0.5)',
+    'rgb(134, 121, 121, 0.5)',
+    'rgb(128, 128, 128, 0.5)'
+  ];
 
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -26,6 +52,10 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
         this.state = state;
       }
     });
+  }
+
+  public pickTheColor(color: string) {
+    this.colorPicked = color;
   }
 
   public ngOnDestroy(): void {
@@ -67,7 +97,7 @@ export class ModalGenericComponent implements OnInit, OnDestroy {
   public create(state?: ModalState): void {
     if (state) {
       if (!state.create) return;
-      state.create(state.textInput, this.selectedChannelType);
+      state.create(state.textInput, this.selectedChannelType, this.colorPicked);
       this._modalService.reset();
     }
   }

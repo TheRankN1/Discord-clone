@@ -8,7 +8,16 @@
     <div class="user" [class.offline]="user.status === 'offline'" *ngFor="let user of category.users; trackBy: trackByFn">
       <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status" [hideTooltip]="true"></app-avatar>
       <div class="user-details">
-        <span class="name">{{ user.username }}</span>
+        <span class="name" [dropdownTrigger]="dropDownRoles">{{ user.username }}</span>
+        <app-drop-down #dropDownRoles>
+          <div class="drop-down-option role" *ngFor="let role of currentServer.roles">
+            <div class="role-wrapper">
+              <div class="color" [style.background-color]="role.color"></div>
+              <span>{{ role.name }}</span>
+            </div>
+            <div class="checkbox"><app-icon name="check" class="color-white"></app-icon></div>
+          </div>
+        </app-drop-down>
       </div>
     </div>
   </div>

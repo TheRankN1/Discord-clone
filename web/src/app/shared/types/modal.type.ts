@@ -1,1 +1,1 @@
-export type ModalType = 'server' | 'category' | 'channel';
+export type ModalType = 'server' | 'category' | 'channel' | 'role';
