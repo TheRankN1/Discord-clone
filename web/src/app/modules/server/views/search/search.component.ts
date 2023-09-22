@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ServerInterface } from '../../../../shared/interfaces/server.interface';
 import { ServersService } from '../../../../shared/services/servers.service';
 
@@ -11,8 +11,9 @@ export class SearchComponent implements OnInit {
   public servers!: Array<ServerInterface>;
   public inputServerName: string = '';
   public loggedUserServers!: Array<ServerInterface>;
+  public filteredServers!: Array<ServerInterface>;
   public serverFound: boolean = false;
-  public itemsPerPage: number = 2;
+  public itemsPerPage: number = 5;
   public currentPage: number = 1;
   public totalPages: Array<number> = [];
 
@@ -22,6 +23,8 @@ export class SearchComponent implements OnInit {
     this._serversService.servers$.subscribe({
       next: (servers: Array<ServerInterface>) => {
         this.servers = [...servers];
+        this.totalPages = [];
+        this.initializePages();
       }
     });
 
@@ -41,28 +44,22 @@ export class SearchComponent implements OnInit {
     return Math.ceil(this.servers.length / this.itemsPerPage);
   }
 
-  public getCurrentPageItems() {
+  public getCurrentPageItems(servers: Array<ServerInterface>) {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.servers.slice(startIndex, endIndex);
+    return servers.slice(startIndex, endIndex);
   }
 
   public getPageItems(page: number) {
     const startIndex = (page - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.servers.slice(startIndex, endIndex);
+    return this.filteredServers.slice(startIndex, endIndex);
   }
 
-  public checkClearPage(page: number): void {
-    let clear = false;
-    if (this.getPageItems(page).length === 0) {
-      return;
-    }
-    this.getPageItems(page).forEach(server => {
-      if (server.title.includes(this.inputServerName)) clear = true;
-    });
-    if (clear) {
-      this.totalPages.splice(this.totalPages.indexOf(page) + 1, 1);
+  @HostListener('document:keydown', ['$event'])
+  public clearOnBackspace(event: KeyboardEvent): void {
+    if (event.key === 'Backspace') {
+      this.onSearchInputClear();
     }
   }
 
@@ -82,7 +79,7 @@ export class SearchComponent implements OnInit {
 
   public initializePages(): void {
     const totalPages = this.getTotalPages();
-
+    this.filteredServers = this.servers;
     for (let i = 1; i <= totalPages; i++) {
       this.totalPages.push(i);
     }
@@ -90,13 +87,12 @@ export class SearchComponent implements OnInit {
 
   public onSearchInputChanged(): void {
     this.serverFound = false;
+    this.filteredServers = [];
     this.servers.forEach(server => {
       if (server.title.includes(this.inputServerName)) {
         this.serverFound = true;
+        this.filteredServers.push(server);
       }
-    });
-    this.totalPages.forEach(page => {
-      this.checkClearPage(page);
     });
   }
 
@@ -106,6 +102,7 @@ export class SearchComponent implements OnInit {
 
   public onSearchInputClear(): void {
     this.inputServerName = '';
+    this.filteredServers = this.servers;
     this.totalPages = [];
     this.initializePages();
     this.serverFound = true;

@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UserCategoryInterface} from '../../../../shared/interfaces/user-category.interface';
-import {UserDataBaseInterface} from '../../../../shared/interfaces/user-data-base.interface';
-import {AuthService} from '../../../../shared/services/auth.service';
-import {interval, startWith, Subject, takeUntil} from 'rxjs';
-import {ServersService} from '../../../../shared/services/servers.service';
-import {ServerInterface} from '../../../../shared/interfaces/server.interface';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserCategoryInterface } from '../../../../shared/interfaces/user-category.interface';
+import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
+import { AuthService } from '../../../../shared/services/auth.service';
+import { interval, startWith, Subject, takeUntil } from 'rxjs';
+import { ServersService } from '../../../../shared/services/servers.service';
+import { ServerInterface } from '../../../../shared/interfaces/server.interface';
 
 const INTERVAL_CHECK_ONLINE_STATUS = 5000;
 
@@ -22,8 +22,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   constructor(
     private _authService: AuthService,
     private _serversService: ServersService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this._initLoggedUserListener();
@@ -36,12 +35,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
           this._updateUsersStatuses(users);
         }
       });
-    this._serversService.currentServer$.pipe(takeUntil(this._destroy$))
-      .subscribe({
-        next: (server) => {
-          this.currentServer = server;
-        }
-      });
+    this._serversService.currentServer$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: server => {
+        this.currentServer = server;
+      }
+    });
   }
 
   public ngOnDestroy(): void {

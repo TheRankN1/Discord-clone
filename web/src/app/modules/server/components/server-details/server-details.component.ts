@@ -10,7 +10,6 @@ import { ChannelTypeEnum } from '../../../../shared/enums/channel-type.enum';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { ConnectedPosition } from '@angular/cdk/overlay/position/flexible-connected-position-strategy';
-import { RoleInterface } from '../../../../shared/interfaces/role.interface';
 import { RolesService } from '../../../../shared/services/roles.service';
 
 const loggedUserDropdownPosition: ConnectedPosition = {
