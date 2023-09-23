@@ -5,20 +5,33 @@
       <span> - </span>
       <span class="number-of-users">{{ category.users.length }}</span>
     </div>
-    <div class="user" [class.offline]="user.status === 'offline'" *ngFor="let user of category.users; trackBy: trackByFn">
-      <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status" [hideTooltip]="true"></app-avatar>
-      <div class="user-details">
-        <span class="name" [dropdownTrigger]="dropDownRoles">{{ user.username }}</span>
-        <app-drop-down #dropDownRoles>
-          <div class="drop-down-option role" *ngFor="let role of currentServer.roles">
-            <div class="role-wrapper">
-              <div class="color" [style.background-color]="role.color"></div>
-              <span>{{ role.name }}</span>
+    <div class="user" [class.offline]="user.status === 'offline'"
+         *ngFor="let user of category.users; trackBy: trackByFn">
+      <div class="user-props">
+        <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status"
+                    [hideTooltip]="true"></app-avatar>
+        <div class="user-details">
+          <span class="name" [style.color]="user.roles[0]?.color"
+                [dropdownTrigger]="dropDownRoles">{{ user.username }}</span>
+          <app-drop-down #dropDownRoles>
+            <div class="drop-down-option role" *ngFor="let role of currentServer.roles ; let i = index ; trackBy: trackByFn"
+                 (click)="toggleRole(role , user)">
+              <div class="role-wrapper">
+                <div class="color" [style.background-color]="role.color"></div>
+                <span>{{ role.name }}</span>
+              </div>
+              <div class="checkbox" [class.active]="user.roles.includes(role)">
+                <app-icon name="check" class="color-white"></app-icon>
+              </div>
+
             </div>
-            <div class="checkbox"><app-icon name="check" class="color-white"></app-icon></div>
-          </div>
-        </app-drop-down>
+          </app-drop-down>
+        </div>
       </div>
+      <div class="roles">
+        <span class="role-name" [style.color]="role.color" *ngFor="let role of user.roles">{{role.name}}</span>
+      </div>
+
     </div>
   </div>
 </div>
