@@ -110,7 +110,6 @@ export class ServersService {
       });
     }
 
-
     this.loggedUserServers$.next(result);
   }
 

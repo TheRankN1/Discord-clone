@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {UserCategoryInterface} from '../../../../shared/interfaces/user-category.interface';
-import {UserDataBaseInterface} from '../../../../shared/interfaces/user-data-base.interface';
-import {AuthService} from '../../../../shared/services/auth.service';
-import {interval, startWith, Subject, takeUntil} from 'rxjs';
-import {ServersService} from '../../../../shared/services/servers.service';
-import {ServerInterface} from '../../../../shared/interfaces/server.interface';
-import {RoleInterface} from '../../../../shared/interfaces/role.interface';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { UserCategoryInterface } from '../../../../shared/interfaces/user-category.interface';
+import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
+import { AuthService } from '../../../../shared/services/auth.service';
+import { interval, startWith, Subject, takeUntil } from 'rxjs';
+import { ServersService } from '../../../../shared/services/servers.service';
+import { ServerInterface } from '../../../../shared/interfaces/server.interface';
+import { RoleInterface } from '../../../../shared/interfaces/role.interface';
 
 const INTERVAL_CHECK_ONLINE_STATUS = 5000;
 
@@ -24,13 +24,12 @@ export class UsersListComponent implements OnInit, OnDestroy {
   constructor(
     private _authService: AuthService,
     private _serversService: ServersService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this._initLoggedUserListener();
     this._authService.users$.pipe(takeUntil(this._destroy$)).subscribe({
-      next: users => this.users = [...users]
+      next: users => (this.users = [...users])
     });
     const users = this._authService.users$.value;
 
@@ -43,7 +42,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
       });
     this._serversService.currentServer$.pipe(takeUntil(this._destroy$)).subscribe({
       next: server => {
-        this.currentServer = {...server};
+        this.currentServer = { ...server };
       }
     });
   }
@@ -51,7 +50,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
   public userRolesId(user: UserDataBaseInterface): Array<string> {
     return user.roles.map(role => role.id);
   }
-
 
   public serverRolesId(server: ServerInterface): Array<string> {
     return server.roles.map(role => role.id);
@@ -96,14 +94,13 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   public addRole(role: RoleInterface, dBuser: UserDataBaseInterface): void {
     const users: Array<UserDataBaseInterface> = this._authService.users$.value;
-    if (!this.userRolesId(dBuser).includes(role.id))
-      dBuser.roles.push(role);
+    if (!this.userRolesId(dBuser).includes(role.id)) dBuser.roles.push(role);
     users.forEach((user: UserDataBaseInterface) => {
       if (user.id === dBuser.id) {
         user = dBuser;
       }
     });
-    this._authService.users$.next(users)
+    this._authService.users$.next(users);
   }
 
   public deleteRole(role: RoleInterface, dbUser: UserDataBaseInterface): void {
