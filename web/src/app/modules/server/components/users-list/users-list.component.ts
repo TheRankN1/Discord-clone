@@ -5,7 +5,7 @@ import {AuthService} from '../../../../shared/services/auth.service';
 import {interval, startWith, Subject, takeUntil} from 'rxjs';
 import {ServersService} from '../../../../shared/services/servers.service';
 import {ServerInterface} from '../../../../shared/interfaces/server.interface';
-import {RoleInterface} from "../../../../shared/interfaces/role.interface";
+import {RoleInterface} from '../../../../shared/interfaces/role.interface';
 
 const INTERVAL_CHECK_ONLINE_STATUS = 5000;
 
@@ -29,15 +29,16 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._initLoggedUserListener();
-    this._authService.users$.subscribe(users => {
-      this.users = [...users];
-    })
+    this._authService.users$.pipe(takeUntil(this._destroy$)).subscribe({
+      next: users => this.users = [...users]
+    });
+    const users = this._authService.users$.value;
 
     interval(INTERVAL_CHECK_ONLINE_STATUS)
       .pipe(startWith(0), takeUntil(this._destroy$))
       .subscribe({
         next: () => {
-          this._updateUsersStatuses(this.users);
+          this._updateUsersStatuses(users);
         }
       });
     this._serversService.currentServer$.pipe(takeUntil(this._destroy$)).subscribe({
@@ -45,6 +46,15 @@ export class UsersListComponent implements OnInit, OnDestroy {
         this.currentServer = {...server};
       }
     });
+  }
+
+  public userRolesId(user: UserDataBaseInterface): Array<string> {
+    return user.roles.map(role => role.id);
+  }
+
+
+  public serverRolesId(server: ServerInterface): Array<string> {
+    return server.roles.map(role => role.id);
   }
 
   public ngOnDestroy(): void {
@@ -75,17 +85,25 @@ export class UsersListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public addRole(role: RoleInterface, dBuser: UserDataBaseInterface): void {
-    const newUsersWithRoles: Array<UserDataBaseInterface> = [];
-    if (dBuser.roles.length < this.currentServer.roles.length) {
-      dBuser.roles.push(role);
-    }
-    this.users.forEach((user: UserDataBaseInterface) => {
-      if (user.id === dBuser.id) {
-        newUsersWithRoles.push(dBuser);
+  public userRolesOfTheCurrentServer(user: UserDataBaseInterface, server: ServerInterface): Array<RoleInterface> {
+    return user.roles.filter((role: RoleInterface) => {
+      if (this.serverRolesId(server).includes(role.id)) {
+        return role;
       }
-      this._authService.users$.next(newUsersWithRoles);
-    })
+      return;
+    });
+  }
+
+  public addRole(role: RoleInterface, dBuser: UserDataBaseInterface): void {
+    const users: Array<UserDataBaseInterface> = this._authService.users$.value;
+    if (!this.userRolesId(dBuser).includes(role.id))
+      dBuser.roles.push(role);
+    users.forEach((user: UserDataBaseInterface) => {
+      if (user.id === dBuser.id) {
+        user = dBuser;
+      }
+    });
+    this._authService.users$.next(users)
   }
 
   public deleteRole(role: RoleInterface, dbUser: UserDataBaseInterface): void {
@@ -94,19 +112,23 @@ export class UsersListComponent implements OnInit, OnDestroy {
       if (dbUser.id === user.id) {
         dbUser = user;
       }
-    })
-    dbUser.roles.forEach(dBuserRole => {
+    });
+    dbUser.roles.forEach((dBuserRole: RoleInterface) => {
       const roleIndex = dbUser.roles.indexOf(dBuserRole);
 
       if (dBuserRole.id === role.id) {
-        dbUser.roles.splice(roleIndex, 1);
+        if (roleIndex === dbUser.roles.length - 1) {
+          dbUser.roles.splice(roleIndex, 2);
+        } else {
+          dbUser.roles.splice(roleIndex, 1);
+        }
       }
-    })
+    });
     users.forEach(user => {
       if (dbUser.id === user.id) {
         user.roles = dbUser.roles;
       }
-    })
+    });
     this._authService.users$.next(users);
   }
 
@@ -116,24 +138,23 @@ export class UsersListComponent implements OnInit, OnDestroy {
       if (dbUser.id === user.id) {
         dbUser = user;
       }
-    })
+    });
     if (dbUser.roles.length === 0) {
       this.addRole(role, dbUser);
       return;
     }
-    dbUser.roles.forEach(dBuserRole => {
+    dbUser.roles.forEach((dBuserRole: RoleInterface) => {
       if (dBuserRole.id !== role.id) {
-        this.addRole(role, dbUser)
+        this.addRole(role, dbUser);
         return;
       }
 
       if (dBuserRole.id === role.id) {
-        this.deleteRole(role, dbUser)
+        this.deleteRole(role, dbUser);
         return;
       }
-    })
+    });
   }
-
 
   private _initLoggedUserListener(): void {
     this._authService.loggedUser$.pipe(takeUntil(this._destroy$)).subscribe({

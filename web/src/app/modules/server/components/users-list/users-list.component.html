@@ -5,33 +5,32 @@
       <span> - </span>
       <span class="number-of-users">{{ category.users.length }}</span>
     </div>
-    <div class="user" [class.offline]="user.status === 'offline'"
-         *ngFor="let user of category.users; trackBy: trackByFn">
+    <div class="user" [class.offline]="user.status === 'offline'" *ngFor="let user of category.users; trackBy: trackByFn">
       <div class="user-props">
-        <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status"
-                    [hideTooltip]="true"></app-avatar>
+        <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status" [hideTooltip]="true"></app-avatar>
         <div class="user-details">
-          <span class="name" [style.color]="user.roles[0]?.color"
-                [dropdownTrigger]="dropDownRoles">{{ user.username }}</span>
+          <span class="name" [style.color]="userRolesOfTheCurrentServer(user,currentServer)[0]?.color" [dropdownTrigger]="dropDownRoles">{{ user.username }}</span>
           <app-drop-down #dropDownRoles>
-            <div class="drop-down-option role" *ngFor="let role of currentServer.roles ; let i = index ; trackBy: trackByFn"
-                 (click)="toggleRole(role , user)">
+            <div
+              class="drop-down-option role"
+              *ngFor="let role of currentServer.roles; trackBy: trackByFn"
+              (click)="toggleRole(role, user)"
+            >
               <div class="role-wrapper">
                 <div class="color" [style.background-color]="role.color"></div>
                 <span>{{ role.name }}</span>
               </div>
-              <div class="checkbox" [class.active]="user.roles.includes(role)">
+
+              <div class="checkbox" [class.active]="userRolesId(user).includes(role.id) && serverRolesId(currentServer).includes(role.id)">
                 <app-icon name="check" class="color-white"></app-icon>
               </div>
-
             </div>
           </app-drop-down>
         </div>
       </div>
-      <div class="roles">
-        <span class="role-name" [style.color]="role.color" *ngFor="let role of user.roles">{{role.name}}</span>
+      <div class="roles" *ngFor="let role of user.roles">
+        <span class="role-name"[style.color]="role.color"  *ngIf="serverRolesId(currentServer).includes(role.id)"  >{{ role.name }}</span>
       </div>
-
     </div>
   </div>
 </div>

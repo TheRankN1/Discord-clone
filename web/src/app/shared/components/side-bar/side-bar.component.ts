@@ -63,6 +63,7 @@ export class SideBarComponent implements OnInit, ModalBase {
   public logout(): void {
     this._authService.logoutFromLocalStorage();
     this._serversService.currentChannel$.next(ServerInitialization.defaultChannel());
+    this._serversService.currentServer$.next(ServerInitialization.defaultServer());
     this._router.navigate(['auth/login']).then();
   }
 
