@@ -47,6 +47,37 @@
           [attr.placeholder]="state.placeholder"
         />
       </div>
+      <div class="color-picker-wrapper" *ngIf="state.type === 'role'">
+        <strong>ROLE COLOR</strong>
+        <span class="role-description">Members use the color of the highest role they have on the roles list</span>
+        <div class="color-picker">
+          <div class="picked-color" [style.background-color]="colorPicked"></div>
+          <div class="color-table">
+            <div class="row">
+              <div
+                class="color-cell"
+                *ngFor="let color of colors"
+                [class.active]="colorPicked === color"
+                (click)="pickTheColor(color)"
+                [style.background-color]="color"
+              >
+                <app-icon name="check" class="color-white"></app-icon>
+              </div>
+            </div>
+            <div class="row">
+              <div
+                class="color-cell"
+                *ngFor="let color of colorsWithSmallOpacity"
+                [class.active]="colorPicked === color"
+                (click)="pickTheColor(color)"
+                [style.background-color]="color"
+              >
+                <app-icon name="check" class="color-white"></app-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="buttons">
         <button *ngIf="state.onEditMode === true" class="delete-button" (click)="delete(state)">Delete</button>
         <div class="on-edit-mode">

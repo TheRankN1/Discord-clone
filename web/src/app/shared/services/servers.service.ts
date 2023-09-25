@@ -8,7 +8,6 @@ import { ChannelInterface } from '../interfaces/channel.interface';
 import { ChannelTypeEnum } from '../enums/channel-type.enum';
 import { AuthService } from './auth.service';
 import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
-import { ChatMessage } from '../interfaces/chat.interface';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
@@ -40,7 +39,8 @@ export class ServersService {
       serverBgColor: GeneratorHelpers.color(),
       categories: [],
       createdBy: this._authService.loggedUser$.value?.id || '',
-      createdOn: new Date()
+      createdOn: new Date(),
+      roles: []
     });
 
     if (loggedUser) {

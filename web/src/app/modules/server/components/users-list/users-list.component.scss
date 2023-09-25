@@ -33,12 +33,13 @@
 
     .user {
       display: flex;
+      flex-direction: column;
       gap: 10px;
-      align-items: center;
 
       &-details {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
 
         .activity {
           font-size: 10px;
@@ -49,6 +50,48 @@
       &.offline {
         opacity: 0.6;
       }
+    }
+
+    .roles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-props {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+}
+
+.role-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  background: $color-grey-020;
+  border-radius: 4px;
+
+  app-icon {
+    visibility: hidden;
+  }
+
+  &.active {
+    background: $color-blue-010;
+
+    app-icon {
+      visibility: visible;
     }
   }
 }

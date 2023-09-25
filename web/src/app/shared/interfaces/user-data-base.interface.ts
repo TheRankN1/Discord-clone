@@ -1,4 +1,5 @@
 import { UserStatusType } from '../types/user.type';
+import { RoleInterface } from './role.interface';
 
 export interface UserDataBaseInterface {
   id: string;
@@ -12,6 +13,7 @@ export interface UserDataBaseInterface {
   status: UserStatusType;
   lastLogin: Date;
   email: string;
+  roles: Array<RoleInterface>;
   birthDate: {
     day: number | string;
     month: string;

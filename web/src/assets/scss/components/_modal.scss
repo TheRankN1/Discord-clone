@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: calc(100vh - 24px);
+  height: 100vh;
   overflow-x: hidden;
   background: rgb(0 0 0 / 30%);
   transform: translate(-50%, -50%);
@@ -19,7 +19,7 @@
     gap: 20px;
     width: 410px;
     padding: 20px;
-    color: $color-white;
+    color: $color-grey-020;
     background: $discord-blue-color-040;
     border-radius: 20px;
 
@@ -107,7 +107,62 @@
       }
     }
 
+    .color-picker-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      strong {
+        font-size: 14px;
+      }
+
+      .role-description {
+        font-size: 12px;
+      }
+
+      .color-picker {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .picked-color {
+          width: 40px;
+          height: 40px;
+        }
+
+        .color-table {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          .row {
+            display: flex;
+            gap: 8px;
+
+            .color-cell {
+              width: 16px;
+              height: 16px;
+              cursor: pointer;
+              border-radius: 4px;
+
+              app-icon {
+                visibility: hidden;
+              }
+
+              &.active {
+                app-icon {
+                  visibility: visible;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .channel-types {
+      color: $color-white;
+
       .title {
         font-size: 12px;
         font-weight: bold;

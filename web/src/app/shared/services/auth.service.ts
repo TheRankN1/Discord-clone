@@ -45,6 +45,7 @@ export class AuthService {
         status: 'online',
         lastLogin: new Date(),
         email: email,
+        roles: [],
         birthDate: {
           day: day,
           month: month,

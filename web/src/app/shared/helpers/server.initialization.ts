@@ -13,7 +13,8 @@ export class ServerInitialization {
       isActive: false,
       serverBgColor: GeneratorHelpers.color(),
       createdBy: '',
-      createdOn: new Date()
+      createdOn: new Date(),
+      roles: []
     };
   }
 

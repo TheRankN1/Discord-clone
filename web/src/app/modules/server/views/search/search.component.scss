@@ -24,6 +24,7 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    width: calc(100% - 320px);
     padding: 128px 0;
     background-image: url('../../../../../assets/images/discord-background-search.svg');
     background-repeat: no-repeat;

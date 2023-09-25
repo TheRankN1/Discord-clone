@@ -8,27 +8,48 @@
     </div>
   </div>
   <div class="servers">
-    <div class="server" *ngFor="let server of getCurrentPageItems() | includesServerName: inputServerName; trackBy: trackByFn">
-      <div class="img-avatar-wrapper">
-        <div class="server-image">
-          <img src="../../../../../assets/images/discord-background-server-placeholder.svg" alt="" />
-        </div>
-        <div class="server-content">
-          <div class="avatar-name">
-            <app-avatar [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
-            <div class="name ellipsis">{{ server.title }}</div>
+    <ng-container *ngIf="(servers | includesServerName: inputServerName).length < itemsPerPage">
+      <div class="server" *ngFor="let server of servers | includesServerName: inputServerName; trackBy: trackByFn">
+        <div class="img-avatar-wrapper">
+          <div class="server-image">
+            <img src="../../../../../assets/images/discord-background-server-placeholder.svg" alt="" />
           </div>
-          <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+          <div class="server-content">
+            <div class="avatar-name">
+              <app-avatar [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
+              <div class="name ellipsis">{{ server.title }}</div>
+            </div>
+            <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngIf="(servers | includesServerName: inputServerName).length >= itemsPerPage">
+      <div
+        class="server"
+        *ngFor="let server of getCurrentPageItems(filteredServers) | includesServerName: inputServerName; trackBy: trackByFn"
+      >
+        <div class="img-avatar-wrapper">
+          <div class="server-image">
+            <img src="../../../../../assets/images/discord-background-server-placeholder.svg" alt="" />
+          </div>
+          <div class="server-content">
+            <div class="avatar-name">
+              <app-avatar [bgColor]="server.serverBgColor" [title]="server.title" [hideTooltip]="true"></app-avatar>
+              <div class="name ellipsis">{{ server.title }}</div>
+            </div>
+            <div (click)="joinServer(server)" *ngIf="!(loggedUserServers | alreadyJoined: server)" class="join">join</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
     <h1 *ngIf="serverFound === false && inputServerName != ''">No results</h1>
     <h1 *ngIf="servers.length === 0">No servers yet, create one</h1>
-    <div class="pagination" *ngIf="!(serverFound === false && inputServerName != '')">
+    <div class="pagination" *ngIf="(servers | includesServerName: inputServerName).length > itemsPerPage">
       <div class="prev" [class.disabled]="currentPage === 1" (click)="decreaseCurrentPage()">< Back</div>
       <ng-container *ngFor="let page of totalPages; trackBy: trackByFn">
-        <div class="page" [class.active]="currentPage === page" (click)="setCurrentPage(page)">
+        <div class="page" *ngIf="getPageItems(page).length != 0" [class.active]="currentPage === page" (click)="setCurrentPage(page)">
           {{ page }}
         </div>
       </ng-container>
