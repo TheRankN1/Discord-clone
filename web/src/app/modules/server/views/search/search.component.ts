@@ -1,13 +1,16 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ServerInterface } from '../../../../shared/interfaces/server.interface';
 import { ServersService } from '../../../../shared/services/servers.service';
+import { Store } from '@ngrx/store';
+import { serversSelectors } from '../../../../store/servers';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   public servers!: Array<ServerInterface>;
   public inputServerName: string = '';
   public loggedUserServers!: Array<ServerInterface>;
@@ -16,17 +19,24 @@ export class SearchComponent implements OnInit {
   public itemsPerPage: number = 5;
   public currentPage: number = 1;
   public totalPages: Array<number> = [];
+  private _destroy$: Subject<void> = new Subject<void>();
 
-  constructor(private _serversService: ServersService) {}
+  constructor(
+    private _serversService: ServersService,
+    private _store: Store
+  ) {}
 
   public ngOnInit(): void {
-    this._serversService.servers$.subscribe({
-      next: (servers: Array<ServerInterface>) => {
-        this.servers = [...servers];
-        this.totalPages = [];
-        this.initializePages();
-      }
-    });
+    this._store
+      .select(serversSelectors.selectServers)
+      .pipe(takeUntil(this._destroy$))
+      .subscribe({
+        next: (servers: Array<ServerInterface>) => {
+          this.servers = [...servers];
+          this.totalPages = [];
+          this.initializePages();
+        }
+      });
 
     this._serversService.loggedUserServers$.subscribe({
       next: (servers: Array<ServerInterface>) => {
@@ -34,6 +44,11 @@ export class SearchComponent implements OnInit {
       }
     });
     this.initializePages();
+  }
+
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public joinServer(server: ServerInterface): void {

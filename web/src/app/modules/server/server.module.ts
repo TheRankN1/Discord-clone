@@ -23,6 +23,7 @@ import { TooltipModule } from '../../shared/components/tooltip/tooltip.module';
 import { WhoSentMessagePipe } from '../../shared/pipes/who-sent-message.pipe';
 import { StackMessagesPipe } from '../../shared/pipes/stack-messages.pipe';
 import { CheckDifferentDaysPipe } from '../../shared/pipes/check-different-days.pipe';
+import { UserRolesOfTheCurrentServerPipe } from './pipes/user-roles-of-the-current-server.pipe';
 
 const PIPES = [
   IsNotEmptyPipe,
@@ -31,7 +32,8 @@ const PIPES = [
   IncludesServerNamePipe,
   WhoSentMessagePipe,
   StackMessagesPipe,
-  CheckDifferentDaysPipe
+  CheckDifferentDaysPipe,
+  UserRolesOfTheCurrentServerPipe
 ];
 const COMPONENTS = [
   ChatComponent,

@@ -8,6 +8,8 @@ import { ChannelInterface } from '../interfaces/channel.interface';
 import { ChannelTypeEnum } from '../enums/channel-type.enum';
 import { AuthService } from './auth.service';
 import { UserDataBaseInterface } from '../interfaces/user-data-base.interface';
+import { Store } from '@ngrx/store';
+import { serversActions, serversSelectors } from '../../store/servers';
 
 const SERVER_LOCALSTORAGE_KEY = 'dataBaseServers';
 
@@ -20,12 +22,14 @@ export class ServersService {
     ServerInitialization.defaultCategory()
   );
   public currentChannel$: BehaviorSubject<ChannelInterface> = new BehaviorSubject<ChannelInterface>(ServerInitialization.defaultChannel());
-  public isCategoryModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public servers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
   public loggedUserServers$: BehaviorSubject<Array<ServerInterface>> = new BehaviorSubject<Array<ServerInterface>>([]);
   public isLoggedSettingsModalOpen$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private _authService: AuthService) {}
+  constructor(
+    private _authService: AuthService,
+    private _store: Store
+  ) {}
 
   public addServer(title: string): void {
     const servers: Array<ServerInterface> = this.servers$.value;
@@ -323,6 +327,7 @@ export class ServersService {
     const servers: Array<ServerInterface> = this.servers$.value;
 
     const foundServer: ServerInterface | undefined = servers.find((server: ServerInterface) => server.id === id);
+
     if (foundServer) {
       servers.forEach((server: ServerInterface) => {
         server.isActive = server.id === id;
@@ -336,6 +341,7 @@ export class ServersService {
   public getServersFromLocalStorage(): void {
     const servers: string | null = localStorage.getItem(SERVER_LOCALSTORAGE_KEY);
     this.servers$.next(servers ? JSON.parse(servers) : []);
+    this._store.dispatch(serversActions.setServersFromLocalStorage({ servers: servers ? JSON.parse(servers) : [] }));
   }
 
   public makeAllServerInactive(): void {
@@ -345,7 +351,7 @@ export class ServersService {
   }
 
   public listenToServersAndUpdateLocalStorage(): void {
-    this.servers$.subscribe({
+    this._store.select(serversSelectors.selectServers).subscribe({
       next: (servers: Array<ServerInterface>) => {
         localStorage.setItem(SERVER_LOCALSTORAGE_KEY, JSON.stringify(servers));
       }

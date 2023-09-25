@@ -9,7 +9,7 @@
       <div class="user-props">
         <app-avatar dimension="small" [bgColor]="user.bgColor" [icon]="'logo'" [status]="user.status" [hideTooltip]="true"></app-avatar>
         <div class="user-details">
-          <span class="name" [style.color]="userRolesOfTheCurrentServer(user, currentServer)[0]?.color" [dropdownTrigger]="dropDownRoles">{{
+          <span class="name" [style.color]="user | userRolesOfTheCurrentServer: currentServer" [dropdownTrigger]="dropDownRoles">{{
             user.username
           }}</span>
           <app-drop-down #dropDownRoles>

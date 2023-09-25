@@ -12,7 +12,7 @@
     ></app-avatar>
     <ng-container *ngFor="let server of servers$ | async; trackBy: trackByFn">
       <app-avatar
-        (click)="onServerDetails(server.id)"
+        (click)="onServerClicked(server.id)"
         [title]="server.title"
         [isActive]="server.isActive"
         [bgColor]="server.serverBgColor"

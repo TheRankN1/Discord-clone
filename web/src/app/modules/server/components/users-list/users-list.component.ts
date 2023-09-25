@@ -83,15 +83,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public userRolesOfTheCurrentServer(user: UserDataBaseInterface, server: ServerInterface): Array<RoleInterface> {
-    return user.roles.filter((role: RoleInterface) => {
-      if (this.serverRolesId(server).includes(role.id)) {
-        return role;
-      }
-      return;
-    });
-  }
-
   public addRole(role: RoleInterface, dBuser: UserDataBaseInterface): void {
     const users: Array<UserDataBaseInterface> = this._authService.users$.value;
     if (!this.userRolesId(dBuser).includes(role.id)) dBuser.roles.push(role);

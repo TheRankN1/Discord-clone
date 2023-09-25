@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServersService } from './shared/services/servers.service';
 import { AuthService } from './shared/services/auth.service';
 import { RolesService } from './shared/services/roles.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ export class AppComponent implements OnInit {
   constructor(
     private _serverService: ServersService,
     private _authService: AuthService,
-    private _rolesService: RolesService
+    private _rolesService: RolesService,
+    private _store: Store
   ) {}
 
   public ngOnInit(): void {

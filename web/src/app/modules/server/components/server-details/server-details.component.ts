@@ -11,6 +11,8 @@ import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-b
 import { AuthService } from '../../../../shared/services/auth.service';
 import { ConnectedPosition } from '@angular/cdk/overlay/position/flexible-connected-position-strategy';
 import { RolesService } from '../../../../shared/services/roles.service';
+import { serversSelectors } from '../../../../store/servers';
+import { Store } from '@ngrx/store';
 
 const loggedUserDropdownPosition: ConnectedPosition = {
   originX: 'center',
@@ -47,11 +49,20 @@ export class ServerDetailsComponent implements OnInit, OnDestroy {
     private _serversService: ServersService,
     private _modalService: ModalService,
     private _authService: AuthService,
-    private _rolesService: RolesService
+    private _rolesService: RolesService,
+    private _store: Store
   ) {}
 
   public ngOnInit(): void {
-    this.servers = this._serversService.servers$.value;
+    this._store
+      .select(serversSelectors.selectServers)
+      .pipe(takeUntil(this._destroy$))
+      .subscribe({
+        next: (servers: Array<ServerInterface>) => {
+          this.servers = servers;
+        }
+      });
+
     this._route.paramMap.pipe(takeUntil(this._destroy$)).subscribe({
       next: (params: ParamMap) => {
         const serverId: string | null = params.get('serverId');

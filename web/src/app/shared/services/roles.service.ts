@@ -28,6 +28,11 @@ export class RolesService {
     if (!foundServer) {
       return;
     }
+
+    if (!foundServer.roles) {
+      foundServer.roles = [];
+    }
+
     foundServer.roles.push({
       id: GeneratorHelpers.uuid(),
       name: roleName,

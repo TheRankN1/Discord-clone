@@ -9,6 +9,8 @@ import { AuthService } from '../../services/auth.service';
 import { sidebarActions } from '../../data/actions.data';
 import { SidebarActionInterface } from '../../interfaces/sidebar-action.interface';
 import { ServerInitialization } from '../../helpers/server.initialization';
+import { Store } from '@ngrx/store';
+import { serversActions } from '../../../store/servers';
 
 @Component({
   selector: 'app-side-bar',
@@ -23,7 +25,8 @@ export class SideBarComponent implements OnInit, ModalBase {
     private _serversService: ServersService,
     private _modalService: ModalService,
     private _router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _store: Store
   ) {}
 
   public ngOnInit(): void {
@@ -37,27 +40,15 @@ export class SideBarComponent implements OnInit, ModalBase {
   }
 
   public openModalServer(): void {
-    this._modalService.openModal({
-      onEditMode: false,
-      title: 'Create server',
-      textInput: '',
-      type: 'server',
-      placeholder: 'Enter server name',
-      create: this.onCreateServerModal.bind(this)
-    });
+    this._store.dispatch(serversActions.openCreateServerModal({ component: this }));
   }
 
   public onCreateServerModal(textInput: string): void {
-    if (!textInput) {
-      return;
-    }
-    this._serversService.addServer(textInput);
+    this._store.dispatch(serversActions.createServer({ title: textInput, createdBy: this._authService.loggedUser$.value?.id || '' }));
   }
 
-  public onServerDetails(id: string): void {
-    this._serversService.isCategoryModalOpen$.next(false);
-    this._serversService.setCurrentServer(id);
-    this._router.navigate(['/servers/details', id]).then();
+  public onServerClicked(id: string): void {
+    this._store.dispatch(serversActions.serverSelected({ id }));
   }
 
   public logout(): void {

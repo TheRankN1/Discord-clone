@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { UserDataBaseInterface } from '../../../../shared/interfaces/user-data-base.interface';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../../../store/users';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _store: Store
   ) {}
 
   public ngOnInit(): void {
@@ -45,14 +48,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   public login(): void {
     if (this.username === '') {
       this.loginErrorUsername = true;
+      this.loginError = true;
+      return;
     }
 
     if (this.password === '') {
       this.loginErrorPassword = true;
+      this.loginError = true;
+      return;
     }
 
     if (this._authService.login(this.username, this.password)) {
-      this._router.navigate(['/servers']).then();
+      this._store.dispatch(authActions.login({ user: this._authService.loggedUser$.value as UserDataBaseInterface }));
     } else {
       this.loginError = true;
     }
